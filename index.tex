@@ -143,6 +143,22 @@
 \usepackage{xcolor}
 \KOMAoption{captions}{tableheading}
 \makeatletter
+\@ifpackageloaded{tcolorbox}{}{\usepackage[skins,breakable]{tcolorbox}}
+\@ifpackageloaded{fontawesome5}{}{\usepackage{fontawesome5}}
+\definecolor{quarto-callout-color}{HTML}{909090}
+\definecolor{quarto-callout-note-color}{HTML}{0758E5}
+\definecolor{quarto-callout-important-color}{HTML}{CC1914}
+\definecolor{quarto-callout-warning-color}{HTML}{EB9113}
+\definecolor{quarto-callout-tip-color}{HTML}{00A047}
+\definecolor{quarto-callout-caution-color}{HTML}{FC5300}
+\definecolor{quarto-callout-color-frame}{HTML}{acacac}
+\definecolor{quarto-callout-note-color-frame}{HTML}{4582ec}
+\definecolor{quarto-callout-important-color-frame}{HTML}{d9534f}
+\definecolor{quarto-callout-warning-color-frame}{HTML}{f0ad4e}
+\definecolor{quarto-callout-tip-color-frame}{HTML}{02b875}
+\definecolor{quarto-callout-caution-color-frame}{HTML}{fd7e14}
+\makeatother
+\makeatletter
 \@ifpackageloaded{bookmark}{}{\usepackage{bookmark}}
 \makeatother
 \makeatletter
@@ -290,11 +306,48 @@ Gentoo & 58 & 4679.74 & 36.97\\
 \hline
 \end{tabular}
 
+\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, colback=white, toprule=.15mm, breakable, bottomrule=.15mm, opacityback=0, colframe=quarto-callout-note-color-frame, rightrule=.15mm, colbacktitle=quarto-callout-note-color!10!white, leftrule=.75mm, coltitle=black, bottomtitle=1mm, toptitle=1mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Types of error bar}, titlerule=0mm, left=2mm, arc=.35mm]
+
+\textbf{standard deviations}: These tell us about the spread of values
+in a sample or a population. They do not systematically get bigger or
+smaller as the sample size increases. The standard deviation of a sample
+can be used as an estimate of the standard deviation of the population.
+We use standard deviations for \emph{descriptive purposes}
+
+\textbf{standard errors of the mean} These are used to indicate how
+precisely a sample mean estimates the true population mean. They are
+used for \emph{inferential purposes}, whereby we try to infer from the
+sample mean the range of values in which the true population mean might
+be.
+
+\textbf{confidence intervals} These are also inferential tools. They
+tell us the range of values within which the true mean might plausibly
+lie, at some level of confidence, usually 95\%.
+
+\end{tcolorbox}
+
 The errors calculated here are \textbf{standard errors of the mean}.
 They give us an indiciation as to how well the sample means estimate the
 population means. Assuming normally distributed values, it would be very
 surprising if the true population means were more than two of these
 standard errors away from the sample means.
+
+On the flip side, the population means could plausibly lie anyhwere in
+the range that is our sample means plus or minus two of these standard
+errors.
+
+That said:
+
+\begin{itemize}
+\tightlist
+\item
+  Does it look as though there is evidence form the data for a
+  difference between Adelie and Chinstrop penguins?
+\item
+  What about the Gentoos compared to either of the other two?
+\item
+  Do we have evidence to reject the null hypothesis. (Clue: yes we do!)
+\end{itemize}
 
 \bookmarksetup{startatroot}
 

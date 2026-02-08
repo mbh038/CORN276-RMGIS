@@ -25,7 +25,6 @@ Let's take the example of the Palmer penguins dataset. This set contains measure
 
 ![Meet the penguins](figures/penguins.png)
 
-
 Let's consider only the females and ask the question:
 
 **Question**: Is there any difference in body weight between the three species:
@@ -54,8 +53,24 @@ penguin_summary |>
   
 ```
 
+::: callout-note
+## Types of error bar
+**standard deviations**: These tell us about the spread of values in a sample or a population. They do not systematically get bigger or smaller as the sample size increases. The standard deviation of a sample can be used as an estimate of the standard deviation of the population. We use standard deviations for *descriptive purposes*
+
+**standard errors of the mean**
+These are used to indicate how precisely a sample mean estimates the true population mean. They are used for *inferential purposes*, whereby we try to infer from the sample mean the range of values in which the true population mean might be. 
+
+**confidence intervals**
+These are also inferential tools. They tell us the range of values within which the true mean might plausibly lie, at some level of confidence, usually 95%.
+
+:::
+
 The errors calculated here are **standard errors of the mean**. They give us an indiciation as to how well the sample means estimate the population means. Assuming normally distributed values, it would be very surprising if the true population means were more than two of these standard errors away from the sample means.
 
+On the flip side, the population means could plausibly lie anyhwere in the range that is our sample means plus or minus two of these standard errors.
 
+That said:
 
-
+-   Does it look as though there is evidence form the data for a difference between Adelie and Chinstrop penguins?
+-   What about the Gentoos compared to either of the other two?
+-   Do we have evidence to reject the null hypothesis. (Clue: yes we do!)
