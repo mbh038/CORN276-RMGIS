@@ -137,6 +137,7 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
   <li><a href="#summarise-the-data" id="toc-summarise-the-data" class="nav-link active" data-scroll-target="#summarise-the-data"><span class="header-section-number">1.1</span> Summarise the data</a></li>
+  <li><a href="#plot-the-data" id="toc-plot-the-data" class="nav-link" data-scroll-target="#plot-the-data"><span class="header-section-number">1.2</span> Plot the data</a></li>
   </ul>
 </nav>
     </div>
@@ -227,18 +228,22 @@ Types of error bar
 </div>
 <div class="callout-body-container callout-body">
 <p><strong>standard deviations</strong>: These tell us about the spread of values in a sample or a population. They do not systematically get bigger or smaller as the sample size increases. The standard deviation of a sample can be used as an estimate of the standard deviation of the population. We use standard deviations for <em>descriptive purposes</em></p>
-<p><strong>standard errors of the mean</strong> These are used to indicate how precisely a sample mean estimates the true population mean. They are used for <em>inferential purposes</em>, whereby we try to infer from the sample mean the range of values in which the true population mean might be.</p>
+<p><strong>standard errors of the mean</strong> These are used to indicate how precisely a sample mean estimates the true population mean. They are used for <em>inferential purposes</em>, whereby we try to infer from the sample mean the range of values in which the true population mean might be. Assuming normally distributed values, it would be very surprising if the true population means were more than two standard errors away from the sample means.</p>
+<p>Standard errors are calculated from the standard deviations (SD) of the sample using the formula $= where <em>n</em> is the sample size. This means that standard errors <em>do</em> get systematically smaller, the larger the sample. The larger the sample, the closer the sample mean is likely to be to the true population mean. Who knew?</p>
 <p><strong>confidence intervals</strong> These are also inferential tools. They tell us the range of values within which the true mean might plausibly lie, at some level of confidence, usually 95%.</p>
+<p>If you include error bars in a plot you can use any of these three errors, depending on the story you want to tell. Whichever, just <strong>must</strong> state in the figure caption which of them you have used. Failing to do this can seriously mislead the reader, since they can be of very different magnitudes.</p>
 </div>
 </div>
-<p>The errors calculated here are <strong>standard errors of the mean</strong>. They give us an indiciation as to how well the sample means estimate the population means. Assuming normally distributed values, it would be very surprising if the true population means were more than two of these standard errors away from the sample means.</p>
-<p>On the flip side, the population means could plausibly lie anyhwere in the range that is our sample means plus or minus two of these standard errors.</p>
-<p>That said:</p>
+<p>The errors calculated here are <strong>standard errors of the mean</strong>. We do this becuase we want to get an idea, from our samples, of how plausible it is that the population means differ from each other. These population means could plausibly lie anyhwere in the range that is our sample means plus or minus two of these standard errors.</p>
 <ul>
 <li>Does it look as though there is evidence form the data for a difference between Adelie and Chinstrop penguins?</li>
 <li>What about the Gentoos compared to either of the other two?</li>
 <li>Do we have evidence to reject the null hypothesis. (Clue: yes we do!)</li>
 </ul>
+</section>
+<section id="plot-the-data" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="plot-the-data"><span class="header-section-number">1.2</span> Plot the data</h2>
+<p>After summarising the data, then ext thing we nearly always do in deciding what the data is telling us is to plot the data. We have several choices of how to do so and each has its pros and cons.</p>
 
 
 </section>

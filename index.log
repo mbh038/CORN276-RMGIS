@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2026.1.29)  8 FEB 2026 06:36
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2026.1.29)  8 FEB 2026 07:05
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1356,26 +1356,23 @@ File: figures/penguins.png Graphic file (type bmp)
 
 ] (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/latex/microtype/mt-TU-empty.cfg
 File: mt-TU-empty.cfg 2021/06/22 v1.1 microtype config. file: fonts with nonstandard glyph set (RS)
-) [5] [6]
-
-! LaTeX Error: Something's wrong--perhaps a missing \item.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.361 \end{CSLReferences}
-                         
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
+)
+! Undefined control sequence.
+l.326 sample using the formula \$\test
+                                      {SE}=\frac{\text{SD}}{sqrt{n}} where
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
 
  
 Here is how much of TeX's memory you used:
- 40196 strings out of 470129
- 827199 string characters out of 5475410
- 1537794 words of memory out of 5000000
- 68217 multiletter control sequences out of 15000+600000
+ 40108 strings out of 470129
+ 825066 string characters out of 5475410
+ 1529794 words of memory out of 5000000
+ 68130 multiletter control sequences out of 15000+600000
  634258 words of font info for 91 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
- 108i,8n,114p,11208b,919s stack positions out of 10000i,1000n,20000p,200000b,200000s
-Output written on index.pdf (6 pages).
+ 108i,8n,114p,11208b,441s stack positions out of 10000i,1000n,20000p,200000b,200000s
+Output written on index.pdf (4 pages).
