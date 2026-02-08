@@ -109,9 +109,9 @@ bc1 <- penguin_summary |>
 
 ```{r}
 bc2 <- bc1 +
-  geom_errorbar(aes(ymin = mean_body_mass - se_body_mass,
-                    ymax = mean_body_mass + se_body_mass),
-width=0.15, colour = "grey50") +
+  geom_errorbar(aes(ymin = mean_body_mass - 2*se_body_mass,
+                    ymax = mean_body_mass + 2*se_body_mass),
+width=0.15, colour = "grey40") +
     labs(title = "Better!",
          caption = "error bars are ± one standard error")
 ```
@@ -124,9 +124,13 @@ bc3 <- bc2 +
 
 ```{r}
 bc4 <- bc3 +
-  geom_col(fill = fill_colour3, alpha = 0.8) +
+  geom_col(fill = fill_colour3, alpha = 1.0) +
+  geom_errorbar(aes(ymin = mean_body_mass - 2*se_body_mass,
+                    ymax = mean_body_mass + 2*se_body_mass),
+width=0.15, colour = "grey40") +
   geom_text(aes(y = 0, label = n), vjust = 0, nudge_y = 200) +
   labs(title = "Best!")
+bc4
 ```
 
 ```{r}
