@@ -23,6 +23,7 @@ library(openintro)
 data(COL)
 fill_colour1<-COL['blue','f3']
 fill_colour1 <- "#a6bddb"
+fill_colour1 <- "#fed98e"
 fill_colour2<-COL['red','f6']
 fill_colour3<-COL['blue','f1']
 line_colour<-COL['blue','full']
@@ -118,7 +119,7 @@ width=0.15, colour = "grey40") +
 
 ```{r}
 bc3 <- bc2 +
-  geom_text(aes(y = 0, label = n), vjust = 0, nudge_y = 200) +
+  geom_text(aes(y = 0, label = paste("n = ",n)), vjust = 0, nudge_y = 200) +
   labs(title = "Even better!")
 ```
 
