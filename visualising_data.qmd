@@ -77,7 +77,8 @@ penguin_summary |>
 
 **standard errors of the mean** These are used to indicate how precisely a sample mean estimates the true population mean. They are used for *inferential purposes*, whereby we try to infer from the sample mean the range of values in which the true population mean might be. Assuming normally distributed values, it would be very surprising if the true population means were more than two standard errors away from the sample means.
 
-Standard errors are calculated from the standard deviations (SD) of the sample using the formula $\test{SE}=\frac{\text{SD}}{sqrt{n}}$ where *n* is the sample size. This means that standard errors *do* get systematically smaller, the larger the sample. The larger the sample, the closer the sample mean is likely to be to the true population mean. Who knew?
+Standard errors are calculated from the standard deviations (SD) of the sample using the formula 
+$\text{SE}=\frac{\text{SD}}{sqrt{n}}$ where *n* is the sample size. This means that standard errors *do* get systematically smaller, the larger the sample. The larger the sample, the closer the sample mean is likely to be to the true population mean. Who knew?
 
 **confidence intervals** These are also inferential tools. They tell us the range of values within which the true mean might plausibly lie, at some level of confidence, usually 95%.
 
@@ -104,7 +105,6 @@ bc1 <- penguin_summary |>
   scale_fill_manual(values=c(Adelie='#fc8d59',Chinstrap='#8856a7', Gentoo='#2ca25f')) + # this line manually sets the fill colours for us
   theme(legend.position="none") 
   # scale_fill_brewer(palette = "Set2")
-bc1
 ```
 
 ```{r}
@@ -114,13 +114,11 @@ bc2 <- bc1 +
 width=0.15, colour = "grey50") +
     labs(title = "Better!",
          caption = "error bars are ± one standard error")
-bc2
 ```
 ```{r}
 bc3 <- bc2 +
   geom_text(aes(y = 0, label = n), vjust = 0, nudge_y = 200) +
   labs(title = "Even better!")
-bc3
 ```
 
 
@@ -129,12 +127,11 @@ bc4 <- bc3 +
   geom_col(fill = fill_colour3, alpha = 0.8) +
   geom_text(aes(y = 0, label = n), vjust = 0, nudge_y = 200) +
   labs(title = "Best!")
-bc4
 ```
 
 ```{r}
 #| label: fig-bar-charts
-#| fig-cap: "Charts"
+#| fig-cap: "Bar charts, from worst to best"
 #| fig-subcap: 
 #|   - "Terrible!"
 #|   - "Standard errors added"
