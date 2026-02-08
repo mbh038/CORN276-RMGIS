@@ -1,0 +1,61 @@
+# Visualising data
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(message = FALSE, warning = FALSE, echo = FALSE)
+```
+
+When we have got our data safely tucked into a spreadsheet. Now we need to tease out of it the answers to our question(s) and to decide whether we have evidence enough to reject our null hypotheses, or not, in which case we will fail to reject them.
+
+```{r, include = FALSE}
+library(tidyverse)
+library(palmerpenguins)
+library(janitor)
+library(ggfortify)
+library(ggridges)
+library(kableExtra)
+```
+
+```{r, include = FALSE}
+female_penguins <- penguins |>
+  drop_na() |>
+  filter(sex == "female")
+```
+
+Let's take the example of the Palmer penguins dataset. This set contains measurements of bill depth, bill length, flipper length and body mass of males and females of three species of penguins: Adelie, Chinstrap and Gentoo observed on any one of three islands in the Palmer Archipelago, Antarctica.
+
+![Meet the penguins](figures/penguins.png)
+
+
+Let's consider only the females and ask the question:
+
+**Question**: Is there any difference in body weight between the three species:
+
+from which we can generate a hypothesis:
+
+**Hypothesis**: There is a difference in body weight between females ofthe three species.
+
+**Null hypothesis**: There is no difference in bosy weight between females of the three species.
+
+and hence a prediction of what we will find if the hypothesis is true:
+
+**Prediction if the hypothesis is true**: At least one species will have a different average body mass than at least one other species.
+
+## Summarise the data
+
+The first thing we can do to investigate our hypotheses is to summarise the data. More often than not this means caclulating three things for each sample - the sample sizes, the mean values and the standard errors of those means.
+
+```{r}
+penguin_summary <- female_penguins |> 
+  group_by(species) |>
+  summarise(n = n(), mean_body_mass = mean(body_mass_g), se_body_mass = round(sd(body_mass_g)/sqrt(n()),2))
+penguin_summary |>
+  kbl(digits = 2,
+      col.names = c("Species", "N", "Mean body mass (g)", "Standard error (g)"))
+  
+```
+
+The errors calculated here are **standard errors of the mean**. They give us an indiciation as to how well the sample means estimate the population means. Assuming normally distributed values, it would be very surprising if the true population means were more than two of these standard errors away from the sample means.
+
+
+
+
