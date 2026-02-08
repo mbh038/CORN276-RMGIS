@@ -131,7 +131,7 @@ bc4 <- bc3 +
   geom_errorbar(aes(ymin = mean_body_mass - 2*se_body_mass,
                     ymax = mean_body_mass + 2*se_body_mass),
 width=0.15, colour = "grey40") +
-  geom_text(aes(y = 0, label = n), vjust = 0, nudge_y = 200) +
+  geom_text(aes(y = 0, label = paste("n = ",n)), vjust = 0, nudge_y = 200) +
   labs(title = "Best!")
 ```
 
@@ -153,22 +153,68 @@ bc4
 
 ## Histograms
 
+Histograms can also be used to inspect a data set, even one with multiple categories, as with the penguin data. Unlike bar charts they show the  distribution of a dataset, including its centtal value, spread and symmetry, or lack thereof.
+
+
+```{r}
+h1<- female_penguins |>
+  filter(species == "Adelie") |>
+ggplot(aes(x = body_mass_g)) + 
+  geom_histogram(binwidth = 50, alpha = 0.5) + 
+  labs(x = "Body mass (g)",
+       y = "Frequency")
+```
+```{r}
+h2<- female_penguins |>
+  filter(species == "Adelie") |>
+ggplot(aes(x = body_mass_g)) + 
+  geom_histogram(binwidth = 100, alpha = 0.5) + 
+  labs(x = "Body mass (g)",
+       y = "Frequency")
+```
+```{r}
+h3<- female_penguins |>
+  filter(species == "Adelie") |>
+ggplot(aes(x = body_mass_g)) + 
+  geom_histogram(binwidth = 200, alpha = 0.5) + 
+  labs(x = "Body mass (g)",
+       y = "Frequency")
+```
+
+```{r}
+#| label: fig-histograms
+#| fig-cap: "Histograms of different bin width"
+#| fig-subcap: 
+#|   - "bins too narrow"
+#|   - "Bin width about right"
+#|   - "Bins too wide"
+
+#| layout-ncol: 3
+
+h1
+h2
+h3
+```
+
 ```{r}
 female_penguins |>
-  ggplot(aes(x = body_mass_g, fill = species)) +
-  geom_histogram(binwidth = 100, alpha = 0.5, position = "identity") +
+ggplot(aes(x = body_mass_g, fill = species, colour = species)) + 
+  geom_histogram(alpha = 0.5, position = "identity") + 
   labs(x = "Body mass (g)",
        y = "Frequency",
-       fill = "Species") +
+       fill = "Species",
+       colour = "") +
+  guides(colour = "none") +
   theme(legend.position = "right")
 ```
 ```{r}
 female_penguins |>
   ggplot(aes(x = body_mass_g)) +
-  geom_histogram(binwidth = 100, alpha = .5, fill = fill_colour1) +
+  geom_histogram(binwidth = 100, alpha = .8, fill = fill_colour1, colour = "grey80", linewidth = 0.5) +
   labs(x = "Body mass (g)",
        y = "Frequency") +
   facet_wrap(~species,ncol = 1) +
-  scale_fill_brewer(palette = "Set1")
+  scale_fill_brewer(palette = "Set1") +
+  theme(strip.background = element_blank())
 ```
 
