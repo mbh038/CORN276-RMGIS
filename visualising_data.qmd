@@ -130,7 +130,6 @@ bc4 <- bc3 +
 width=0.15, colour = "grey40") +
   geom_text(aes(y = 0, label = n), vjust = 0, nudge_y = 200) +
   labs(title = "Best!")
-bc4
 ```
 
 ```{r}
