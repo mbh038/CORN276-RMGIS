@@ -306,7 +306,7 @@ Adelie & 73 & 3368.84 & 31.53\\
 \hline
 \end{tabular}
 
-\begin{tcolorbox}[enhanced jigsaw, leftrule=.75mm, colbacktitle=quarto-callout-note-color!10!white, left=2mm, toptitle=1mm, bottomrule=.15mm, titlerule=0mm, rightrule=.15mm, breakable, colback=white, colframe=quarto-callout-note-color-frame, bottomtitle=1mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Types of error bar}, arc=.35mm, toprule=.15mm, opacitybacktitle=0.6, coltitle=black, opacityback=0]
+\begin{tcolorbox}[enhanced jigsaw, colframe=quarto-callout-note-color-frame, toprule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Types of error bar}, left=2mm, breakable, bottomtitle=1mm, colbacktitle=quarto-callout-note-color!10!white, arc=.35mm, opacitybacktitle=0.6, coltitle=black, toptitle=1mm, leftrule=.75mm, bottomrule=.15mm, titlerule=0mm, rightrule=.15mm, colback=white, opacityback=0]
 
 \textbf{standard deviations}: These tell us about the spread of values
 in a sample or a population. They do not systematically get bigger or
@@ -430,7 +430,7 @@ and symmetry, or lack thereof.
 
 \begin{figure}
 
-\centering{
+\begin{minipage}{0.33\linewidth}
 
 \centering{
 
@@ -440,6 +440,10 @@ and symmetry, or lack thereof.
 
 \subcaption{\label{fig-histograms-1}bins too narrow}
 
+\end{minipage}%
+%
+\begin{minipage}{0.33\linewidth}
+
 \centering{
 
 \pandocbounded{\includegraphics[keepaspectratio]{visualising_data_files/figure-pdf/fig-histograms-2.pdf}}
@@ -447,6 +451,10 @@ and symmetry, or lack thereof.
 }
 
 \subcaption{\label{fig-histograms-2}Bin width about right}
+
+\end{minipage}%
+%
+\begin{minipage}{0.33\linewidth}
 
 \centering{
 
@@ -456,7 +464,7 @@ and symmetry, or lack thereof.
 
 \subcaption{\label{fig-histograms-3}Bins too wide}
 
-}
+\end{minipage}%
 
 \caption{\label{fig-histograms}Histograms of different bin width}
 

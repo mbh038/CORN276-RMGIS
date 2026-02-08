@@ -173,7 +173,7 @@ ggplot(aes(x = body_mass_g)) +
        y = "Frequency")
 ```
 ```{r}
-h3<- female_penguins |>
+h3 <- female_penguins |>
   filter(species == "Adelie") |>
 ggplot(aes(x = body_mass_g)) + 
   geom_histogram(binwidth = 200, alpha = 0.5) + 
@@ -188,7 +188,6 @@ ggplot(aes(x = body_mass_g)) +
 #|   - "bins too narrow"
 #|   - "Bin width about right"
 #|   - "Bins too wide"
-
 #| layout-ncol: 3
 
 h1
