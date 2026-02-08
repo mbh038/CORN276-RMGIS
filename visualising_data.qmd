@@ -13,11 +13,28 @@ library(janitor)
 library(ggfortify)
 library(ggridges)
 library(kableExtra)
+library(cowplot)
+set_theme(theme_cowplot() +theme(legend.position = "none"))
+```
+
+```{r}
+# we use the fabulous openintro here only for its colour scheme
+library(openintro)
+data(COL)
+fill_colour1<-COL['blue','f3']
+fill_colour1 <- "#a6bddb"
+fill_colour2<-COL['red','f6']
+fill_colour3<-COL['blue','f1']
+line_colour<-COL['blue','full']
+func_colour<-"darkblue"
+point_colour<-COL['blue','full']
+error_colour<-COL['red','full']
 ```
 
 ```{r, include = FALSE}
 female_penguins <- penguins |>
   drop_na() |>
+  mutate(species = factor(species, levels = c("Chinstrap", "Gentoo", "Adelie"))) |>
   filter(sex == "female")
 ```
 
@@ -55,22 +72,19 @@ penguin_summary |>
 
 ::: callout-note
 ## Types of error bar
+
 **standard deviations**: These tell us about the spread of values in a sample or a population. They do not systematically get bigger or smaller as the sample size increases. The standard deviation of a sample can be used as an estimate of the standard deviation of the population. We use standard deviations for *descriptive purposes*
 
-**standard errors of the mean**
-These are used to indicate how precisely a sample mean estimates the true population mean. They are used for *inferential purposes*, whereby we try to infer from the sample mean the range of values in which the true population mean might be. Assuming normally distributed values, it would be very surprising if the true population means were more than two standard errors away from the sample means.
+**standard errors of the mean** These are used to indicate how precisely a sample mean estimates the true population mean. They are used for *inferential purposes*, whereby we try to infer from the sample mean the range of values in which the true population mean might be. Assuming normally distributed values, it would be very surprising if the true population means were more than two standard errors away from the sample means.
 
-Standard errors are calculated from the standard deviations (SD) of the sample using the formula $\test{SE}=\frac{\text{SD}}{sqrt{n}} where *n* is the sample size. This means that standard errors *do* get systematically smaller, the larger the sample. The larger the sample, the closer the sample mean is likely to be to the true population mean. Who knew?
+Standard errors are calculated from the standard deviations (SD) of the sample using the formula $\test{SE}=\frac{\text{SD}}{sqrt{n}}$ where *n* is the sample size. This means that standard errors *do* get systematically smaller, the larger the sample. The larger the sample, the closer the sample mean is likely to be to the true population mean. Who knew?
 
-**confidence intervals**
-These are also inferential tools. They tell us the range of values within which the true mean might plausibly lie, at some level of confidence, usually 95%. 
+**confidence intervals** These are also inferential tools. They tell us the range of values within which the true mean might plausibly lie, at some level of confidence, usually 95%.
 
 If you include error bars in a plot you can use any of these three errors, depending on the story you want to tell. Whichever, just **must** state in the figure caption which of them you have used. Failing to do this can seriously mislead the reader, since they can be of very different magnitudes.
-
 :::
 
-The errors calculated here are **standard errors of the mean**. We do this becuase we want to get an idea, from our samples, of how plausible it is that the population means differ from each other.
-These population means could plausibly lie anyhwere in the range that is our sample means plus or minus two of these standard errors.
+The errors calculated here are **standard errors of the mean**. We do this becuase we want to get an idea, from our samples, of how plausible it is that the population means differ from each other. These population means could plausibly lie anyhwere in the range that is our sample means plus or minus two of these standard errors.
 
 -   Does it look as though there is evidence form the data for a difference between Adelie and Chinstrop penguins?
 -   What about the Gentoos compared to either of the other two?
@@ -78,5 +92,59 @@ These population means could plausibly lie anyhwere in the range that is our sam
 
 ## Plot the data
 
-After summarising the data, then ext thing we nearly always do in deciding what the data is telling us is to plot the data. We have several choices of how to do so and each has its pros and cons. 
+After summarising the data, then ext thing we nearly always do in deciding what the data is telling us is to plot the data. We have several choices of how to do so and each has its pros and cons. Let's run through a few of them.
+
+```{r}
+bc1 <- penguin_summary |>
+  ggplot(aes(x = species, y = mean_body_mass, fill = species)) +
+  geom_col(, alpha = 0.8) +
+  labs(x = "Species",
+       y = "Mean body mass (g)",
+       title = "Rubbish!") +
+  scale_fill_manual(values=c(Adelie='#fc8d59',Chinstrap='#8856a7', Gentoo='#2ca25f')) + # this line manually sets the fill colours for us
+  theme(legend.position="none") 
+  # scale_fill_brewer(palette = "Set2")
+bc1
+```
+
+```{r}
+bc2 <- bc1 +
+  geom_errorbar(aes(ymin = mean_body_mass - se_body_mass,
+                    ymax = mean_body_mass + se_body_mass),
+width=0.15, colour = "grey50") +
+    labs(title = "Better!",
+         caption = "error bars are ± one standard error")
+bc2
+```
+```{r}
+bc3 <- bc2 +
+  geom_text(aes(y = 0, label = n), vjust = 0, nudge_y = 200) +
+  labs(title = "Even better!")
+bc3
+```
+
+
+```{r}
+bc4 <- bc3 +
+  geom_col(fill = fill_colour3, alpha = 0.8) +
+  geom_text(aes(y = 0, label = n), vjust = 0, nudge_y = 200) +
+  labs(title = "Best!")
+bc4
+```
+
+```{r}
+#| label: fig-bar-charts
+#| fig-cap: "Charts"
+#| fig-subcap: 
+#|   - "Terrible!"
+#|   - "Standard errors added"
+#|   - "Sample sizes added"
+#|   - "Redundant colours removed"
+#| layout-ncol: 2
+
+bc1
+bc2
+bc3
+bc4
+```
 

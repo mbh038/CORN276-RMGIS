@@ -298,15 +298,15 @@ of those means.
 \hline
 Species & N & Mean body mass (g) & Standard error (g)\\
 \hline
-Adelie & 73 & 3368.84 & 31.53\\
-\hline
 Chinstrap & 34 & 3527.21 & 48.93\\
 \hline
 Gentoo & 58 & 4679.74 & 36.97\\
 \hline
+Adelie & 73 & 3368.84 & 31.53\\
+\hline
 \end{tabular}
 
-\begin{tcolorbox}[enhanced jigsaw, toprule=.15mm, coltitle=black, left=2mm, colbacktitle=quarto-callout-note-color!10!white, leftrule=.75mm, colframe=quarto-callout-note-color-frame, titlerule=0mm, arc=.35mm, bottomtitle=1mm, rightrule=.15mm, opacitybacktitle=0.6, colback=white, toptitle=1mm, breakable, bottomrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Types of error bar}, opacityback=0]
+\begin{tcolorbox}[enhanced jigsaw, colbacktitle=quarto-callout-note-color!10!white, titlerule=0mm, colframe=quarto-callout-note-color-frame, arc=.35mm, opacitybacktitle=0.6, leftrule=.75mm, breakable, opacityback=0, toprule=.15mm, bottomrule=.15mm, toptitle=1mm, colback=white, rightrule=.15mm, bottomtitle=1mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Types of error bar}, left=2mm, coltitle=black]
 
 \textbf{standard deviations}: These tell us about the spread of values
 in a sample or a population. They do not systematically get bigger or
@@ -323,7 +323,7 @@ the true population means were more than two standard errors away from
 the sample means.
 
 Standard errors are calculated from the standard deviations (SD) of the
-sample using the formula \$\test{SE}=\frac{\text{SD}}{sqrt{n}} where
+sample using the formula \(\test{SE}=\frac{\text{SD}}{sqrt{n}}\) where
 \emph{n} is the sample size. This means that standard errors \emph{do}
 get systematically smaller, the larger the sample. The larger the
 sample, the closer the sample mean is likely to be to the true
@@ -362,7 +362,70 @@ sample means plus or minus two of these standard errors.
 
 After summarising the data, then ext thing we nearly always do in
 deciding what the data is telling us is to plot the data. We have
-several choices of how to do so and each has its pros and cons.
+several choices of how to do so and each has its pros and cons. Let's
+run through a few of them.
+
+\pandocbounded{\includegraphics[keepaspectratio]{visualising_data_files/figure-pdf/unnamed-chunk-6-1.pdf}}
+
+\pandocbounded{\includegraphics[keepaspectratio]{visualising_data_files/figure-pdf/unnamed-chunk-7-1.pdf}}
+
+\pandocbounded{\includegraphics[keepaspectratio]{visualising_data_files/figure-pdf/unnamed-chunk-8-1.pdf}}
+
+\pandocbounded{\includegraphics[keepaspectratio]{visualising_data_files/figure-pdf/unnamed-chunk-9-1.pdf}}
+
+\begin{figure}
+
+\begin{minipage}{0.50\linewidth}
+
+\centering{
+
+\pandocbounded{\includegraphics[keepaspectratio]{visualising_data_files/figure-pdf/fig-bar-charts-1.pdf}}
+
+}
+
+\subcaption{\label{fig-bar-charts-1}Terrible!}
+
+\end{minipage}%
+%
+\begin{minipage}{0.50\linewidth}
+
+\centering{
+
+\pandocbounded{\includegraphics[keepaspectratio]{visualising_data_files/figure-pdf/fig-bar-charts-2.pdf}}
+
+}
+
+\subcaption{\label{fig-bar-charts-2}Standard errors added}
+
+\end{minipage}%
+\newline
+\begin{minipage}{0.50\linewidth}
+
+\centering{
+
+\pandocbounded{\includegraphics[keepaspectratio]{visualising_data_files/figure-pdf/fig-bar-charts-3.pdf}}
+
+}
+
+\subcaption{\label{fig-bar-charts-3}Sample sizes added}
+
+\end{minipage}%
+%
+\begin{minipage}{0.50\linewidth}
+
+\centering{
+
+\pandocbounded{\includegraphics[keepaspectratio]{visualising_data_files/figure-pdf/fig-bar-charts-4.pdf}}
+
+}
+
+\subcaption{\label{fig-bar-charts-4}Redundant colours removed}
+
+\end{minipage}%
+
+\caption{\label{fig-bar-charts}Charts}
+
+\end{figure}%
 
 \bookmarksetup{startatroot}
 

@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2026.1.29)  8 FEB 2026 07:05
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2026.1.29)  8 FEB 2026 11:17
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -7,17 +7,17 @@ entering extended mode
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-01-19>
 (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/latex/koma-script/scrreprt.cls
-Document Class: scrreprt 2025/12/01 v3.49 KOMA-Script document class (report)
+Document Class: scrreprt 2026/02/02 v3.49.2 KOMA-Script document class (report)
 (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/latex/koma-script/scrkbase.sty
-Package: scrkbase 2025/12/01 v3.49 KOMA-Script package (KOMA-Script-dependent basics and keyval usage)
+Package: scrkbase 2026/02/02 v3.49.2 KOMA-Script package (KOMA-Script-dependent basics and keyval usage)
 (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/latex/koma-script/scrbase.sty
-Package: scrbase 2025/12/01 v3.49 KOMA-Script package (KOMA-Script-independent basics and keyval usage)
+Package: scrbase 2026/02/02 v3.49.2 KOMA-Script package (KOMA-Script-independent basics and keyval usage)
 (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/latex/koma-script/scrlfile.sty
-Package: scrlfile 2025/12/01 v3.49 KOMA-Script package (file load hooks)
+Package: scrlfile 2026/02/02 v3.49.2 KOMA-Script package (file load hooks)
 (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/latex/koma-script/scrlfile-hook.sty
-Package: scrlfile-hook 2025/12/01 v3.49 KOMA-Script package (using LaTeX hooks)
+Package: scrlfile-hook 2026/02/02 v3.49.2 KOMA-Script package (using LaTeX hooks)
 (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/latex/koma-script/scrlogo.sty
-Package: scrlogo 2025/12/01 v3.49 KOMA-Script package (logo)
+Package: scrlogo 2026/02/02 v3.49.2 KOMA-Script package (logo)
 ))) (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/latex/graphics/keyval.sty
 Package: keyval 2022/05/29 v1.15 key=value parser (DPC)
 \KV@toks@=\toks17
@@ -25,7 +25,7 @@ Package: keyval 2022/05/29 v1.15 key=value parser (DPC)
 Applying: [2021/05/01] Usage of raw or classic option list on input line 254.
 Already applied: [0000/00/00] Usage of raw or classic option list on input line 370.
 )) (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/latex/koma-script/tocbasic.sty
-Package: tocbasic 2025/12/01 v3.49 KOMA-Script package (handling toc-files)
+Package: tocbasic 2026/02/02 v3.49.2 KOMA-Script package (handling toc-files)
 \scr@dte@tocline@numberwidth=\skip49
 \scr@dte@tocline@numbox=\box53
 )
@@ -33,11 +33,11 @@ Package tocbasic Info: omitting babel extension for `toc'
 (tocbasic)             because of feature `nobabel' available
 (tocbasic)             for `toc' on input line 143.
 Class scrreprt Info: File `scrsize11pt.clo' used instead of
-(scrreprt)           file `scrsize11.clo' to setup font sizes on input line 2708.
+(scrreprt)           file `scrsize11.clo' to setup font sizes on input line 2710.
 (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/latex/koma-script/scrsize11pt.clo
-File: scrsize11pt.clo 2025/12/01 v3.49 KOMA-Script font size class option (11pt)
+File: scrsize11pt.clo 2026/02/02 v3.49.2 KOMA-Script font size class option (11pt)
 ) (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/latex/koma-script/typearea.sty
-Package: typearea 2025/12/01 v3.49 KOMA-Script package (type area)
+Package: typearea 2026/02/02 v3.49.2 KOMA-Script package (type area)
 \ta@bcor=\skip50
 \ta@div=\count271
 Package typearea Info: You've used standard option `letterpaper'.
@@ -66,7 +66,7 @@ Package typearea Info: These are the values describing the layout:
 (typearea)              \topskip        = 11.0pt
 (typearea)              \footskip       = 47.6pt
 (typearea)              \baselineskip   = 13.6pt
-(typearea)              on input line 1808.
+(typearea)              on input line 1810.
 )
 \c@part=\count272
 \c@chapter=\count273
@@ -77,49 +77,49 @@ Package typearea Info: These are the values describing the layout:
 \c@subparagraph=\count278
 \scr@dte@chapter@maxnumwidth=\skip55
 Class scrreprt Info: using compatibility default `afterindent=bysign'
-(scrreprt)           for `\chapter on input line 5926.
+(scrreprt)           for `\chapter on input line 5934.
 \scr@dte@section@maxnumwidth=\skip56
 Class scrreprt Info: using compatibility default `runin=bysign'
-(scrreprt)           for `\section on input line 5937.
+(scrreprt)           for `\section on input line 5945.
 Class scrreprt Info: using compatibility default `afterindent=bysign'
-(scrreprt)           for `\section on input line 5937.
+(scrreprt)           for `\section on input line 5945.
 \scr@dte@part@maxnumwidth=\skip57
 Class scrreprt Info: using compatibility default `afterindent=true'
-(scrreprt)           for `\part on input line 5946.
+(scrreprt)           for `\part on input line 5954.
 \scr@dte@subsection@maxnumwidth=\skip58
 Class scrreprt Info: using compatibility default `runin=bysign'
-(scrreprt)           for `\subsection on input line 5956.
+(scrreprt)           for `\subsection on input line 5964.
 Class scrreprt Info: using compatibility default `afterindent=bysign'
-(scrreprt)           for `\subsection on input line 5956.
+(scrreprt)           for `\subsection on input line 5964.
 \scr@dte@subsubsection@maxnumwidth=\skip59
 Class scrreprt Info: using compatibility default `runin=bysign'
-(scrreprt)           for `\subsubsection on input line 5966.
+(scrreprt)           for `\subsubsection on input line 5974.
 Class scrreprt Info: using compatibility default `afterindent=bysign'
-(scrreprt)           for `\subsubsection on input line 5966.
+(scrreprt)           for `\subsubsection on input line 5974.
 \scr@dte@paragraph@maxnumwidth=\skip60
 Class scrreprt Info: using compatibility default `runin=bysign'
-(scrreprt)           for `\paragraph on input line 5977.
+(scrreprt)           for `\paragraph on input line 5985.
 Class scrreprt Info: using compatibility default `afterindent=bysign'
-(scrreprt)           for `\paragraph on input line 5977.
+(scrreprt)           for `\paragraph on input line 5985.
 \scr@dte@subparagraph@maxnumwidth=\skip61
 Class scrreprt Info: using compatibility default `runin=bysign'
-(scrreprt)           for `\subparagraph on input line 5987.
+(scrreprt)           for `\subparagraph on input line 5995.
 Class scrreprt Info: using compatibility default `afterindent=bysign'
-(scrreprt)           for `\subparagraph on input line 5987.
+(scrreprt)           for `\subparagraph on input line 5995.
 \abovecaptionskip=\skip62
 \belowcaptionskip=\skip63
 \c@pti@nb@sid@b@x=\box54
 Package tocbasic Info: omitting babel extension for `lof'
 (tocbasic)             because of feature `nobabel' available
-(tocbasic)             for `lof' on input line 7217.
+(tocbasic)             for `lof' on input line 7225.
 \scr@dte@figure@maxnumwidth=\skip64
 \c@figure=\count279
 Package tocbasic Info: omitting babel extension for `lot'
 (tocbasic)             because of feature `nobabel' available
-(tocbasic)             for `lot' on input line 7230.
+(tocbasic)             for `lot' on input line 7238.
 \scr@dte@table@maxnumwidth=\skip65
 \c@table=\count280
-Class scrreprt Info: Redefining `\numberline' on input line 7401.
+Class scrreprt Info: Redefining `\numberline' on input line 7409.
 \bibindent=\dimen148
 ) (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/latex/amsmath/amsmath.sty
 Package: amsmath 2025/07/09 v2.17z AMS math features
@@ -868,7 +868,7 @@ LaTeX Font Info:    Trying to load font information for TU+fontawesomebrands on 
 (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/latex/fontawesome5/tufontawesomebrands.fd))) (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/latex/bookmark/bookmark.sty
 Package: bookmark 2023-12-10 v1.31 PDF bookmarks (HO)
 (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/latex/hyperref/hyperref.sty
-Package: hyperref 2025-07-12 v7.01o Hypertext links for LaTeX
+Package: hyperref 2026-01-29 v7.01p Hypertext links for LaTeX
 (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty
 Package: kvsetkeys 2022-10-05 v1.19 Key value parser (HO)
 ) (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty
@@ -883,7 +883,7 @@ Package pdftexcmds Info: \pdfdraftmode not found.
 )) (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/latex/hycolor/hycolor.sty
 Package: hycolor 2020-01-27 v1.10 Color options for hyperref/bookmark (HO)
 ) (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/latex/hyperref/nameref.sty
-Package: nameref 2025-06-21 v2.57 Cross-referencing by name of section
+Package: nameref 2026-01-29 v2.58 Cross-referencing by name of section
 (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/latex/refcount/refcount.sty
 Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 ) (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
@@ -899,28 +899,28 @@ Package: stringenc 2019/11/29 v1.12 Convert strings between diff. encodings (HO)
 \Hy@linkcounter=\count364
 \Hy@pagecounter=\count365
 (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/latex/hyperref/pd1enc.def
-File: pd1enc.def 2025-07-12 v7.01o Hyperref: PDFDocEncoding definition (HO)
+File: pd1enc.def 2026-01-29 v7.01p Hyperref: PDFDocEncoding definition (HO)
 ) (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/generic/intcalc/intcalc.sty
 Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
 )
 \Hy@SavedSpaceFactor=\count366
 (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/latex/hyperref/puenc.def
-File: puenc.def 2025-07-12 v7.01o Hyperref: PDF Unicode definition (HO)
+File: puenc.def 2026-01-29 v7.01p Hyperref: PDF Unicode definition (HO)
 )
-Package hyperref Info: Option `unicode' set `true' on input line 4066.
-Package hyperref Info: Hyper figures OFF on input line 4195.
-Package hyperref Info: Link nesting OFF on input line 4200.
-Package hyperref Info: Hyper index ON on input line 4203.
-Package hyperref Info: Plain pages OFF on input line 4210.
-Package hyperref Info: Backreferencing OFF on input line 4215.
+Package hyperref Info: Option `unicode' set `true' on input line 4072.
+Package hyperref Info: Hyper figures OFF on input line 4201.
+Package hyperref Info: Link nesting OFF on input line 4206.
+Package hyperref Info: Hyper index ON on input line 4209.
+Package hyperref Info: Plain pages OFF on input line 4216.
+Package hyperref Info: Backreferencing OFF on input line 4221.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
-Package hyperref Info: Bookmarks ON on input line 4462.
+Package hyperref Info: Bookmarks ON on input line 4468.
 \c@Hy@tempcnt=\count367
 (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/latex/url/url.sty
 \Urlmuskip=\muskip19
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
-LaTeX Info: Redefining \url on input line 4801.
+LaTeX Info: Redefining \url on input line 4807.
 \XeTeXLinkMargin=\dimen309
 (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/generic/bitset/bitset.sty
 Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
@@ -930,20 +930,20 @@ Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO)
 \Fld@menulength=\count368
 \Field@Width=\dimen310
 \Fld@charsize=\dimen311
-Package hyperref Info: Hyper figures OFF on input line 6078.
-Package hyperref Info: Link nesting OFF on input line 6083.
-Package hyperref Info: Hyper index ON on input line 6086.
-Package hyperref Info: backreferencing OFF on input line 6093.
-Package hyperref Info: Link coloring OFF on input line 6098.
-Package hyperref Info: Link coloring with OCG OFF on input line 6103.
-Package hyperref Info: PDF/A mode OFF on input line 6108.
+Package hyperref Info: Hyper figures OFF on input line 6084.
+Package hyperref Info: Link nesting OFF on input line 6089.
+Package hyperref Info: Hyper index ON on input line 6092.
+Package hyperref Info: backreferencing OFF on input line 6099.
+Package hyperref Info: Link coloring OFF on input line 6104.
+Package hyperref Info: Link coloring with OCG OFF on input line 6109.
+Package hyperref Info: PDF/A mode OFF on input line 6114.
 \Hy@abspage=\count369
 \c@Item=\count370
 \c@Hfootnote=\count371
 )
 Package hyperref Info: Driver (autodetected): hxetex.
 (/Users/michaelhunt/Library/TinyTeX/texmf-dist/tex/latex/hyperref/hxetex.def
-File: hxetex.def 2025-07-12 v7.01o Hyperref driver for XeTeX
+File: hxetex.def 2026-01-29 v7.01p Hyperref driver for XeTeX
 \pdfm@box=\box103
 \c@Hy@AnnotLevel=\count372
 \HyField@AnnotCount=\count373
@@ -1263,7 +1263,9 @@ LaTeX Info: Redefining \microtypecontext on input line 225.
 Package microtype Info: Applying patch `item' on input line 225.
 Package microtype Info: Applying patch `toc' on input line 225.
 Package microtype Info: Applying patch `eqnum' on input line 225.
-Package microtype Info: Applying patch `footnote' on input line 225.
+
+Package microtype Warning: Unable to apply patch `footnote' on input line 225.
+
 Package microtype Info: Applying patch `verbatim' on input line 225.
 LaTeX Info: Redefining \microtypesetup on input line 225.
 Package microtype Info: Character protrusion enabled (level 2).
@@ -1358,8 +1360,8 @@ File: figures/penguins.png Graphic file (type bmp)
 File: mt-TU-empty.cfg 2021/06/22 v1.1 microtype config. file: fonts with nonstandard glyph set (RS)
 )
 ! Undefined control sequence.
-l.326 sample using the formula \$\test
-                                      {SE}=\frac{\text{SD}}{sqrt{n}} where
+l.326 sample using the formula \(\test
+                                      {SE}=\frac{\text{SD}}{sqrt{n}}\) where
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -1368,11 +1370,11 @@ and I'll forget about whatever was undefined.
 
  
 Here is how much of TeX's memory you used:
- 40108 strings out of 470129
- 825066 string characters out of 5475410
- 1529794 words of memory out of 5000000
- 68130 multiletter control sequences out of 15000+600000
- 634258 words of font info for 91 fonts, out of 8000000 for 9000
+ 40115 strings out of 470129
+ 825210 string characters out of 5475410
+ 1529887 words of memory out of 5000000
+ 68137 multiletter control sequences out of 15000+600000
+ 635358 words of font info for 93 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
  108i,8n,114p,11208b,441s stack positions out of 10000i,1000n,20000p,200000b,200000s
 Output written on index.pdf (4 pages).
