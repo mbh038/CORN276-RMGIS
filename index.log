@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2026.1.29)  8 FEB 2026 12:30
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2026.1.29)  8 FEB 2026 12:44
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1367,7 +1367,11 @@ File: visualising_data_files/figure-pdf/fig-bar-charts-3.pdf Graphic file (type 
 <use visualising_data_files/figure-pdf/fig-bar-charts-3.pdf>
 File: visualising_data_files/figure-pdf/fig-bar-charts-4.pdf Graphic file (type pdf)
 <use visualising_data_files/figure-pdf/fig-bar-charts-4.pdf>
-[6]
+File: visualising_data_files/figure-pdf/unnamed-chunk-10-1.pdf Graphic file (type pdf)
+<use visualising_data_files/figure-pdf/unnamed-chunk-10-1.pdf>
+File: visualising_data_files/figure-pdf/unnamed-chunk-11-1.pdf Graphic file (type pdf)
+<use visualising_data_files/figure-pdf/unnamed-chunk-11-1.pdf>
+[6] [7] [8]
 
 ! LaTeX Error: Something's wrong--perhaps a missing \item.
 
@@ -1375,18 +1379,18 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.431 \end{CSLReferences}
+l.439 \end{CSLReferences}
                          
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
  
 Here is how much of TeX's memory you used:
- 40262 strings out of 470129
- 829956 string characters out of 5475410
+ 40296 strings out of 470129
+ 831527 string characters out of 5475410
  1539887 words of memory out of 5000000
- 68273 multiletter control sequences out of 15000+600000
- 635382 words of font info for 96 fonts, out of 8000000 for 9000
+ 68304 multiletter control sequences out of 15000+600000
+ 635390 words of font info for 97 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
  108i,8n,114p,11208b,919s stack positions out of 10000i,1000n,20000p,200000b,200000s
-Output written on index.pdf (6 pages).
+Output written on index.pdf (8 pages).

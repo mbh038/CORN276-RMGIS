@@ -166,7 +166,11 @@ window.Quarto = {
    
   <ul>
   <li><a href="#summarise-the-data" id="toc-summarise-the-data" class="nav-link active" data-scroll-target="#summarise-the-data"><span class="header-section-number">1.1</span> Summarise the data</a></li>
-  <li><a href="#plot-the-data" id="toc-plot-the-data" class="nav-link" data-scroll-target="#plot-the-data"><span class="header-section-number">1.2</span> Plot the data</a></li>
+  <li><a href="#plot-the-data" id="toc-plot-the-data" class="nav-link" data-scroll-target="#plot-the-data"><span class="header-section-number">1.2</span> Plot the data</a>
+  <ul class="collapse">
+  <li><a href="#bar-charts" id="toc-bar-charts" class="nav-link" data-scroll-target="#bar-charts"><span class="header-section-number">1.2.1</span> Bar charts</a></li>
+  </ul></li>
+  <li><a href="#histograms" id="toc-histograms" class="nav-link" data-scroll-target="#histograms"><span class="header-section-number">1.3</span> Histograms</a></li>
   </ul>
 </nav>
     </div>
@@ -263,7 +267,7 @@ Types of error bar
 <p>If you include error bars in a plot you can use any of these three errors, depending on the story you want to tell. Whichever, just <strong>must</strong> state in the figure caption which of them you have used. Failing to do this can seriously mislead the reader, since they can be of very different magnitudes.</p>
 </div>
 </div>
-<p>The errors calculated here are <strong>standard errors of the mean</strong>. We use these because we want to get an idea, from our samples, of how plausible it is that the population means differ from each other. These population means could plausibly lie anyhwere in the range that is our sample means plus or minus two of these standard errors.</p>
+<p>The errors calculated here are <strong>standard errors of the mean</strong>. We use these because we want to get an idea, from our samples, of how plausible it is that the population means differ from each other. These population means could plausibly lie anywhere in the range that is our sample means plus or minus two of these standard errors.</p>
 <ul>
 <li>Does it look as though there is evidence form the data for a difference between Adelie and Chinstrop penguins?</li>
 <li>What about the Gentoos compared to either of the other two?</li>
@@ -273,6 +277,8 @@ Types of error bar
 <section id="plot-the-data" class="level2" data-number="1.2">
 <h2 data-number="1.2" class="anchored" data-anchor-id="plot-the-data"><span class="header-section-number">1.2</span> Plot the data</h2>
 <p>After summarising the data, then ext thing we nearly always do in deciding what the data is telling us is to plot the data. We have several choices of how to do so and each has its pros and cons. Let’s run through a few of them.</p>
+<section id="bar-charts" class="level3" data-number="1.2.1">
+<h3 data-number="1.2.1" class="anchored" data-anchor-id="bar-charts"><span class="header-section-number">1.2.1</span> Bar charts</h3>
 <div id="fig-bar-charts" class="quarto-layout-panel">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-bar-charts-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -333,6 +339,28 @@ Types of error bar
 Figure&nbsp;1.1: Bar charts, from worst to best
 </figcaption>
 </figure>
+</div>
+</section>
+</section>
+<section id="histograms" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="histograms"><span class="header-section-number">1.3</span> Histograms</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="visualising_data_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="visualising_data_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
 </div>
 
 

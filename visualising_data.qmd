@@ -14,7 +14,7 @@ library(ggfortify)
 library(ggridges)
 library(kableExtra)
 library(cowplot)
-set_theme(theme_cowplot() +theme(legend.position = "none"))
+set_theme(theme_cowplot() + theme(legend.position = "none"))
 ```
 
 ```{r}
@@ -85,7 +85,7 @@ $\text{SE}=\frac{\text{SD}}{\sqrt{n}}$ where *n* is the sample size. This means 
 If you include error bars in a plot you can use any of these three errors, depending on the story you want to tell. Whichever, just **must** state in the figure caption which of them you have used. Failing to do this can seriously mislead the reader, since they can be of very different magnitudes.
 :::
 
-The errors calculated here are **standard errors of the mean**. We use these because we want to get an idea, from our samples, of how plausible it is that the population means differ from each other. These population means could plausibly lie anyhwere in the range that is our sample means plus or minus two of these standard errors.
+The errors calculated here are **standard errors of the mean**. We use these because we want to get an idea, from our samples, of how plausible it is that the population means differ from each other. These population means could plausibly lie anywhere in the range that is our sample means plus or minus two of these standard errors.
 
 -   Does it look as though there is evidence form the data for a difference between Adelie and Chinstrop penguins?
 -   What about the Gentoos compared to either of the other two?
@@ -94,6 +94,8 @@ The errors calculated here are **standard errors of the mean**. We use these bec
 ## Plot the data
 
 After summarising the data, then ext thing we nearly always do in deciding what the data is telling us is to plot the data. We have several choices of how to do so and each has its pros and cons. Let's run through a few of them.
+
+### Bar charts
 
 ```{r}
 bc1 <- penguin_summary |>
@@ -147,5 +149,26 @@ bc1
 bc2
 bc3
 bc4
+```
+
+## Histograms
+
+```{r}
+female_penguins |>
+  ggplot(aes(x = body_mass_g, fill = species)) +
+  geom_histogram(binwidth = 100, alpha = 0.5, position = "identity") +
+  labs(x = "Body mass (g)",
+       y = "Frequency",
+       fill = "Species") +
+  theme(legend.position = "right")
+```
+```{r}
+female_penguins |>
+  ggplot(aes(x = body_mass_g)) +
+  geom_histogram(binwidth = 100, alpha = .5, fill = fill_colour1) +
+  labs(x = "Body mass (g)",
+       y = "Frequency") +
+  facet_wrap(~species,ncol = 1) +
+  scale_fill_brewer(palette = "Set1")
 ```
 
