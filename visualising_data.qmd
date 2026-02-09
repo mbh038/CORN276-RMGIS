@@ -22,7 +22,7 @@ set_theme(theme_cowplot() + theme(legend.position = "none"))
 library(openintro)
 data(COL)
 fill_colour1<-COL['blue','f3']
-fill_colour1 <- "#bdd7e7"
+fill_colour1 <- "#b3cde3"
 fill_colour2<-COL['red','f6']
 fill_colour3<-COL['blue','f1']
 line_colour<-COL['blue','full']
@@ -153,14 +153,18 @@ bc4
 
 ## Histograms
 
-Histograms can also be used to inspect a data set, even one with multiple categories, as with the penguin data. Unlike bar charts they show the  distribution of a dataset, including its centtal value, spread and symmetry, or lack thereof.
+In histograms the range of a variable is split into bis of. certain width, then the number of observations that fall within each bin is displayed.
+
+They can be used to inspect a data set, even one with multiple categories, as with the penguin data. Unlike bar charts they do show the  distribution of the dataset, including its centtal value, spread and symmetry, or lack thereof.
+
+They do need care however in choice of the width of the bins. Make thm too narrow and they can look gappy, with too much scatter ntrocued by there not being many observations in each bin. Make the bins too wide and much of the detail of the distribution is lost. You need to find, approximately, the 'Goldilocks' width, one that is just right. Sometimes, though, you choose a binwidth that has meaning to you and the reader, such as widths of 1 m/s if you were doing a histogram of a set of wind speed measurements.
 
 
 ```{r}
 h1<- female_penguins |>
   filter(species == "Adelie") |>
 ggplot(aes(x = body_mass_g)) + 
-  geom_histogram(binwidth = 50, alpha = 0.5) + 
+  geom_histogram(binwidth = 50, alpha = 0.5, fill = fill_colour1) + 
   labs(x = "Body mass (g)",
        y = "Frequency")
 ```
@@ -168,7 +172,7 @@ ggplot(aes(x = body_mass_g)) +
 h2<- female_penguins |>
   filter(species == "Adelie") |>
 ggplot(aes(x = body_mass_g)) + 
-  geom_histogram(binwidth = 100, alpha = 0.5) + 
+  geom_histogram(binwidth = 100, alpha = 0.5, fill = fill_colour1) + 
   labs(x = "Body mass (g)",
        y = "Frequency")
 ```
@@ -176,7 +180,7 @@ ggplot(aes(x = body_mass_g)) +
 h3 <- female_penguins |>
   filter(species == "Adelie") |>
 ggplot(aes(x = body_mass_g)) + 
-  geom_histogram(binwidth = 200, alpha = 0.5) + 
+  geom_histogram(binwidth = 200, alpha = 0.5, fill = fill_colour1) + 
   labs(x = "Body mass (g)",
        y = "Frequency")
 ```
