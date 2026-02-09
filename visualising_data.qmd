@@ -40,21 +40,21 @@ female_penguins <- penguins |>
 
 Let's take the example of the Palmer penguins dataset. This set contains measurements of bill depth, bill length, flipper length and body mass of males and females of three species of penguins: Adelie, Chinstrap and Gentoo observed on any one of three islands in the Palmer Archipelago, Antarctica.
 
-![Meet the penguins. Artwork by @allison_horst](figures/penguins.png)
+![Meet the penguins. Artwork by [Allison Horst](https://allisonhorst.com)](figures/penguins.png)
 
 Let's consider only the females and ask the question:
 
-**Question**: Is there any difference in body weight between the three species:
+**Question**: Is there any difference in body weight between the females of the three species?
 
 from which we can generate a hypothesis:
 
 **Hypothesis**: There is a difference in body weight between females ofthe three species.
 
-**Null hypothesis**: There is no difference in bosy weight between females of the three species.
+**Null hypothesis**: There is no difference in body weight between females of the three species.
 
 and hence a prediction of what we will find if the hypothesis is true:
 
-**Prediction if the hypothesis is true**: At least one species will have a different average body mass than at least one other species.
+**Prediction if the hypothesis is true**: The females of at least one species will have a different average body mass than those of at least one other species.
 
 ## Summarise the data
 
@@ -164,7 +164,7 @@ They do need care however in choice of the width of the bins. Make these too nar
 h1<- female_penguins |>
   filter(species == "Adelie") |>
 ggplot(aes(x = body_mass_g)) + 
-  geom_histogram(binwidth = 50, alpha = 0.5, fill = fill_colour1, colour = "grey80", linewidth = 0.5) + 
+  geom_histogram(binwidth = 50, alpha = 1.0, fill = fill_colour1, colour = "grey80", linewidth = 0.5) + 
   labs(x = "Body mass (g)",
        y = "Frequency")
 ```
@@ -172,7 +172,7 @@ ggplot(aes(x = body_mass_g)) +
 h2<- female_penguins |>
   filter(species == "Adelie") |>
 ggplot(aes(x = body_mass_g)) + 
-  geom_histogram(binwidth = 100, alpha = 0.5, fill = fill_colour1, colour = "grey80", linewidth = 0.5) + 
+  geom_histogram(binwidth = 100, alpha = 1.0, fill = fill_colour1, colour = "grey80", linewidth = 0.5) + 
   labs(x = "Body mass (g)",
        y = "Frequency")
 ```
@@ -180,7 +180,7 @@ ggplot(aes(x = body_mass_g)) +
 h3 <- female_penguins |>
   filter(species == "Adelie") |>
 ggplot(aes(x = body_mass_g)) + 
-  geom_histogram(binwidth = 200, alpha = 0.5, fill = fill_colour1, , colour = "grey80", linewidth = 0.5) + 
+  geom_histogram(binwidth = 200, alpha = 1.0, fill = fill_colour1, , colour = "grey80", linewidth = 0.5) + 
   labs(x = "Body mass (g)",
        y = "Frequency")
 ```

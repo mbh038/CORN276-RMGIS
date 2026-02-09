@@ -1,0 +1,42 @@
+[
+  {
+    "objectID": "visualising_data.html",
+    "href": "visualising_data.html",
+    "title": "1  Visualising data",
+    "section": "",
+    "text": "1.1 Summarise the data\nWhen we have got our data safely tucked into a spreadsheet. Now we need to tease out of it the answers to our question(s) and to decide whether we have evidence enough to reject our null hypotheses, or not, in which case we will fail to reject them.\nLet’s take the example of the Palmer penguins dataset. This set contains measurements of bill depth, bill length, flipper length and body mass of males and females of three species of penguins: Adelie, Chinstrap and Gentoo observed on any one of three islands in the Palmer Archipelago, Antarctica.\nLet’s consider only the females and ask the question:\nQuestion: Is there any difference in body weight between the females of the three species?\nfrom which we can generate a hypothesis:\nHypothesis: There is a difference in body weight between females ofthe three species.\nNull hypothesis: There is no difference in body weight between females of the three species.\nand hence a prediction of what we will find if the hypothesis is true:\nPrediction if the hypothesis is true: The females of at least one species will have a different average body mass than those of at least one other species.\nThe first thing we can do to investigate our hypotheses is to summarise the data. More often than not this means caclulating three things for each sample - the sample sizes, the mean values and the standard errors of those means.\nSpecies\nN\nMean body mass (g)\nStandard error (g)\n\n\n\n\nChinstrap\n34\n3527.21\n48.93\n\n\nGentoo\n58\n4679.74\n36.97\n\n\nAdelie\n73\n3368.84\n31.53\nThe errors calculated here are standard errors of the mean. We use these because we want to get an idea, from our samples, of how plausible it is that the population means differ from each other. These population means could plausibly lie anywhere in the range that is our sample means plus or minus two of these standard errors.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Visualising data</span>"
+    ]
+  },
+  {
+    "objectID": "visualising_data.html#summarise-the-data",
+    "href": "visualising_data.html#summarise-the-data",
+    "title": "1  Visualising data",
+    "section": "",
+    "text": "Types of error bar\n\n\n\nstandard deviations: These tell us about the spread of values in a sample or a population. They do not systematically get bigger or smaller as the sample size increases. The standard deviation of a sample can be used as an estimate of the standard deviation of the population. We use standard deviations for descriptive purposes\nstandard errors of the mean These are used to indicate how precisely a sample mean estimates the true population mean. They are used for inferential purposes, whereby we try to infer from the sample mean the range of values in which the true population mean might be. Assuming normally distributed values, it would be very surprising if the true population means were more than two standard errors away from the sample means.\nStandard errors are calculated from the standard deviations (SD) of the sample using the formula \\(\\text{SE}=\\frac{\\text{SD}}{\\sqrt{n}}\\) where n is the sample size. This means that standard errors do get systematically smaller, the larger the sample. The larger the sample, the closer the sample mean is likely to be to the true population mean. Who knew?\nconfidence intervals These are also inferential tools. They tell us the range of values within which the true mean might plausibly lie, at some level of confidence, usually 95%.\nIf you include error bars in a plot you can use any of these three errors, depending on the story you want to tell. Whichever, just must state in the figure caption which of them you have used. Failing to do this can seriously mislead the reader, since they can be of very different magnitudes.\n\n\n\n\nDoes it look as though there is evidence form the data for a difference between Adelie and Chinstrop penguins?\nWhat about the Gentoos compared to either of the other two?\nDo we have evidence to reject the null hypothesis. (Clue: yes we do!)",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Visualising data</span>"
+    ]
+  },
+  {
+    "objectID": "visualising_data.html#plot-the-data",
+    "href": "visualising_data.html#plot-the-data",
+    "title": "1  Visualising data",
+    "section": "1.2 Plot the data",
+    "text": "1.2 Plot the data\nAfter summarising the data, then ext thing we nearly always do in deciding what the data is telling us is to plot the data. We have several choices of how to do so and each has its pros and cons. Let’s run through a few of them.\n\n1.2.1 Bar charts\n\n\n\n\n\n\n\n\n\n\n\n(a) Terrible!\n\n\n\n\n\n\n\n\n\n\n\n(b) Standard errors added\n\n\n\n\n\n\n\n\n\n\n\n\n\n(c) Sample sizes added\n\n\n\n\n\n\n\n\n\n\n\n(d) Redundant colours removed\n\n\n\n\n\n\n\nFigure 1.1: Bar charts, from worst to best",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Visualising data</span>"
+    ]
+  },
+  {
+    "objectID": "visualising_data.html#histograms",
+    "href": "visualising_data.html#histograms",
+    "title": "1  Visualising data",
+    "section": "1.3 Histograms",
+    "text": "1.3 Histograms\nIn histograms the range of a variable is split into bis of. certain width, then the number of observations that fall within each bin is displayed.\nThey can be used to inspect a data set, even one with multiple categories, as with the penguin data. Unlike bar charts they do show the distribution of the dataset, including its central value, spread and symmetry, or lack thereof.\nThey do need care however in choice of the width of the bins. Make these too narrow and the histograms can look gappy, with too much scatter introduced by there not being many observations in each bin. Make the bins too wide and much of the detail of the distribution is lost. You need to find, approximately, the ‘Goldilocks’ width, one that is just right. Sometimes, though, you choose a binwidth that has meaning to you and the reader, such as widths of 1 m/s if you were doing a histogram of a set of wind speed measurements.\n\n\n\n\n\n\n\n\n\n\n\n(a) bins too narrow\n\n\n\n\n\n\n\n\n\n\n\n(b) Bin width about right\n\n\n\n\n\n\n\n\n\n\n\n(c) Bins too wide\n\n\n\n\n\n\n\nFigure 1.2: Histograms of different bin width",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Visualising data</span>"
+    ]
+  }
+]
