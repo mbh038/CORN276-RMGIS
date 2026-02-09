@@ -40,7 +40,7 @@ female_penguins <- penguins |>
 
 Let's take the example of the Palmer penguins dataset. This set contains measurements of bill depth, bill length, flipper length and body mass of males and females of three species of penguins: Adelie, Chinstrap and Gentoo observed on any one of three islands in the Palmer Archipelago, Antarctica.
 
-![Meet the penguins](figures/penguins.png)
+![Meet the penguins. Artwork by @allison_horst](figures/penguins.png)
 
 Let's consider only the females and ask the question:
 
