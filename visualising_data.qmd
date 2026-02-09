@@ -159,6 +159,8 @@ They can be used to inspect a data set, even one with multiple categories, as wi
 
 They do need care however in choice of the width of the bins. Make these too narrow and the histograms can look gappy, with too much scatter introduced by there not being many observations in each bin. Make the bins too wide and much of the detail of the distribution is lost. You need to find, approximately, the 'Goldilocks' width, one that is just right. Sometimes, though, you choose a binwidth that has meaning to you and the reader, such as widths of 1 m/s if you were doing a histogram of a set of wind speed measurements.
 
+We illustrate that issue in @fig-histograms where we show histograms of the body masses of the Adelie females in the sample, one with bins that are too narrow (50g), one where they are about right (100g) and one where they are too wiede (200g)
+
 
 ```{r}
 h1<- female_penguins |>
@@ -168,6 +170,7 @@ ggplot(aes(x = body_mass_g)) +
   labs(x = "Body mass (g)",
        y = "Frequency")
 ```
+
 ```{r}
 h2<- female_penguins |>
   filter(species == "Adelie") |>
@@ -176,6 +179,7 @@ ggplot(aes(x = body_mass_g)) +
   labs(x = "Body mass (g)",
        y = "Frequency")
 ```
+
 ```{r}
 h3 <- female_penguins |>
   filter(species == "Adelie") |>
@@ -198,18 +202,8 @@ h1
 h2
 h3
 ```
+As for our hypotheses, if we plot histograms of the body masses of the females, one for each species, and put display them in a column, one on top of the other, we get some insight as to whether we are likely to reject our null hypothesis, or fail to reject it.
 
-```{r}
-female_penguins |>
-ggplot(aes(x = body_mass_g, fill = species, colour = species)) + 
-  geom_histogram(alpha = 0.5, position = "identity") + 
-  labs(x = "Body mass (g)",
-       y = "Frequency",
-       fill = "Species",
-       colour = "") +
-  guides(colour = "none") +
-  theme(legend.position = "right")
-```
 ```{r}
 female_penguins |>
   ggplot(aes(x = body_mass_g)) +
@@ -221,3 +215,4 @@ female_penguins |>
   theme(strip.background = element_blank())
 ```
 
+Unlike the bar charts, histograms also tell us about the shape and widths of the ditributions of the three data sets. When we do actually use a statistics test to make a decision about our hypotheses, these features of the data will be very important in helping us decide which test is the right one.

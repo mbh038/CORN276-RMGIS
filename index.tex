@@ -265,27 +265,29 @@ Antarctica.
 
 }
 
-\caption{Meet the penguins}
+\caption{Meet the penguins. Artwork by
+\href{https://allisonhorst.com}{Allison Horst}}
 
 \end{figure}%
 
 Let's consider only the females and ask the question:
 
 \textbf{Question}: Is there any difference in body weight between the
-three species:
+females of the three species?
 
 from which we can generate a hypothesis:
 
 \textbf{Hypothesis}: There is a difference in body weight between
 females ofthe three species.
 
-\textbf{Null hypothesis}: There is no difference in bosy weight between
+\textbf{Null hypothesis}: There is no difference in body weight between
 females of the three species.
 
 and hence a prediction of what we will find if the hypothesis is true:
 
-\textbf{Prediction if the hypothesis is true}: At least one species will
-have a different average body mass than at least one other species.
+\textbf{Prediction if the hypothesis is true}: The females of at least
+one species will have a different average body mass than those of at
+least one other species.
 
 \section{Summarise the data}\label{summarise-the-data}
 
@@ -306,7 +308,7 @@ Adelie & 73 & 3368.84 & 31.53\\
 \hline
 \end{tabular}
 
-\begin{tcolorbox}[enhanced jigsaw, bottomtitle=1mm, left=2mm, colframe=quarto-callout-note-color-frame, opacitybacktitle=0.6, coltitle=black, rightrule=.15mm, colbacktitle=quarto-callout-note-color!10!white, toprule=.15mm, colback=white, arc=.35mm, bottomrule=.15mm, leftrule=.75mm, titlerule=0mm, opacityback=0, breakable, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Types of error bar}, toptitle=1mm]
+\begin{tcolorbox}[enhanced jigsaw, leftrule=.75mm, colbacktitle=quarto-callout-note-color!10!white, opacitybacktitle=0.6, colframe=quarto-callout-note-color-frame, breakable, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Types of error bar}, left=2mm, bottomtitle=1mm, coltitle=black, toprule=.15mm, titlerule=0mm, opacityback=0, arc=.35mm, toptitle=1mm, colback=white, rightrule=.15mm, bottomrule=.15mm]
 
 \textbf{standard deviations}: These tell us about the spread of values
 in a sample or a population. They do not systematically get bigger or
@@ -441,6 +443,11 @@ right. Sometimes, though, you choose a binwidth that has meaning to you
 and the reader, such as widths of 1 m/s if you were doing a histogram of
 a set of wind speed measurements.
 
+We illustrate that issue in Figure~\ref{fig-histograms} where we show
+histograms of the body masses of the Adelie females in the sample, one
+with bins that are too narrow (50g), one where they are about right
+(100g) and one where they are too wiede (200g)
+
 \begin{figure}
 
 \begin{minipage}{0.33\linewidth}
@@ -483,9 +490,18 @@ a set of wind speed measurements.
 
 \end{figure}%
 
+As for our hypotheses, if we plot histograms of the body masses of the
+females, one for each species, and put display them in a column, one on
+top of the other, we get some insight as to whether we are likely to
+reject our null hypothesis, or fail to reject it.
+
 \pandocbounded{\includegraphics[keepaspectratio]{visualising_data_files/figure-pdf/unnamed-chunk-13-1.pdf}}
 
-\pandocbounded{\includegraphics[keepaspectratio]{visualising_data_files/figure-pdf/unnamed-chunk-14-1.pdf}}
+Unlike the bar charts, histograms also tell us about the shape and
+widths of the ditributions of the three data sets. When we do actually
+use a statistics test to make a decision about our hypotheses, these
+features of the data will be very important in helping us decide which
+test is the right one.
 
 \bookmarksetup{startatroot}
 
