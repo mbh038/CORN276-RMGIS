@@ -22,7 +22,7 @@ set_theme(theme_cowplot() + theme(legend.position = "none"))
 library(openintro)
 data(COL)
 fill_colour1<-COL['blue','f3']
-fill_colour1 <- "#b3cde3"
+# fill_colour1 <- "#b3cde3"
 fill_colour2<-COL['red','f6']
 fill_colour3<-COL['blue','f1']
 line_colour<-COL['blue','full']
@@ -127,7 +127,7 @@ bc3 <- bc2 +
 
 ```{r}
 bc4 <- bc3 +
-  geom_col(fill = fill_colour3, alpha = 1.0) +
+  geom_col(fill = fill_colour1, alpha = 1.0) +
   geom_errorbar(aes(ymin = mean_body_mass - 2*se_body_mass,
                     ymax = mean_body_mass + 2*se_body_mass),
 width=0.15, colour = "grey40") +
