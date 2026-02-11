@@ -236,17 +236,17 @@ female_penguins |>
   annotate("text", x = 1.20, y = 3100, size = 3, label = "whisker", colour = "darkred") +
   annotate("text", x = 1.50, y = 3550, size = 3, label = "box", colour = "darkred") +
   annotate("text", x = 2.75, y = 4480, size = 3, label = "25th percentile", colour = "darkred") +
-  annotate("text", x = 2.95, y = 4700, size = 3, label = "50th percentile (median)", colour = "darkred") +
+  annotate("text", x = 2.90, y = 4700, size = 3, label = "50th percentile (median)", colour = "darkred") +
   annotate("text", x = 2.75, y = 4850, size = 3, label = "75th percentile", colour = "darkred") +
   theme_cowplot()
   
 ```
-In box and whisker plots, or box plots for short, we are shown a summary of the distribution of the each data set and its cental location. 
+In box and whisker plots, or box plots for short, we are shown a summary of the distribution of each data set and its central location. 
 
 Each **box** shows:
 
 * the 75th percentile of the data: this is the top of the box
-* the 50th percentile of the dat ie the median: this is the thick black black line
+* the 50th percentile of the data ie the median: this is the thick black line somewhere across the box. If the dataset is symmetric, this line is in the middle of the box.
 * the 25th percentile of the data: this is the bottom of the box
 * the interquartile range ie rnage that contains the middle 50% of the data. This is the range of values between the top of the box and the bottom.
 
@@ -258,12 +258,23 @@ any **outlier(s)** are shown by individual dots. Outliers are, more or less, jsu
 
 A box plot can also show:
 
-* whether there is a clear difference beteen the spread of values of the different catagories. This helps us decide whether or not to reject a null hypothesis about there being no difference. In @fig-box-plots we can see that the body masses of Gentoo penguins are clearly greater than those of the other two species, but that there is no clear indication from these data that there is any difference between those two. 
+* whether there is a clear difference beteen the spread of values of the different catagories. This helps us decide whether or not to reject a null hypothesis about there being no difference. 
+
+In @fig-box-plots we can see that the body masses of Gentoo penguins are clearly greater than those of the other two species, but that there is no clear indication from these data that there is any difference between those two. 
 
 
-* whether the distributions of the individual points  are approximately symmetric. It they are, then perhaps the points are normally distributed about their means. In that case it may be possible to use so-called *parametric* tests for difference such as t-tests and ANOVAs of one kind or another. If not, then we may have to use their less powerful *non-parametric* equivalents such as Mann-Whitney tests or Kruskal-Wallis tests. 
+* whether the distributions of the individual points  are approximately symmetric. If they are, then perhaps the points are normally distributed about their means. In that case it may be possible to use so-called *parametric* tests for difference such as t-tests and ANOVAs of one kind or another. If not, then we may have to use their less powerful *non-parametric* equivalents such as Mann-Whitney tests or Kruskal-Wallis tests. 
 
-We see in @fig-box-plots that all the boxes are of about the same width, meaning the spread of values (the variance) is about the same for each species and  that all the plots are more or less symmetric. There is only one outlier which isn't too far out, and all the medians are more or less in the centre of the boxes, as we would expect fo a symmetric distribution. This means that the data pluaisibly might be normally distributed. There is a better type of plot for determing normality, the quantile-quantile plot, but this quick check for normality from a box plot is a usual thing to be able to do.
+We see in @fig-box-plots that all the boxes are of about the same width, meaning the spread of values (the variance) is about the same for each species and  that all the plots are more or less symmetric. There is only one outlier which isn't too far out, and all the medians are more or less in the centre of the boxes, as we would expect fo a symmetric distribution. This means that the data pluaisibly might be normally distributed. There is a better type of plot for determing normality, the quantile-quantile plot, but this quick check for normality from a box plot is a useful thing to be able to do.
+
+### Improving the box plot
+
+In its basic form the box plot does not show us the sample size or the internal detail of the sample distribution, for example whether it is bimodal or not.
+
+```{r}
+
+```
+
 
 
 
