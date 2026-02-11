@@ -411,44 +411,23 @@ Figure&nbsp;1.2: Histograms of different bin width
 <section id="box-plots" class="level3" data-number="1.2.3">
 <h3 data-number="1.2.3" class="anchored" data-anchor-id="box-plots"><span class="header-section-number">1.2.3</span> Box plots</h3>
 <p>A very useful plot type for help in answering difference questions is the box and whisker plot, often just called a box plot. We normally use them where we have continuous data spread across one or mre categorical variables.</p>
-<p>Here is a box and whisker plot of the femal penguins body mass data, with one box for each species. Note that we have used the same colour for each box. We already know which species is which, so to use different colours would imply an additional difference that isn’t there. It would confuse the reader.</p>
-<div id="fig-box-plots" class="quarto-layout-panel">
+<p>Here is a box and whisker plot of the female penguins body mass data, with one box for each species. Note that we have used the same colour for each box. We already know which species is which, so to use different colours would imply an additional difference that isn’t there. It would confuse the reader.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-box-plots-symmetric" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-box-plots-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="quarto-layout-row">
-<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-box-plots" style="flex-basis: 50.0%;justify-content: flex-start;">
-<div id="fig-box-plots-1" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-subfloat-fig figure">
-<div aria-describedby="fig-box-plots-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="visualising_data_files/figure-html/fig-box-plots-1.png" class="img-fluid figure-img" data-ref-parent="fig-box-plots" width="672">
+<div aria-describedby="fig-box-plots-symmetric-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="visualising_data_files/figure-html/fig-box-plots-symmetric-1.png" class="img-fluid figure-img" width="672">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-box-plots-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-(a) Anatomy of a box and whisker plot. Here the data are symmetrically distributed
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-box-plots-symmetric-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1.3: Anatomy of a box and whisker plot. Here the data are symmetrically distributed
 </figcaption>
 </figure>
 </div>
 </div>
-<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-box-plots" style="flex-basis: 50.0%;justify-content: flex-start;">
-<div id="fig-box-plots-2" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-subfloat-fig figure">
-<div aria-describedby="fig-box-plots-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="visualising_data_files/figure-html/fig-box-plots-2.png" class="img-fluid figure-img" data-ref-parent="fig-box-plots" width="672">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-box-plots-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-(b) Count date - not at all symmetrically distributed
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-box-plots-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1.3: Box plots
-</figcaption>
-</figure>
 </div>
 <p>In box and whisker plots, or box plots for short, we are shown a summary of the distribution of each data set and its central location.</p>
-<p>Consider <a href="#fig-box-plots" class="quarto-xref">Figure&nbsp;<span>1.3</span></a> (a).</p>
+<p>Consider <span class="quarto-unresolved-ref">?fig-box-plots</span> (a).</p>
 <p>Each <strong>box</strong> shows:</p>
 <ul>
 <li>the 75th percentile of the data: this is the top of the box</li>
@@ -465,11 +444,25 @@ Figure&nbsp;1.3: Box plots
 <ul>
 <li>whether there is a clear difference beteen the spread of values of the different catagories. This helps us decide whether or not to reject a null hypothesis about there being no difference.</li>
 </ul>
-<p>In <a href="#fig-box-plots" class="quarto-xref">Figure&nbsp;<span>1.3</span></a> we can see that the body masses of Gentoo penguins are clearly greater than those of the other two species, but that there is no clear indication from these data that there is any difference between those two.</p>
+<p>In <span class="quarto-unresolved-ref">?fig-box-plots</span> we can see that the body masses of Gentoo penguins are clearly greater than those of the other two species, but that there is no clear indication from these data that there is any difference between those two.</p>
 <ul>
 <li>whether the distributions of the individual points are approximately symmetric. If they are, then perhaps the points are normally distributed about their means. In that case it may be possible to use so-called <em>parametric</em> tests for difference such as t-tests and ANOVAs of one kind or another. If not, then we may have to use their less powerful <em>non-parametric</em> equivalents such as Mann-Whitney tests or Kruskal-Wallis tests.</li>
 </ul>
-<p>We see in <a href="#fig-box-plots" class="quarto-xref">Figure&nbsp;<span>1.3</span></a> that all the boxes are of about the same width, meaning the spread of values (the variance) is about the same for each species and that all the plots are more or less symmetric. There is only one outlier which isn’t too far out, and all the medians are more or less in the centre of the boxes, as we would expect fo a symmetric distribution. This means that the data pluaisibly might be normally distributed. There is a better type of plot for determing normality, the quantile-quantile plot, but this quick check for normality from a box plot is a useful thing to be able to do.</p>
+<p>We see in <a href="#fig-box-plots-symmetric" class="quarto-xref">Figure&nbsp;<span>1.3</span></a> that all the boxes are of about the same width, meaning the spread of values (the variance) is about the same for each species and that all the plots are more or less symmetric. There is only one outlier which isn’t too far out, and all the medians are more or less in the centre of the boxes, as we would expect fo a symmetric distribution. This means that the data pluaisibly might be normally distributed. There is a better type of plot for determing normality, the quantile-quantile plot, but this quick check for normality from a box plot is a useful thing to be able to do.</p>
+<div class="cell" data-caption="Non symmetrical box plots. In this case the data are right skew with outliers stretching out to high values untypical of the bulk of the data. On seeing this you would think no, those data don't look normally distributed and so no, I can't use a parametric test for difference such as a one-way ANOVA. I am going to need to use a non-parametric test such as, this case, a Kruskal-Wallis test.">
+<div class="cell-output-display">
+<div id="fig-box-plots-unsymmetrical" class="quarto-float quarto-figure quarto-figure-center anchored" width="672">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-box-plots-unsymmetrical-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="visualising_data_files/figure-html/fig-box-plots-unsymmetrical-1.png" id="fig-box-plots-unsymmetrical" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-box-plots-unsymmetrical-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1.4
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
 </section>
 <section id="improving-the-box-plot" class="level3" data-number="1.2.4">
 <h3 data-number="1.2.4" class="anchored" data-anchor-id="improving-the-box-plot"><span class="header-section-number">1.2.4</span> Improving the box plot</h3>

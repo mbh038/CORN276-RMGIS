@@ -221,11 +221,12 @@ Unlike the bar charts, histograms also tell us about the shape and widths of the
 
 A very useful plot type for help in answering difference questions is the box and whisker plot, often just called a box plot. We normally use them where we have continuous data spread across one or mre categorical variables.
 
-Here is a box and whisker plot of the femal penguins body mass data, with one box for each species. Note that we have used the same colour for each box. We already know which species is which, so to use different colours would imply an additional difference that isn't there. It would confuse the reader.
+Here is a box and whisker plot of the female penguins body mass data, with one box for each species. Note that we have used the same colour for each box. We already know which species is which, so to use different colours would imply an additional difference that isn't there. It would confuse the reader.
 
 ```{r}
-#| fig-cap: "Anatomy of a box and whisker plot"
-#| 
+#| label: fig-box-plots-symmetric
+#| fig-cap: "Anatomy of a box and whisker plot. Here the data are symmetrically distributed"
+
 bp1 <- female_penguins |>
   ggplot(aes(x = species, y = body_mass_g)) +
   geom_boxplot(fill = fill_colour1) +
@@ -238,28 +239,8 @@ bp1 <- female_penguins |>
   annotate("text", x = 2.90, y = 4700, size = 3, label = "50th percentile (median)", colour = "darkred") +
   annotate("text", x = 2.75, y = 4850, size = 3, label = "75th percentile", colour = "darkred") +
   theme_cowplot()
-```
-
-```{r}
-bp2 <- data.frame(types = c(rep("A",100), rep("B", 100), rep("C", 100)), values = c(exp(rnorm(100,2,1)), exp(rnorm(100,3,1)), exp(rnorm(100,4,1)))) |>
-  ggplot(aes(x = types, y = values)) +
-  geom_boxplot(fill = fill_colour1) +
-  labs(x = "Behaviour type",
-       y = "Counts") 
-```
-
-```{r}
-#| label: fig-box-plots
-#| fig-cap: "Box plots "
-#| fig-subcap: 
-#|   - "Anatomy of a box and whisker plot. Here the data are symmetrically distributed"
-#|   - "Count date - not at all symmetrically distributed"
-#| layout-ncol: 2
-
 bp1
-bp2
 ```
-
 
 In box and whisker plots, or box plots for short, we are shown a summary of the distribution of each data set and its central location. 
 
@@ -287,7 +268,18 @@ In @fig-box-plots we can see that the body masses of Gentoo penguins are clearly
 
 * whether the distributions of the individual points  are approximately symmetric. If they are, then perhaps the points are normally distributed about their means. In that case it may be possible to use so-called *parametric* tests for difference such as t-tests and ANOVAs of one kind or another. If not, then we may have to use their less powerful *non-parametric* equivalents such as Mann-Whitney tests or Kruskal-Wallis tests. 
 
-We see in @fig-box-plots that all the boxes are of about the same width, meaning the spread of values (the variance) is about the same for each species and  that all the plots are more or less symmetric. There is only one outlier which isn't too far out, and all the medians are more or less in the centre of the boxes, as we would expect fo a symmetric distribution. This means that the data pluaisibly might be normally distributed. There is a better type of plot for determing normality, the quantile-quantile plot, but this quick check for normality from a box plot is a useful thing to be able to do.
+We see in @fig-box-plots-symmetric that all the boxes are of about the same width, meaning the spread of values (the variance) is about the same for each species and  that all the plots are more or less symmetric. There is only one outlier which isn't too far out, and all the medians are more or less in the centre of the boxes, as we would expect fo a symmetric distribution. This means that the data pluaisibly might be normally distributed. There is a better type of plot for determing normality, the quantile-quantile plot, but this quick check for normality from a box plot is a useful thing to be able to do.
+
+```{r}
+#| label: fig-box-plots-unsymmetrical
+#| caption: "Non symmetrical box plots. In this case the data are right skew with outliers stretching out to high values untypical of the bulk of the data. On seeing this you would think no, those data don't look normally distributed and so no, I can't use a parametric test for difference such as a one-way ANOVA. I am going to need to use a non-parametric test such as, this case, a Kruskal-Wallis test."
+bp2 <- data.frame(types = c(rep("A",100), rep("B", 100), rep("C", 100)), values = c(exp(rnorm(100,2,1)), exp(rnorm(100,3,1)), exp(rnorm(100,4,1)))) |>
+  ggplot(aes(x = types, y = values)) +
+  geom_boxplot(fill = fill_colour1) +
+  labs(x = "Behaviour type",
+       y = "Counts") 
+bp2
+```
 
 ### Improving the box plot
 
