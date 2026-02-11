@@ -308,7 +308,7 @@ Adelie & 73 & 3368.84 & 31.53\\
 \hline
 \end{tabular}
 
-\begin{tcolorbox}[enhanced jigsaw, leftrule=.75mm, colbacktitle=quarto-callout-note-color!10!white, opacitybacktitle=0.6, colframe=quarto-callout-note-color-frame, breakable, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Types of error bar}, left=2mm, bottomtitle=1mm, coltitle=black, toprule=.15mm, titlerule=0mm, opacityback=0, arc=.35mm, toptitle=1mm, colback=white, rightrule=.15mm, bottomrule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, toptitle=1mm, left=2mm, colback=white, colframe=quarto-callout-note-color-frame, coltitle=black, breakable, leftrule=.75mm, bottomtitle=1mm, opacityback=0, titlerule=0mm, opacitybacktitle=0.6, arc=.35mm, rightrule=.15mm, toprule=.15mm, bottomrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Types of error bar}, colbacktitle=quarto-callout-note-color!10!white]
 
 \textbf{standard deviations}: These tell us about the spread of values
 in a sample or a population. They do not systematically get bigger or
@@ -423,7 +423,7 @@ run through a few of them.
 
 \end{figure}%
 
-\section{Histograms}\label{histograms}
+\subsection{Histograms}\label{histograms}
 
 In histograms the range of a variable is split into bis of. certain
 width, then the number of observations that fall within each bin is
@@ -498,10 +498,95 @@ reject our null hypothesis, or fail to reject it.
 \pandocbounded{\includegraphics[keepaspectratio]{visualising_data_files/figure-pdf/unnamed-chunk-13-1.pdf}}
 
 Unlike the bar charts, histograms also tell us about the shape and
-widths of the ditributions of the three data sets. When we do actually
+widths of the distributions of the three data sets. When we do actually
 use a statistics test to make a decision about our hypotheses, these
 features of the data will be very important in helping us decide which
 test is the right one.
+
+\subsection{Box plots}\label{box-plots}
+
+A very useful plot type for help in answering difference questions is
+the box and whisker plot, often just called a box plot.
+
+Here is a box plot of the penguins body massdata, with one box for each
+species:
+
+\begin{figure}
+
+\centering{
+
+\pandocbounded{\includegraphics[keepaspectratio]{visualising_data_files/figure-pdf/fig-box-plots-1.pdf}}
+
+}
+
+\caption{\label{fig-box-plots}Anatomy of a box and whisker plot}
+
+\end{figure}%
+
+In box and whisker plots, or box plots for short, we are shown a summary
+of the distribution of the each data set and its cental location.
+
+Each \textbf{box} shows:
+
+\begin{itemize}
+\tightlist
+\item
+  the 75th percentile of the data: this is the top of the box
+\item
+  the 50th percentile of the dat ie the median: this is the thick black
+  black line
+\item
+  the 25th percentile of the data: this is the bottom of the box
+\item
+  the interquartile range ie rnage that contains the middle 50\% of the
+  data. This is the range of values between the top of the box and the
+  bottom.
+\end{itemize}
+
+the \textbf{whiskers} show:
+
+\begin{itemize}
+\tightlist
+\item
+  the range of the rest of the data that goes beyond the interquartile
+  range - ie how far uop and down the range top and bottom quartiles
+  spread.
+\end{itemize}
+
+any \textbf{outlier(s)} are shown by individual dots. Outliers are, more
+or less, jsut what the name says, daa values that are atypical of the
+rest of the data.
+
+A box plot can also show:
+
+\begin{itemize}
+\item
+  whether there is a clear difference beteen the spread of values of the
+  different catagories. This helps us decide whether or not to reject a
+  null hypothesis about there being no difference. In
+  Figure~\ref{fig-box-plots} we can see that the body masses of Gentoo
+  penguins are clearly greater than those of the other two species, but
+  that there is no clear indication from these data that there is any
+  difference between those two.
+\item
+  whether the distributions of the individual points are approximately
+  symmetric. It they are, then perhaps the points are normally
+  distributed about their means. In that case it may be possible to use
+  so-called \emph{parametric} tests for difference such as t-tests and
+  ANOVAs of one kind or another. If not, then we may have to use their
+  less powerful \emph{non-parametric} equivalents such as Mann-Whitney
+  tests or Kruskal-Wallis tests.
+\end{itemize}
+
+We see in Figure~\ref{fig-box-plots} that all the boxes are of about the
+same width, meaning the spread of values (the variance) is about the
+same for each species and that all the plots are more or less symmetric.
+There is only one outlier which isn't too far out, and all the medians
+are more or less in the centre of the boxes, as we would expect fo a
+symmetric distribution. This means that the data pluaisibly might be
+normally distributed. There is a better type of plot for determing
+normality, the quantile-quantile plot, but this quick check for
+normality from a box plot is a usual thing to be able to do.
 
 \bookmarksetup{startatroot}
 
