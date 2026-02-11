@@ -219,15 +219,14 @@ Unlike the bar charts, histograms also tell us about the shape and widths of the
 
 ### Box plots
 
-A very useful plot type for help in answering difference questions is the box and whisker plot, often just called a box plot.
+A very useful plot type for help in answering difference questions is the box and whisker plot, often just called a box plot. We normally use them where we have continuous data spread across one or mre categorical variables.
 
-Here is a box plot of the penguins body massdata, with one box for each species:
+Here is a box and whisker plot of the femal penguins body mass data, with one box for each species. Note that we have used the same colour for each box. We already know which species is which, so to use different colours would imply an additional difference that isn't there. It would confuse the reader.
 
 ```{r}
-#| label: fig-box-plots
 #| fig-cap: "Anatomy of a box and whisker plot"
 #| 
-female_penguins |>
+bp1 <- female_penguins |>
   ggplot(aes(x = species, y = body_mass_g)) +
   geom_boxplot(fill = fill_colour1) +
   labs(x = "Species",
@@ -239,9 +238,32 @@ female_penguins |>
   annotate("text", x = 2.90, y = 4700, size = 3, label = "50th percentile (median)", colour = "darkred") +
   annotate("text", x = 2.75, y = 4850, size = 3, label = "75th percentile", colour = "darkred") +
   theme_cowplot()
-  
 ```
+
+```{r}
+bp2 <- data.frame(types = c(rep("A",100), rep("B", 100), rep("C", 100)), values = c(exp(rnorm(100,2,1)), exp(rnorm(100,3,1)), exp(rnorm(100,4,1)))) |>
+  ggplot(aes(x = types, y = values)) +
+  geom_boxplot(fill = fill_colour1) +
+  labs(x = "Behaviour type",
+       y = "Counts") 
+```
+
+```{r}
+#| label: fig-box-plots
+#| fig-cap: "Box plots "
+#| fig-subcap: 
+#|   - "Anatomy of a box and whisker plot. Here the data are symmetrically distributed"
+#|   - "Count date - not at all symmetrically distributed"
+#| layout-ncol: 2
+
+bp1
+bp2
+```
+
+
 In box and whisker plots, or box plots for short, we are shown a summary of the distribution of each data set and its central location. 
+
+Consider @fig-box-plots (a). 
 
 Each **box** shows:
 
