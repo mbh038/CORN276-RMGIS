@@ -1,0 +1,72 @@
+# Counts
+
+```{r, include = FALSE}
+library(tidyverse)
+library(here)
+```
+
+Suppose we have a population of people in which there is a gene that has two alleles A and a, where A is dominant. Suppose that being homozygous in the recessive allele a means that the individual is affected by sickle cell anemia. Being heterozygous Aa means that the individual is not affected but is a carrier and may pass the a allele on to their progeny. Those who are homozygous in the dominant allele A are unaffected.
+
+## Observed Frequencies
+
+Suppose the observed numbers of each genotype are as follows:
+
+
+```{r}
+AA_o <- 756 # observed unaffected
+Aa_o <- 200 # observed carriers
+aa_o <- 144 # observed affected
+N <- AA_o +Aa_o + aa_o # total population
+```
+
+## Calculate allele frequencies
+```{r}
+p <- (2*AA_o + Aa_o) / (2 * N) # frequency of A allele
+q <- (2*aa_o + Aa_o) / (2 * N) # frequency of a allele
+p + q
+```
+
+## Expected under HWE
+```{r}
+AA_e <- p^2 * N
+Aa_e <- 2 * p * q * N
+aa_e <- q^2 * N
+
+```
+
+## Use built-in R function to calculate p-value
+```{r}
+# not quite right
+# uses df = 2 when it should use df = 1
+chisq.test(c(AA_o, Aa_o, aa_o), p = c(AA_e, Aa_e, aa_e)/N)
+```
+
+
+So do it manually:
+
+## Calculate Chi-squared statistic
+```{r}
+chi_sq <- (AA_o-AA_e)^2 / AA_e + (Aa_o-Aa_e)^2 / Aa_e + (aa_o - aa_e)^2 / aa_e
+chi_sq
+```
+
+## Calculate degrees of freedom
+```{r}
+df <- length(c(AA_o, Aa_o, aa_o)) - length(c("A", "a"))
+```
+
+## Calculate p-value
+
+```{r}
+pchisq(chi_sq,df, lower.tail = FALSE)
+```
+
+So we reject the null.
+
+```{r}
+#
+raw_result <- chisq.test(c(AA_o, Aa_o, aa_o), p = c(AA_e, Aa_e, aa_e)/N)
+chi_sq <- raw_result$statistic
+pchisq(chi_sq,1,lower.tail = FALSE)
+```
+

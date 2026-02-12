@@ -38,5 +38,75 @@
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Visualising data</span>"
     ]
+  },
+  {
+    "objectID": "counts.html",
+    "href": "counts.html",
+    "title": "2  Counts",
+    "section": "",
+    "text": "2.1 Observed Frequencies\nSuppose we have a population of people in which there is a gene that has two alleles A and a, where A is dominant. Suppose that being homozygous in the recessive allele a means that the individual is affected by sickle cell anemia. Being heterozygous Aa means that the individual is not affected but is a carrier and may pass the a allele on to their progeny. Those who are homozygous in the dominant allele A are unaffected.\nSuppose the observed numbers of each genotype are as follows:",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Counts</span>"
+    ]
+  },
+  {
+    "objectID": "counts.html#calculate-allele-frequencies",
+    "href": "counts.html#calculate-allele-frequencies",
+    "title": "2  Counts",
+    "section": "2.2 Calculate allele frequencies",
+    "text": "2.2 Calculate allele frequencies\n\n\n[1] 1",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Counts</span>"
+    ]
+  },
+  {
+    "objectID": "counts.html#expected-under-hwe",
+    "href": "counts.html#expected-under-hwe",
+    "title": "2  Counts",
+    "section": "2.3 Expected under HWE",
+    "text": "2.3 Expected under HWE",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Counts</span>"
+    ]
+  },
+  {
+    "objectID": "counts.html#use-built-in-r-function-to-calculate-p-value",
+    "href": "counts.html#use-built-in-r-function-to-calculate-p-value",
+    "title": "2  Counts",
+    "section": "2.4 Use built-in R function to calculate p-value",
+    "text": "2.4 Use built-in R function to calculate p-value\n\n\n\n    Chi-squared test for given probabilities\n\ndata:  c(AA_o, Aa_o, aa_o)\nX-squared = 246.46, df = 2, p-value &lt; 2.2e-16\n\n\nSo do it manually:",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Counts</span>"
+    ]
+  },
+  {
+    "objectID": "counts.html#calculate-chi-squared-statistic",
+    "href": "counts.html#calculate-chi-squared-statistic",
+    "title": "2  Counts",
+    "section": "2.5 Calculate Chi-squared statistic",
+    "text": "2.5 Calculate Chi-squared statistic\n\n\n[1] 246.4574",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Counts</span>"
+    ]
+  },
+  {
+    "objectID": "counts.html#calculate-degrees-of-freedom",
+    "href": "counts.html#calculate-degrees-of-freedom",
+    "title": "2  Counts",
+    "section": "2.6 Calculate degrees of freedom",
+    "text": "2.6 Calculate degrees of freedom",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Counts</span>"
+    ]
+  },
+  {
+    "objectID": "counts.html#calculate-p-value",
+    "href": "counts.html#calculate-p-value",
+    "title": "2  Counts",
+    "section": "2.7 Calculate p-value",
+    "text": "2.7 Calculate p-value\n\n\n[1] 1.537378e-55\n\n\nSo we reject the null.\n\n\n   X-squared \n1.537378e-55",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Counts</span>"
+    ]
   }
 ]

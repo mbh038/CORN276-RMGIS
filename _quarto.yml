@@ -9,6 +9,7 @@ book:
   chapters:
     - index.qmd
     - visualising_data.qmd
+    - counts.qmd
     - references.qmd
 
 bibliography: references.bib
@@ -21,5 +22,8 @@ format:
   pdf:
     documentclass: scrreprt
 
-
+execute: 
+  message: false
+  warning: false
+  echo: false
 
