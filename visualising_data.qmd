@@ -290,7 +290,7 @@ In its basic form the box plot does not show us the sample size or the internal 
 We can fix that in at least a couple of ways as shown in @fig-box-plots-improved. We can add the sample sizes as annotations as we did with the bar charts, and/or we can the data points themselves, with a bit of sideways 'jitter' so that they don't all lie on top of each other. This can be effective if the sample size is not too large.
 
 ```{r}
-#| label: fig-box-plots-improved
+#| label: fig-better-box-plots
 #| fig-cap: "Anatomy of a box and whisker plot. Here the data are symmetrically distributed"
 
 ns <- female_penguins |>
@@ -316,7 +316,7 @@ bp4 <- female_penguins |>
   theme_cowplot()
 ```
 ```{r}
-#| label: fig-better-box-plots
+#| label: fig-box-plots-improved
 #| fig-cap: "Improved box plots"
 #| fig-subcap: 
 #|   - "Sample sizes added as annotations."
