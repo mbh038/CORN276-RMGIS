@@ -244,7 +244,7 @@ bp1
 
 In box and whisker plots, or box plots for short, we are shown a summary of the distribution of each data set and its central location. 
 
-Consider @fig-box-plots. 
+Consider @fig-box-plots-symmetric. 
 
 Each **box** shows:
 
