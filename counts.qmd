@@ -1,5 +1,7 @@
 # Counts
 
+
+
 ```{r, include = FALSE}
 library(tidyverse)
 library(here)
@@ -9,8 +11,15 @@ Suppose we have a population of people in which there is a gene that has two all
 
 ## Observed Frequencies
 
-Suppose the observed numbers of each genotype are as follows:
+Suppose in a population of $N=1100$ people the observed numbers of each genotype are as follows:
 
+$$
+\begin{align}
+\text{AA}_\text{O} &= 756\\
+\text{Aa}_\text{O} &= 200\\
+\text{aa}_\text{O} &= 144\\
+\end{align}
+$$
 
 ```{r}
 AA_o <- 756 # observed unaffected
@@ -19,7 +28,34 @@ aa_o <- 144 # observed affected
 N <- AA_o +Aa_o + aa_o # total population
 ```
 
+where the subscript letter $O$ denotes 'Observed'
+
 ## Calculate allele frequencies
+
+Each person in the population carries two copies of the gene so the total number of alleles is $2N$. We use $p$ and $q$ to denote the proportion of these that are $A$ and $a$ alleles respectively.
+
+Each person who is homozygous in $\text{A}$ carries two copies of the $A$ allele while each heterozygous person carries one. $p$, the proportion of all alleles that are $A$, will be the number of $A$ alleles in the population divided by the total number of alleles and will will be given by
+
+$$
+\begin{align}
+p &= \frac{2 \times \text{AA}_\text{O} + \text{Aa}_\text{O} }{2N}\\
+&=\frac{2\times 756 + 200}{2\times 1100}\\
+&=\frac{1712}{2200}\\
+&=0.778
+\end{align}
+$$
+Similarly, $q$, the proportion of all alleles that are $a$, will be the number of $a$ alleles in the population divided by the total number of alleles and will will be given by
+
+$$
+\begin{align}
+q &= \frac{2 \times \text{aa}_\text{O} + \text{Aa}_\text{O} }{2N}\\
+&=\frac{2\times 144 + 200}{2\times 1100}\\
+&=\frac{488}{2200}\\
+&=0.222
+\end{align}
+$$
+
+
 ```{r}
 p <- (2*AA_o + Aa_o) / (2 * N) # frequency of A allele
 q <- (2*aa_o + Aa_o) / (2 * N) # frequency of a allele
@@ -27,6 +63,8 @@ p + q
 ```
 
 ## Expected under HWE
+
+We
 ```{r}
 AA_e <- p^2 * N
 Aa_e <- 2 * p * q * N

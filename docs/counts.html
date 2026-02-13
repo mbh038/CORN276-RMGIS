@@ -69,6 +69,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -175,10 +204,36 @@ ul.task-list li input[type="checkbox"] {
 <p>Suppose we have a population of people in which there is a gene that has two alleles A and a, where A is dominant. Suppose that being homozygous in the recessive allele a means that the individual is affected by sickle cell anemia. Being heterozygous Aa means that the individual is not affected but is a carrier and may pass the a allele on to their progeny. Those who are homozygous in the dominant allele A are unaffected.</p>
 <section id="observed-frequencies" class="level2" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="observed-frequencies"><span class="header-section-number">2.1</span> Observed Frequencies</h2>
-<p>Suppose the observed numbers of each genotype are as follows:</p>
+<p>Suppose in a population of <span class="math inline">\(N=1100\)</span> people the observed numbers of each genotype are as follows:</p>
+<p><span class="math display">\[
+\begin{align}
+\text{AA}_\text{O} &amp;= 756\\
+\text{Aa}_\text{O} &amp;= 200\\
+\text{aa}_\text{O} &amp;= 144\\
+\end{align}
+\]</span></p>
+<p>where the subscript letter <span class="math inline">\(O\)</span> denotes ‘Observed’</p>
 </section>
 <section id="calculate-allele-frequencies" class="level2" data-number="2.2">
 <h2 data-number="2.2" class="anchored" data-anchor-id="calculate-allele-frequencies"><span class="header-section-number">2.2</span> Calculate allele frequencies</h2>
+<p>Each person in the population carries two copies of the gene so the total number of alleles is <span class="math inline">\(2N\)</span>. We use <span class="math inline">\(p\)</span> and <span class="math inline">\(q\)</span> to denote the proportion of these that are <span class="math inline">\(A\)</span> and <span class="math inline">\(a\)</span> alleles respectively.</p>
+<p>Each person who is homozygous in <span class="math inline">\(\text{A}\)</span> carries two copies of the <span class="math inline">\(A\)</span> allele while each heterozygous person carries one. <span class="math inline">\(p\)</span>, the proportion of all alleles that are <span class="math inline">\(A\)</span>, will be the number of <span class="math inline">\(A\)</span> alleles in the population divided by the total number of alleles and will will be given by</p>
+<p><span class="math display">\[
+\begin{align}
+p &amp;= \frac{2 \times \text{AA}_\text{O} + \text{Aa}_\text{O} }{2N}\\
+&amp;=\frac{2\times 756 + 200}{2\times 1100}\\
+&amp;=\frac{1712}{2200}\\
+&amp;=0.778
+\end{align}
+\]</span> Similarly, <span class="math inline">\(q\)</span>, the proportion of all alleles that are <span class="math inline">\(a\)</span>, will be the number of <span class="math inline">\(a\)</span> alleles in the population divided by the total number of alleles and will will be given by</p>
+<p><span class="math display">\[
+\begin{align}
+q &amp;= \frac{2 \times \text{aa}_\text{O} + \text{Aa}_\text{O} }{2N}\\
+&amp;=\frac{2\times 144 + 200}{2\times 1100}\\
+&amp;=\frac{488}{2200}\\
+&amp;=0.222
+\end{align}
+\]</span></p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 1</code></pre>
@@ -187,6 +242,7 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="expected-under-hwe" class="level2" data-number="2.3">
 <h2 data-number="2.3" class="anchored" data-anchor-id="expected-under-hwe"><span class="header-section-number">2.3</span> Expected under HWE</h2>
+<p>We</p>
 </section>
 <section id="use-built-in-r-function-to-calculate-p-value" class="level2" data-number="2.4">
 <h2 data-number="2.4" class="anchored" data-anchor-id="use-built-in-r-function-to-calculate-p-value"><span class="header-section-number">2.4</span> Use built-in R function to calculate p-value</h2>

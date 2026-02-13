@@ -244,7 +244,7 @@ bp1
 
 In box and whisker plots, or box plots for short, we are shown a summary of the distribution of each data set and its central location. 
 
-Consider @fig-box-plots (a). 
+Consider @fig-box-plots. 
 
 Each **box** shows:
 
@@ -261,18 +261,20 @@ any **outlier(s)** are shown by individual dots. Outliers are, more or less, jsu
 
 A box plot can also show:
 
-* whether there is a clear difference beteen the spread of values of the different catagories. This helps us decide whether or not to reject a null hypothesis about there being no difference. 
+* whether there is a clear difference between the spread of values of the different catagories. Do the boxes overlap or are they clearly separated in the vertical direction? This helps us decide whether or not to reject a null hypothesis about there being no difference. 
 
 In @fig-box-plots we can see that the body masses of Gentoo penguins are clearly greater than those of the other two species, but that there is no clear indication from these data that there is any difference between those two. 
 
 
-* whether the distributions of the individual points  are approximately symmetric. If they are, then perhaps the points are normally distributed about their means. In that case it may be possible to use so-called *parametric* tests for difference such as t-tests and ANOVAs of one kind or another. If not, then we may have to use their less powerful *non-parametric* equivalents such as Mann-Whitney tests or Kruskal-Wallis tests. 
+* whether the distributions of the individual points  are of about the same width and if they are approximately symmetric. If they are, then perhaps the points are normally distributed about their means and have similar variances. In that case it may be possible to use so-called *parametric* tests for difference such as t-tests and ANOVAs of one kind or another. If not, then we may have to use their less powerful *non-parametric* equivalents such as Mann-Whitney tests or Kruskal-Wallis tests. 
 
-We see in @fig-box-plots-symmetric that all the boxes are of about the same width, meaning the spread of values (the variance) is about the same for each species and  that all the plots are more or less symmetric. There is only one outlier which isn't too far out, and all the medians are more or less in the centre of the boxes, as we would expect fo a symmetric distribution. This means that the data pluaisibly might be normally distributed. There is a better type of plot for determing normality, the quantile-quantile plot, but this quick check for normality from a box plot is a useful thing to be able to do.
+We see in @fig-box-plots-symmetric that all the boxes are of about the same width, meaning the spread of values (the variance) is about the same for each species and  that all the plots are more or less symmetric, wit th emedians more or less in the middle. There is only one outlier which isn't too far out, and all the medians are more or less in the centre of the boxes, as we would expect fo a symmetric distribution. This means that the data pluasibly might be normally distributed. There is a better type of plot for determing normality, the quantile-quantile plot, but this quick check for normality from a box plot is a useful thing to be able to do.
+
+For contrast, we show in @fig-box-plots-unsymmetrical what box plots can look like when you have data that really isn't normally distributed. You might get data like this if you were at the zoo and counting how many times an animal exhibited this or that behavioural trait in successive 20 minute blocks of time. In most blocks they either wouldn't exhibit the trait at all or maybe they would but only once, occasionally twice. *Very* occasionally they would have a splurge of activity and you'd get a high count. 
 
 ```{r}
 #| label: fig-box-plots-unsymmetrical
-#| caption: "Non symmetrical box plots. In this case the data are right skew with outliers stretching out to high values untypical of the bulk of the data. On seeing this you would think no, those data don't look normally distributed and so no, I can't use a parametric test for difference such as a one-way ANOVA. I am going to need to use a non-parametric test such as, this case, a Kruskal-Wallis test."
+#| caption: "Non symmetrical box plots. In this case the data are right skewed with outliers stretching out to high values untypical of the bulk of the data. On seeing this you would think no, those data don't look normally distributed and so no, I can't use a parametric test for difference such as a one-way ANOVA. I am going to need to use a non-parametric test such as, this case, a Kruskal-Wallis test."
 bp2 <- data.frame(types = c(rep("A",100), rep("B", 100), rep("C", 100)), values = c(exp(rnorm(100,2,1)), exp(rnorm(100,3,1)), exp(rnorm(100,4,1)))) |>
   ggplot(aes(x = types, y = values)) +
   geom_boxplot(fill = fill_colour1) +
@@ -285,10 +287,47 @@ bp2
 
 In its basic form the box plot does not show us the sample size or the internal detail of the sample distribution, for example whether it is bimodal or not.
 
+We can fix that in at least a couple of ways as shown in @fig-box-plots-improved. We can add the sample sizes as annotations as we did with the bar charts, and/or we can the data points themselves, with a bit of sideways 'jitter' so that they don't all lie on top of each other. This can be effective if the sample size is not too large.
+
 ```{r}
+#| label: fig-box-plots-improved
+#| fig-cap: "Anatomy of a box and whisker plot. Here the data are symmetrically distributed"
 
+ns <- female_penguins |>
+  group_by(species) |>
+  summarise(n=n())
+
+bp3 <- female_penguins |>
+  ggplot(aes(x = species, y = body_mass_g)) +
+  geom_boxplot(fill = fill_colour1) +
+  
+  labs(x = "Species",
+       y = "Body mass (g)") +
+  geom_text(data = ns, aes(y = 2000, label = paste("n = ",n)), vjust = 0, nudge_y = 200) +  
+  theme_cowplot()
+bp3
+
+bp4 <- female_penguins |>
+  ggplot(aes(x = species, y = body_mass_g)) +
+  geom_boxplot(fill = fill_colour1, outlier.size = 0) +
+  geom_jitter(width = 0.2, alpha =0.4) +
+  labs(x = "Species",
+       y = "Body mass (g)") +
+  geom_text(data = ns, aes(y = 2000, label = paste("n = ",n)), vjust = 0, nudge_y = 200) +  
+  theme_cowplot()
+bp4
 ```
+```{r}
+#| label: fig-better-box-plots
+#| fig-cap: "Improved box plots"
+#| fig-subcap: 
+#|   - "Sample sizes added as annotations."
+#|   - "Points added with some sideways jitter"
+#| layout-ncol: 2
 
+bp3
+bp4
+```
 
 
 
