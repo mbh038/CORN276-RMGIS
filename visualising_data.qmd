@@ -305,7 +305,6 @@ bp3 <- female_penguins |>
        y = "Body mass (g)") +
   geom_text(data = ns, aes(y = 2000, label = paste("n = ",n)), vjust = 0, nudge_y = 200) +  
   theme_cowplot()
-bp3
 
 bp4 <- female_penguins |>
   ggplot(aes(x = species, y = body_mass_g)) +
@@ -315,7 +314,6 @@ bp4 <- female_penguins |>
        y = "Body mass (g)") +
   geom_text(data = ns, aes(y = 2000, label = paste("n = ",n)), vjust = 0, nudge_y = 200) +  
   theme_cowplot()
-bp4
 ```
 ```{r}
 #| label: fig-better-box-plots

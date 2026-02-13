@@ -64,7 +64,17 @@ p + q
 
 ## Expected under HWE
 
-We
+Under Hardy-Weinberg equilibrium, a key assumption is that there is random mating among individuals in the population. This means that the probability of an individual having any of the three possible genotypes is the product of the frequencies of the two alleles present for that genotype.
+
+Hence, under Hardy-Weinberg individual, we would *expect* the following genotype frequencies:
+
+Genotype | Frequency
+---------|----------
+AA       | $p^2$
+Aa       | $2pq$
+aa       | $q^2$
+
+
 ```{r}
 AA_e <- p^2 * N
 Aa_e <- 2 * p * q * N
