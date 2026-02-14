@@ -41,7 +41,7 @@ In a typical software implementation of the test, such as in R, we give it the c
 
 ```{r}
 #| label: fig-mendelian-genetics
-#| caption: "An outline of Mendel's green:yellow pea crossing study. In the F1 generation there would necessarily be 100% yellow plants with genotype Yy. In the F2 generation the ratio 3:1 yellow:green is what is *expected* if random Mendelian inheritance is the underlying mechanism. In reality we would probably not see excatly that ratio. A chi-square goodness of fit test tells us how likely it is we would get the ratio we got, or. more extreme ratio, *if* Mendelian inheritance is correct."
+#| fig-cap: "An outline of Mendel's green:yellow pea crossing study. In the F1 generation there would necessarily be 100% yellow plants with genotype Yy. In the F2 generation the ratio 3:1 yellow:green is what is *expected* if random Mendelian inheritance is the underlying mechanism. In reality we would probably not see excatly that ratio. A chi-square goodness of fit test tells us how likely it is we would get the ratio we got, or. more extreme ratio, *if* Mendelian inheritance were correct."
 myimages<-here("figures","mendelian_pea_plants.png")
 knitr::include_graphics(myimages)
 ```
