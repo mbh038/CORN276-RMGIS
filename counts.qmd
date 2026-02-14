@@ -161,21 +161,24 @@ df <- data.frame(x1 = chisq_statistic, y1 = 0, x2 = chisq_statistic, y2 = dchisq
 pbase<- ggplot(data.frame(x=seq(0,10,0.1)), aes(x)) +
   geom_function(fun = dchisq, args=list(df = deg_freedom)) +
   geom_segment(data = df, aes(x = x1, y = y1, xend = x2, yend = y2), linewidth = 0.2) +
-  theme_void()
+    theme_void()
+
 p1 <- pbase +
     stat_function(fun = dchisq, 
                 xlim = c(0,10),
                 geom = "area",
                 fill = fill_colour1,
                 args = list(df=deg_freedom)) +
-  annotate(geom = "text", x= 5, y = .5, label = "Total area = 1")
+  annotate(geom = "text", x= 5, y = .15, label = "Total area = 1")
+
+
 p2 <- pbase +
     stat_function(fun = dchisq, 
                 xlim = c(chisq_statistic,10),
                 geom = "area",
                 fill = fill_colour1,
                 args = list(df=deg_freedom)) +
-  annotate(geom = "text", x= 5, y = .5, label = "p-value =0.365")
+  annotate(geom = "text", x= 5, y = .15, label = "p-value =0.365")
 ```
 
 ```{r}
