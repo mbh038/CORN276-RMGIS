@@ -242,7 +242,7 @@ window.Quarto = {
 <p>For example:</p>
 <ul>
 <li><p>If we were tossing a fair coin 1000 times we would <em>expect</em> 500 heads and 500 tails, ie heads and tails in the proportion 1:1. In reality, if the coin were fair, we would probably get roughly the same number of heads and tails, but not exactly 500 of each. How far from 50:50 would the proportion of heads and tails have to be before we would be justified in rejecting the idea that the coin is fair?</p></li>
-<li><p>If we threw a fair dice a large number of times we would <em>expect</em> each possible score, from 1 to 6, to occur the same number of times. ie each score would occur 1/6th of the time. In reality we would probably get each score <em>roughly</em> 1/6 of the time, but not exactly 1/6. How far from the expected proportions could the numbers of each score get before we would be justified in thinking that the dice was not fair?</p></li>
+<li><p>If we threw a fair dice a large number of times we would <em>expect</em> each possible score, from 1 to 6, to occur the same number of times. ie each score would occur 1/6th of the time. In reality we would probably get each score <em>roughly</em> 1/6 of the time, but not exactly 1/6. How far from the expected proportions could the numbers of each score have to get before we would be justified in thinking that the dice was not fair?</p></li>
 <li><p>If the basic idea of Mendelian inheritance with independent assortment involving a single gene is correct, then we would expect that if we crossed a large number of pea plants that were heterozygous for yellow and green pea colour, with yellow being dominant, then the offspring would have yellow:green peas in the ratio 3:1 (plants with genotypes YY, Yy, yY would all have yellow seeds and only those with yy would have green seeds). In practice, if the inheritance <em>were</em> according to the simplest type of Mendelian inheritance (ie involving just one gene, amongst other things) we would probably get yellow:green offspring in a ratio that was <em>approximately</em> but not exactly 3:1. How far from 3:1 would the ratio need to be before we would justified in claiming that the outcome was inconsistent with the Mendelian prediction?</p></li>
 </ul>
 <section id="chi-square-goodness-of-fit-test" class="level2" data-number="2.1">
@@ -251,11 +251,16 @@ window.Quarto = {
 <p>In a typical software implementation of the test, such as in R, we give it the counts we actually got for each possible outcome and also the expected proportion for each outcome. The test then gives us a p-value, a probability, for how likely it is that we would have got the counts we actually got, or counts even further from the null hypothesis, if that null hypothesis were correct. If this p-value is too small, and by that we usually mean less than 0.05, then we reject the null hypothesis.</p>
 <section id="example-mendelian-genetics" class="level3" data-number="2.1.1">
 <h3 data-number="2.1.1" class="anchored" data-anchor-id="example-mendelian-genetics"><span class="header-section-number">2.1.1</span> Example: Mendelian Genetics</h3>
-<div class="cell">
+<div class="cell" data-caption="An outline of Mendel's green:yellow pea crossing study. In the F1 generation there would necessarily be 100% yellow plants with genotype Yy. In the F2 generation the ratio 3:1 yellow:green is what is *expected* if random Mendelian inheritance is the underlying mechanism. In reality we would probably not see excatly that ratio. A chi-square goodness of fit test tells us how likely it is we would get the ratio we got, or. more extreme ratio, *if* Mendelian inheritance is correct.">
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="figures/mendelian_pea_plants.png" class="img-fluid figure-img" width="793"></p>
+<div id="fig-mendelian-genetics" class="quarto-float quarto-figure quarto-figure-center anchored" width="793">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-mendelian-genetics-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/mendelian_pea_plants.png" id="fig-mendelian-genetics" class="img-fluid figure-img" width="793">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-mendelian-genetics-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.1
+</figcaption>
 </figure>
 </div>
 </div>
@@ -439,7 +444,7 @@ Note
 <img src="counts_files/figure-html/fig-chi-square-plots-1.png" id="fig-chi-square-plots-1" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-chi-square-plots-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2.1
+Figure&nbsp;2.2
 </figcaption>
 </figure>
 </div>
@@ -451,7 +456,7 @@ Figure&nbsp;2.1
 <img src="counts_files/figure-html/fig-chi-square-plots-2.png" id="fig-chi-square-plots-2" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-chi-square-plots-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2.2
+Figure&nbsp;2.3
 </figcaption>
 </figure>
 </div>
