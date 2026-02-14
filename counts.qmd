@@ -29,8 +29,6 @@ For example:
 
 -   If we threw a fair dice a large number of times we would *expect* each possible score, from 1 to 6, to occur the same number of times. ie each score would occur 1/6th of the time. In reality we would probably get each score *roughly* 1/6 of the time, but not exactly 1/6. How far from the expected proportions could the numbers of each score have to get before we would be justified in thinking that the dice was not fair?
 
--   If the basic idea of Mendelian inheritance with independent assortment involving a single gene is correct, then we would expect that if we crossed a large number of pea plants that were heterozygous for yellow and green pea colour, with yellow being dominant, then the offspring would have yellow:green peas in the ratio 3:1 (plants with genotypes YY, Yy, yY would all have yellow seeds and only those with yy would have green seeds). In practice, if the inheritance *were* according to the simplest type of Mendelian inheritance (ie involving just one gene, amongst other things) we would probably get yellow:green offspring in a ratio that was *approximately* but not exactly 3:1. How far from 3:1 would the ratio need to be before we would justified in claiming that the outcome was inconsistent with the Mendelian prediction?
-
 ## Chi-square goodness of fit test
 
 In a chi-square 'goodness of fit' test, we are testing data where we have a number of counts for each of two or more possible outcomes of some procedure (heads/tails, dice scores etc). We have an idea of how these counts should be distributed under some null hypothesis (the coin is fair, the dice is fair, genetic inheritance works in this or that way etc). The chi-square goodness of fit test tests how likely it is we would have got the counts we actually got if that null hypothesis were correct. We are testing how well our actual counts 'fit' the expected values.
@@ -39,12 +37,16 @@ In a typical software implementation of the test, such as in R, we give it the c
 
 ### Example: Mendelian Genetics
 
+If the basic idea of Mendelian inheritance with independent assortment involving a single gene is correct, then we would expect that if we crossed a large number of pea plants that were heterozygous for yellow and green pea colour, as in the F1 genertion shown in @fig-mendelian-inheritance with yellow being dominant, then the offspring would have yellow:green peas in the ratio 3:1 (plants with genotypes YY, Yy, yY would all have yellow seeds and only those with yy would have green seeds). In practice, if the inheritance *were* according to the simplest type of Mendelian inheritance (ie involving just one gene, amongst other things) we would probably get yellow:green offspring in a ratio that was *approximately* but not exactly 3:1. How far from 3:1 would the ratio need to be before we would justified in claiming that the outcome was inconsistent with the Mendelian prediction?
+
 ```{r}
-#| label: fig-mendelian-genetics
-#| fig-cap: "An outline of Mendel's green:yellow pea crossing study. In the F1 generation there would necessarily be 100% yellow plants with genotype Yy. In the F2 generation the ratio 3:1 yellow:green is what is *expected* if random Mendelian inheritance is the underlying mechanism. In reality we would probably not see excatly that ratio. A chi-square goodness of fit test tells us how likely it is we would get the ratio we got, or. more extreme ratio, *if* Mendelian inheritance were correct."
-myimages<-here("figures","mendelian_pea_plants.png")
+#| label: fig-mendelian-inheritance
+#| fig-cap: "An outline of Mendel's green:yellow pea crossing study. In the F1 generation there would necessarily be 100% yellow plants with genotype Yy. In the F2 generation the ratio 3:1 yellow:green is what is *expected* if random Mendelian inheritance is the underlying mechanism. In reality we would probably not see excatly that ratio. A chi-square goodness of fit test tells us how likely it is we would get the ratio we got, or a more extreme ratio, *if* Mendelian inheritance were correct."
+
+myimages<-here::here("figures","mendelian_pea_plants.png")
 knitr::include_graphics(myimages)
 ```
+
 Suppose we have crossed pea plants that were all heterozygous for yellow/green pea colour. In the F1 generation we get 176 offspring , of which 130 were yellow and 46 were green.
 
 The data here are raw counts, and an individual pea plant offspring contributes either to the yellow count or to the green count, but not to both.
