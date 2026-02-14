@@ -64,17 +64,7 @@
     "href": "counts.html#expected-under-hwe",
     "title": "2  Counts",
     "section": "2.3 Expected under HWE",
-    "text": "2.3 Expected under HWE\nUnder Hardy-Weinberg equilibrium, a key assumption is that there is random mating among individuals in the population. This means that the probability of an individual having any of the three possible genotypes is the product of the frequencies of the two alleles present for that genotype.\nHence, under Hardy-Weinberg individual, we would expect the following genotype frequencies:\n\n\n\nGenotype\nFrequency\n\n\n\n\nAA\n\\(p^2\\)\n\n\nAa\n\\(2pq\\)\n\n\naa\n\\(q^2\\)",
-    "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Counts</span>"
-    ]
-  },
-  {
-    "objectID": "counts.html#use-built-in-r-function-to-calculate-p-value",
-    "href": "counts.html#use-built-in-r-function-to-calculate-p-value",
-    "title": "2  Counts",
-    "section": "2.4 Use built-in R function to calculate p-value",
-    "text": "2.4 Use built-in R function to calculate p-value\n\n\n\n    Chi-squared test for given probabilities\n\ndata:  c(AA_o, Aa_o, aa_o)\nX-squared = 246.46, df = 2, p-value &lt; 2.2e-16\n\n\nSo do it manually:",
+    "text": "2.3 Expected under HWE\nUnder Hardy-Weinberg equilibrium, a key assumption is that there is random mating among individuals in the population. This means that the probability of an individual having any of the three possible genotypes is the product of the frequencies of the two alleles present for that genotype.\nHence, under Hardy-Weinberg individual, we would expect the following genotype frequencies:\n\n\n\nGenotype\nExpected Frequency\n\n\n\n\nAA\n\\(p^2\\)\n\n\nAa\n\\(2pq\\)\n\n\naa\n\\(q^2\\)\n\n\n\nThe numbers we would expect for each genotype, if Hardy-Weinberg equilibrium held would be these frequencies multipled by the total populations:\n\n\n\n\n\n\n\n\nGenotype\nExpected Frequency\nExpected Number\n\n\n\n\nAA\n\\(p^2\\)\n\\(p^2 \\times N = 0.788^2 \\times 1100 = 666\\)\n\n\nAa\n\\(2pq\\)\n\\(2pq \\times N = 2\\times 0.788\\times 0.222 \\times 1100 = 380\\)\n\n\naa\n\\(q^2\\)\n\\(q^2 \\times N = 0.222^2 \\times 1100 = 54\\)",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Counts</span>"
     ]
@@ -83,8 +73,8 @@
     "objectID": "counts.html#calculate-chi-squared-statistic",
     "href": "counts.html#calculate-chi-squared-statistic",
     "title": "2  Counts",
-    "section": "2.5 Calculate Chi-squared statistic",
-    "text": "2.5 Calculate Chi-squared statistic\n\n\n[1] 246.4574",
+    "section": "2.4 Calculate Chi-squared statistic",
+    "text": "2.4 Calculate Chi-squared statistic\n\\[\n\\begin{align}\n\\chi^2 &= \\sum_{i=1}^3\\frac{(O_i-E_i)^2}{E_i}\\\\\n&=\\frac{(756-666)^2}{666} +\\frac{(200-380)^2}{380} + \\frac{(144-54)^2}{54}\\\\\n&=246.5\n\\end{align}\n\\]\n\n\n[1] 246.4574",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Counts</span>"
     ]
@@ -93,8 +83,8 @@
     "objectID": "counts.html#calculate-degrees-of-freedom",
     "href": "counts.html#calculate-degrees-of-freedom",
     "title": "2  Counts",
-    "section": "2.6 Calculate degrees of freedom",
-    "text": "2.6 Calculate degrees of freedom",
+    "section": "2.5 Calculate degrees of freedom",
+    "text": "2.5 Calculate degrees of freedom\nThis is the number of independent pieces of information used in calculating the test statistics \\(\\chi^2\\). In problems like this it turns out to. be equal to the number of gneotypes minus the number of alleles, so in this case the answer is 3 - 2 = 1. The underlying reason for this is that the expected genotype numbers are determined by the allele frequencies p and q. Since these must add up to one, that means that if either p or q is known, then so is the other. Hence there is only one degree of freedom.",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Counts</span>"
     ]
@@ -103,8 +93,18 @@
     "objectID": "counts.html#calculate-p-value",
     "href": "counts.html#calculate-p-value",
     "title": "2  Counts",
-    "section": "2.7 Calculate p-value",
-    "text": "2.7 Calculate p-value\n\n\n[1] 1.537378e-55\n\n\nSo we reject the null.\n\n\n   X-squared \n1.537378e-55",
+    "section": "2.6 Calculate p-value",
+    "text": "2.6 Calculate p-value\n\n\n[1] 1.537378e-55\n\n\nSo we reject the null.\n\n\n   X-squared \n1.537378e-55",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Counts</span>"
+    ]
+  },
+  {
+    "objectID": "counts.html#use-built-in-r-function-to-calculate-p-value",
+    "href": "counts.html#use-built-in-r-function-to-calculate-p-value",
+    "title": "2  Counts",
+    "section": "2.7 Use built-in R function to calculate p-value",
+    "text": "2.7 Use built-in R function to calculate p-value\n\n\n\n    Chi-squared test for given probabilities\n\ndata:  c(AA_o, Aa_o, aa_o)\nX-squared = 246.46, df = 2, p-value &lt; 2.2e-16\n\n\n\n\n\n\n\n\nNote\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFigure 2.1\n\n\n\n\n\n\n\n\n\n\n\nFigure 2.2",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Counts</span>"
     ]

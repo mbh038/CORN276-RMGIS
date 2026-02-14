@@ -7,6 +7,20 @@ library(tidyverse)
 library(here)
 ```
 
+```{r}
+# we use the fabulous openintro here only for its colour scheme
+library(openintro)
+data(COL)
+fill_colour1<-COL['blue','f3']
+# fill_colour1 <- "#b3cde3"
+fill_colour2<-COL['red','f6']
+fill_colour3<-COL['blue','f1']
+line_colour<-COL['blue','full']
+func_colour<-"darkblue"
+point_colour<-COL['blue','full']
+error_colour<-COL['red','full']
+```
+
 Suppose we have a population of people in which there is a gene that has two alleles A and a, where A is dominant. Suppose that being homozygous in the recessive allele a means that the individual is affected by sickle cell anemia. Being heterozygous Aa means that the individual is not affected but is a carrier and may pass the a allele on to their progeny. Those who are homozygous in the dominant allele A are unaffected.
 
 ## Observed Frequencies
@@ -68,7 +82,7 @@ Under Hardy-Weinberg equilibrium, a key assumption is that there is random matin
 
 Hence, under Hardy-Weinberg individual, we would *expect* the following genotype frequencies:
 
-Genotype | Frequency
+Genotype | Expected Frequency
 ---------|----------
 AA       | $p^2$
 Aa       | $2pq$
@@ -82,23 +96,35 @@ aa_e <- q^2 * N
 
 ```
 
-## Use built-in R function to calculate p-value
-```{r}
-# not quite right
-# uses df = 2 when it should use df = 1
-chisq.test(c(AA_o, Aa_o, aa_o), p = c(AA_e, Aa_e, aa_e)/N)
-```
+The numbers we would expect for each genotype, if Hardy-Weinberg equilibrium held would be these frequencies multipled by the total populations:
 
+Genotype | Expected Frequency | Expected Number
+---------|--------------------|---------------
+AA       | $p^2$ | $p^2 \times N = 0.788^2 \times 1100 = 666$
+Aa       | $2pq$ | $2pq \times N = 2\times 0.788\times 0.222 \times 1100 = 380$
+aa       | $q^2$ | $q^2 \times N = 0.222^2 \times 1100 = 54$
 
-So do it manually:
 
 ## Calculate Chi-squared statistic
+
+$$
+\begin{align}
+\chi^2 &= \sum_{i=1}^3\frac{(O_i-E_i)^2}{E_i}\\
+&=\frac{(756-666)^2}{666} +\frac{(200-380)^2}{380} + \frac{(144-54)^2}{54}\\
+&=246.5
+\end{align}
+$$
 ```{r}
 chi_sq <- (AA_o-AA_e)^2 / AA_e + (Aa_o-Aa_e)^2 / Aa_e + (aa_o - aa_e)^2 / aa_e
 chi_sq
 ```
 
 ## Calculate degrees of freedom
+
+This is the number of independent pieces of information used in calculating the test statistics $\chi^2$. In problems like this it turns out to. be equal to the number of gneotypes minus the number of alleles, so in this case the answer is 3 - 2 = 1. The underlying reason for this is that the expected genotype numbers are determined by the allele frequencies p and q. Since these must add up to one, that means that if either p or q is known, then so is the other. Hence there is only one degree of freedom.
+
+
+
 ```{r}
 df <- length(c(AA_o, Aa_o, aa_o)) - length(c("A", "a"))
 ```
@@ -118,3 +144,46 @@ chi_sq <- raw_result$statistic
 pchisq(chi_sq,1,lower.tail = FALSE)
 ```
 
+## Use built-in R function to calculate p-value
+```{r}
+# not quite right
+# uses df = 2 when it should use df = 1
+chisq.test(c(AA_o, Aa_o, aa_o), p = c(AA_e, Aa_e, aa_e)/N)
+```
+
+::: callout-note
+
+```{r}
+chisq_statistic <- 4 
+deg_freedom <- 3
+df <- data.frame(x1 = chisq_statistic, y1 = 0, x2 = chisq_statistic, y2 = dchisq(chisq_statistic,deg_freedom))
+
+pbase<- ggplot(data.frame(x=seq(0,10,0.1)), aes(x)) +
+  geom_function(fun = dchisq, args=list(df = deg_freedom)) +
+  geom_segment(data = df, aes(x = x1, y = y1, xend = x2, yend = y2), linewidth = 0.2) +
+  theme_void()
+p1 <- pbase +
+    stat_function(fun = dchisq, 
+                xlim = c(0,10),
+                geom = "area",
+                fill = fill_colour1,
+                args = list(df=deg_freedom))
+p2 <- pbase +
+    stat_function(fun = dchisq, 
+                xlim = c(chisq_statistic,10),
+                geom = "area",
+                fill = fill_colour1,
+                args = list(df=deg_freedom))
+```
+
+```{r}
+#| label: fig-chi-square-plots
+#| caption: Two plots of a chi-square distribution. 
+#| layout-ncol: 2
+
+p1
+p2
+```
+
+
+:::
