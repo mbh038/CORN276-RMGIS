@@ -168,14 +168,14 @@ p1 <- pbase +
                 geom = "area",
                 fill = fill_colour1,
                 args = list(df=deg_freedom)) +
-  annotate(geom = "text", x= 5, y = 2, label = "Total area = 1")
+  annotate(geom = "text", x= 5, y = .5, label = "Total area = 1")
 p2 <- pbase +
     stat_function(fun = dchisq, 
                 xlim = c(chisq_statistic,10),
                 geom = "area",
                 fill = fill_colour1,
                 args = list(df=deg_freedom)) +
-  annotate(geom = "text", x= 5, y = 2, label = "p-value =0.365")
+  annotate(geom = "text", x= 5, y = .5, label = "p-value =0.365")
 ```
 
 ```{r}
