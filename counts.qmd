@@ -31,7 +31,7 @@ In a chi-square 'goodness of fit' test, we are testing data where we have a numb
 
 In a typical software implementation of the test, such as in R, we give it the counts we actually got for each possible outcome and also the expected proportion for each outcome. The test then gives us a p-value, a probability, for how likely it is that we would have got the counts we actually got, or counts even further from the null hypothesis, if that null hypothesis were correct. If this p-value is too small, and by that we usually mean less than 0.05, then we reject the null hypothesis.
 
-### Example
+### Example: Mendelian Genetics
 
 Suppose we have crossed pea plants that were all heterozygous for yellow/green pea colour. In the F1 generation we get 176 offspring , of which 130 were yellow and 46 were green.
 
@@ -39,7 +39,7 @@ The data here are raw counts, and an individual pea plant offspring contributes 
 
 Our expected counts of yellow and green are found by simply dividing the total count of offspring, 176, in the ratio 3:1, giving us an expected 132 yellow pea plants and an expected 44 green pea plants in the offspring F1 generation.
 
-### Doing the chi-square test in R
+**Doing the chi-square test in R**
 
 What we do in R is use the `chisq.test()` function to see how likely it is we would have got counts of 130 and 46 if the null hypothesis, with its expected counts in the ratio 3:1, were true.
 
@@ -59,7 +59,7 @@ This output is typical of tests done in R. We get the 'test statistic' whose nam
 
 In this case, we see that the p-value is 0.73, which is large. We could very plausibly have got yellow:green numbers of 130 and 46 if the null hypothesis were true, so we cannot reject that null hypothesis. In other words, our data are consistent at the 5% significance level with the predictions of simple Mendelian inheritance.
 
-### Reporting the result in English
+**Reporting the result in English**
 
 In English, we might report this result as:
 
@@ -67,7 +67,7 @@ In English, we might report this result as:
 
 Note that we do not say we have proved Mendelian inheritance to be correct. We haven't. We never prove things in science. We haven't said anything about the truth of the null hypothesis. All we can say is whether our data are or are not consistent with the null hypothesis. In this case they are. We then report the test we used and the values of the test statistic and p-value. Other tests might give you other details to report too.
 
-### Exercises
+## Exercises
 
 **Exercise 1**
 
@@ -130,7 +130,7 @@ chisq.test(stars)
 
 Note the degrees of freedom that is reported: df = 11. The degrees of freedom is the number of independent pieces of information. Here, given that we know the total number of researchers, only eleven of the individual counts are independent. Once they are known, the twelfth can be calculated.
 
-### Testing if Hardy Weinberg Equilibrium is satisfied
+## Testing if Hardy Weinberg Equilibrium is satisfied
 ```{r, include = FALSE}
 library(tidyverse)
 library(here)

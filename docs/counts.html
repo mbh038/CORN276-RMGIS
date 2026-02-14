@@ -206,13 +206,13 @@ window.Quarto = {
   <li><a href="#chi-squared-analysis-of-count-data" id="toc-chi-squared-analysis-of-count-data" class="nav-link active" data-scroll-target="#chi-squared-analysis-of-count-data"><span class="header-section-number">2.1</span> Chi-squared analysis of count data</a></li>
   <li><a href="#chi-square-goodness-of-fit-test" id="toc-chi-square-goodness-of-fit-test" class="nav-link" data-scroll-target="#chi-square-goodness-of-fit-test"><span class="header-section-number">2.2</span> Chi-square goodness of fit test</a>
   <ul class="collapse">
-  <li><a href="#example" id="toc-example" class="nav-link" data-scroll-target="#example"><span class="header-section-number">2.2.1</span> Example</a></li>
-  <li><a href="#doing-the-chi-square-test-in-r" id="toc-doing-the-chi-square-test-in-r" class="nav-link" data-scroll-target="#doing-the-chi-square-test-in-r"><span class="header-section-number">2.2.2</span> Doing the chi-square test in R</a></li>
-  <li><a href="#reporting-the-result-in-english" id="toc-reporting-the-result-in-english" class="nav-link" data-scroll-target="#reporting-the-result-in-english"><span class="header-section-number">2.2.3</span> Reporting the result in English</a></li>
-  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">2.2.4</span> Exercises</a></li>
-  <li><a href="#solutions" id="toc-solutions" class="nav-link" data-scroll-target="#solutions"><span class="header-section-number">2.2.5</span> Solutions</a></li>
-  <li><a href="#testing-if-hardy-weinberg-equilibrium-is-satisfied" id="toc-testing-if-hardy-weinberg-equilibrium-is-satisfied" class="nav-link" data-scroll-target="#testing-if-hardy-weinberg-equilibrium-is-satisfied"><span class="header-section-number">2.2.6</span> Testing if Hardy Weinberg Equilibrium is satisfied</a></li>
+  <li><a href="#example-mendelian-genetics" id="toc-example-mendelian-genetics" class="nav-link" data-scroll-target="#example-mendelian-genetics"><span class="header-section-number">2.2.1</span> Example: Mendelian Genetics</a></li>
   </ul></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">2.3</span> Exercises</a>
+  <ul class="collapse">
+  <li><a href="#solutions" id="toc-solutions" class="nav-link" data-scroll-target="#solutions"><span class="header-section-number">2.3.1</span> Solutions</a></li>
+  </ul></li>
+  <li><a href="#testing-if-hardy-weinberg-equilibrium-is-satisfied" id="toc-testing-if-hardy-weinberg-equilibrium-is-satisfied" class="nav-link" data-scroll-target="#testing-if-hardy-weinberg-equilibrium-is-satisfied"><span class="header-section-number">2.4</span> Testing if Hardy Weinberg Equilibrium is satisfied</a></li>
   </ul>
 </nav>
     </div>
@@ -262,14 +262,12 @@ window.Quarto = {
 <h2 data-number="2.2" class="anchored" data-anchor-id="chi-square-goodness-of-fit-test"><span class="header-section-number">2.2</span> Chi-square goodness of fit test</h2>
 <p>In a chi-square ‘goodness of fit’ test, we are testing data where we have a number of counts for each of two or more possible outcomes of some procedure (heads/tails, dice scores etc). We have an idea of how these counts should be distributed under some null hypothesis (the coin is fair, the dice is fair, genetic inheritance works in this or that way etc). The chi-square goodness of fit test tests how likely it is we would have got the counts we actually got if that null hypothesis were correct. We are testing how well our actual counts ‘fit’ the expected values.</p>
 <p>In a typical software implementation of the test, such as in R, we give it the counts we actually got for each possible outcome and also the expected proportion for each outcome. The test then gives us a p-value, a probability, for how likely it is that we would have got the counts we actually got, or counts even further from the null hypothesis, if that null hypothesis were correct. If this p-value is too small, and by that we usually mean less than 0.05, then we reject the null hypothesis.</p>
-<section id="example" class="level3" data-number="2.2.1">
-<h3 data-number="2.2.1" class="anchored" data-anchor-id="example"><span class="header-section-number">2.2.1</span> Example</h3>
+<section id="example-mendelian-genetics" class="level3" data-number="2.2.1">
+<h3 data-number="2.2.1" class="anchored" data-anchor-id="example-mendelian-genetics"><span class="header-section-number">2.2.1</span> Example: Mendelian Genetics</h3>
 <p>Suppose we have crossed pea plants that were all heterozygous for yellow/green pea colour. In the F1 generation we get 176 offspring , of which 130 were yellow and 46 were green.</p>
 <p>The data here are raw counts, and an individual pea plant offspring contributes either to the yellow count or to the green count, but not to both.</p>
 <p>Our expected counts of yellow and green are found by simply dividing the total count of offspring, 176, in the ratio 3:1, giving us an expected 132 yellow pea plants and an expected 44 green pea plants in the offspring F1 generation.</p>
-</section>
-<section id="doing-the-chi-square-test-in-r" class="level3" data-number="2.2.2">
-<h3 data-number="2.2.2" class="anchored" data-anchor-id="doing-the-chi-square-test-in-r"><span class="header-section-number">2.2.2</span> Doing the chi-square test in R</h3>
+<p><strong>Doing the chi-square test in R</strong></p>
 <p>What we do in R is use the <code>chisq.test()</code> function to see how likely it is we would have got counts of 130 and 46 if the null hypothesis, with its expected counts in the ratio 3:1, were true.</p>
 <p>We do it like this:</p>
 <p><code>chisq.test(c(130,46),p=c(0.75,0.25))</code></p>
@@ -286,15 +284,14 @@ X-squared = 0.12121, df = 1, p-value = 0.7277</code></pre>
 </div>
 <p>This output is typical of tests done in R. We get the ‘test statistic’ whose name varies depending on the test. Here it is called <code>X-squared</code>, pronounced <code>chi-squared</code>. This is a number that the test calculates, based on the data you have given it. For the most part, we don’t need to worry about how it does that. Then there is the p-value, which is the probability of getting this test statistic if the null hypothesis were true.</p>
 <p>In this case, we see that the p-value is 0.73, which is large. We could very plausibly have got yellow:green numbers of 130 and 46 if the null hypothesis were true, so we cannot reject that null hypothesis. In other words, our data are consistent at the 5% significance level with the predictions of simple Mendelian inheritance.</p>
-</section>
-<section id="reporting-the-result-in-english" class="level3" data-number="2.2.3">
-<h3 data-number="2.2.3" class="anchored" data-anchor-id="reporting-the-result-in-english"><span class="header-section-number">2.2.3</span> Reporting the result in English</h3>
+<p><strong>Reporting the result in English</strong></p>
 <p>In English, we might report this result as:</p>
 <p><em>We found counts of 130 yellow plants and 46 green plants, which are consistent at the 5% significance level with the predictions of Mendelian inheritance (chi-squared test, X-squared = 0.12, p=0.73).</em></p>
 <p>Note that we do not say we have proved Mendelian inheritance to be correct. We haven’t. We never prove things in science. We haven’t said anything about the truth of the null hypothesis. All we can say is whether our data are or are not consistent with the null hypothesis. In this case they are. We then report the test we used and the values of the test statistic and p-value. Other tests might give you other details to report too.</p>
 </section>
-<section id="exercises" class="level3" data-number="2.2.4">
-<h3 data-number="2.2.4" class="anchored" data-anchor-id="exercises"><span class="header-section-number">2.2.4</span> Exercises</h3>
+</section>
+<section id="exercises" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="exercises"><span class="header-section-number">2.3</span> Exercises</h2>
 <p><strong>Exercise 1</strong></p>
 <p>Suppose you tossed a fair coin 100 times and got 45 heads and 55 tails.</p>
 <ul>
@@ -329,9 +326,8 @@ X-squared = 1, df = 1, p-value = 0.3173</code></pre>
 <li>On the basis of the output of the test, do you reject the null hypothesis?</li>
 <li>Report the result of the test in plain English.</li>
 </ul>
-</section>
-<section id="solutions" class="level3" data-number="2.2.5">
-<h3 data-number="2.2.5" class="anchored" data-anchor-id="solutions"><span class="header-section-number">2.2.5</span> Solutions</h3>
+<section id="solutions" class="level3" data-number="2.3.1">
+<h3 data-number="2.3.1" class="anchored" data-anchor-id="solutions"><span class="header-section-number">2.3.1</span> Solutions</h3>
 <p><strong>Solution 1</strong></p>
 <p>The expectation is that half the outcomes would be heads and half would be tails.</p>
 <p>The null hypothesis of this test is that heads and tails are equally likely, ie that the coin is fair. Under this null hypothesis the expected outcome is 50 heads and 50 tails. From the output of the R code we see that the p-value, the probability of getting an outcome as far or further from that, is 0.317. That is pretty high. Would you do anything if you knew that the probability of a bad (or worse) outcome was 0.317? In particular, this p-value is greater than 0.05, so we cannot reject the null hypothesis that the coin is fair. That is, even with a fair coin it is not at all unlikely that you would get head/tail numbers as different from 50/50 as 45/55 if you tossed the coin 100 times. That will happen about 1/3 of the time if you repeatedly do trials where you toss the coin 100 times.</p>
@@ -359,8 +355,9 @@ X-squared = 2.3, df = 11, p-value = 0.9971</code></pre>
 </ul>
 <p>Note the degrees of freedom that is reported: df = 11. The degrees of freedom is the number of independent pieces of information. Here, given that we know the total number of researchers, only eleven of the individual counts are independent. Once they are known, the twelfth can be calculated.</p>
 </section>
-<section id="testing-if-hardy-weinberg-equilibrium-is-satisfied" class="level3" data-number="2.2.6">
-<h3 data-number="2.2.6" class="anchored" data-anchor-id="testing-if-hardy-weinberg-equilibrium-is-satisfied"><span class="header-section-number">2.2.6</span> Testing if Hardy Weinberg Equilibrium is satisfied</h3>
+</section>
+<section id="testing-if-hardy-weinberg-equilibrium-is-satisfied" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="testing-if-hardy-weinberg-equilibrium-is-satisfied"><span class="header-section-number">2.4</span> Testing if Hardy Weinberg Equilibrium is satisfied</h2>
 <p>Suppose we have a population of people in which there is a gene that has two alleles A and a, where A is dominant. Suppose that being homozygous in the recessive allele a means that the individual is affected by sickle cell anemia. Being heterozygous Aa means that the individual is not affected but is a carrier and may pass the a allele on to their progeny. Those who are homozygous in the dominant allele A are unaffected.</p>
 <p><strong>Observed Frequencies</strong></p>
 <p>Suppose in a population of <span class="math inline">\(N=1100\)</span> people the observed numbers of each genotype are as follows:</p>
@@ -504,7 +501,7 @@ Note
 <div>
 
 </div>
-<div class="cell quarto-layout-panel" data-layout-ncol="2" data-caption="Two plots of a chi-square distribution.">
+<div class="cell quarto-layout-panel" data-caption="Two plots of a chi-square distribution." data-layout-ncol="2">
 <div class="quarto-layout-row">
 <div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
 <div id="fig-chi-square-plots-1" class="quarto-float quarto-figure quarto-figure-center anchored" width="672">
@@ -536,7 +533,6 @@ Figure&nbsp;2.2
 </div>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
