@@ -53,6 +53,21 @@ The data here are raw counts, and an individual pea plant offspring contributes 
 
 Our expected counts of yellow and green are found by simply dividing the total count of offspring, 176, in the ratio 3:1, giving us an expected 132 yellow pea plants and an expected 44 green pea plants in the offspring F1 generation.
 
+**Doing the chi-square test manually**
+
+You would not normally do this, you would use software such as R, but for learning purposes let us go as far as we can in implementing a chi-square test on this data ourselves just to see the process behind it, then we can see how easy it is to do the test in R.
+
+To do the test manually you have to calculate two things yourself: the chi-square statistic and the degrees of freedom.
+
+Here is the expression for the chi-square statistic:
+
+$$
+\chi^2 = \sum_{i=\text{H,T}{\frac{(O_i-E_i)^2}{O_i}} + \frac{(O_i-E_i)^2}{O_i}
+$$
+
+In this expression 
+
+
 **Doing the chi-square test in R**
 
 What we do in R is use the `chisq.test()` function to see how likely it is we would have got counts of 130 and 46 if the null hypothesis, with its expected counts in the ratio 3:1, were true.
@@ -302,7 +317,7 @@ The null hypothesis of this test is that heads and tails are equally likely, ie 
 
 To report this result, you might say something like
 
-*From 100 coin tosses we got 45 heads and 55 tails. These counts are consistent at the 5% significance level with the coin being fair (chi-squared test, X-squared = 1, p=0.317).*
+*From 100 coin tosses we got 45 heads and 55 tails. These counts are consistent at the 5% significance level with the coin being fair (chi-squared test, X-squared = 1, df = 1, p = 0.317).*
 
 **Solution 2**
 
