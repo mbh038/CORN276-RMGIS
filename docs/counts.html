@@ -256,7 +256,7 @@ window.Quarto = {
 <div id="fig-mendelian-inheritance" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-mendelian-inheritance-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="figures/mendelian_pea_plants.png" class="img-fluid figure-img" width="793">
+<img src="figures/mendelian_pea_plants.png" class="img-fluid figure-img" style="width:90.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-mendelian-inheritance-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;2.1: An outline of Mendel’s green:yellow pea crossing study. In the F1 generation there would necessarily be 100% yellow plants with genotype Yy. In the F2 generation the ratio 3:1 yellow:green is what is <em>expected</em> if random Mendelian inheritance is the underlying mechanism. In reality we would probably not see excatly that ratio. A chi-square goodness of fit test tells us how likely it is we would get the ratio we got, or a more extreme ratio, <em>if</em> Mendelian inheritance were correct.
@@ -270,11 +270,18 @@ Figure&nbsp;2.1: An outline of Mendel’s green:yellow pea crossing study. In th
 <p>Our expected counts of yellow and green are found by simply dividing the total count of offspring, 176, in the ratio 3:1, giving us an expected 132 yellow pea plants and an expected 44 green pea plants in the offspring F1 generation.</p>
 <p><strong>Doing the chi-square test manually</strong></p>
 <p>You would not normally do this, you would use software such as R, but for learning purposes let us go as far as we can in implementing a chi-square test on this data ourselves just to see the process behind it, then we can see how easy it is to do the test in R.</p>
-<p>To do the test manually you have to calculate two things yourself: the chi-square statistic and the degrees of freedom.</p>
+<p>What we need to do is to calculate from our data a number that tells us how likely is it that we would have got totals for yellow and green pea plants as far or further from the expected 3:1 ratio as we did, if the null hypothesis of Mendelian inheritance were correct.</p>
+<p>That is the very definition of a p-value! So that is what we need to calculate, a p-value.</p>
+<p>It turns out that this p-value an be calculated from a number derived from the data that we call the <strong>chi-square statistic</strong>. This number is defined in such a way that the further your actual counts are from thier expected values, the bigger it is.</p>
+<p>It is calculated by looking at the squared difference, for each count, between the observed value and the expected value. The squared thing is because we don’t care if the observed value is less than or more than the expected value. It is by how much that matters.</p>
 <p>Here is the expression for the chi-square statistic:</p>
 <p><span class="math display">\[
-\chi^2 = \sum_{i=\text{H,T}{\frac{(O_i-E_i)^2}{O_i}} + \frac{(O_i-E_i)^2}{O_i}
-\]</span></p>
+\begin{align}
+\chi^2 &amp;= \sum_{i=\text{H,T}}\frac{(O_i-E_i)^2}{E_i}\\ &amp;=\frac{(O_\text{Y}-E_\text{Y})^2}{E_\text{Y}} + \frac{(O_\text{G}-E_\text{G})^2}{E_\text{G}}
+\end{align}
+\]</span> The first line is just a more compact way of witing the second line, where the <span class="math inline">\(\sum\)</span> symbol means ‘sum over’ a heads term and a tails term, as laid out in the second line. <span class="math inline">\(O_\text{Y}\)</span> and <span class="math inline">\(O_\text{G}\)</span> mean the observed numbe of yellow and green pea plants respectively, while <span class="math inline">\(E_\text{Y}\)</span> and <span class="math inline">\(E_\text{G}\)</span> mean the expected numbers of each.</p>
+<p>Defined in this way, the chi-square statistic is a term that will always be positive (because it is the sum of squared terms, and they are always positive) and will be bigger the further from the expected values aour observed values turn out to be.</p>
+<p>To do the test manually you have to calculate two things yourself: the <strong>chi-square statistic</strong> and the <strong>degrees of freedom</strong>.</p>
 <p>In this expression</p>
 <p><strong>Doing the chi-square test in R</strong></p>
 <p>What we do in R is use the <code>chisq.test()</code> function to see how likely it is we would have got counts of 130 and 46 if the null hypothesis, with its expected counts in the ratio 3:1, were true.</p>
@@ -288,7 +295,7 @@ Figure&nbsp;2.1: An outline of Mendel’s green:yellow pea crossing study. In th
     Chi-squared test for given probabilities
 
 data:  c(130, 46)
-X-squared = 0.12121, df = 1, p-value = 0.7277</code></pre>
+X-squared = 0.1, df = 1, p-value = 0.7</code></pre>
 </div>
 </div>
 <p>This output is typical of tests done in R. We get the ‘test statistic’ whose name varies depending on the test. Here it is called <code>X-squared</code>, pronounced <code>chi-squared</code>. This is a number that the test calculates, based on the data you have given it. For the most part, we don’t need to worry about how it does that. Then there is the p-value, which is the probability of getting this test statistic if the null hypothesis were true.</p>
@@ -321,7 +328,8 @@ p &amp;= \frac{2 \times \text{AA}_\text{O} + \text{Aa}_\text{O} }{2N}\\
 &amp;=\frac{1712}{2200}\\
 &amp;=0.778
 \end{align}
-\]</span> Similarly, <span class="math inline">\(q\)</span>, the proportion of all alleles that are <span class="math inline">\(a\)</span>, will be the number of <span class="math inline">\(a\)</span> alleles in the population divided by the total number of alleles and will will be given by</p>
+\]</span></p>
+<p>Similarly, <span class="math inline">\(q\)</span>, the proportion of all alleles that are <span class="math inline">\(a\)</span>, will be the number of <span class="math inline">\(a\)</span> alleles in the population divided by the total number of alleles and will will be given by</p>
 <p><span class="math display">\[
 \begin{align}
 q &amp;= \frac{2 \times \text{aa}_\text{O} + \text{Aa}_\text{O} }{2N}\\
@@ -402,7 +410,7 @@ q &amp;= \frac{2 \times \text{aa}_\text{O} + \text{Aa}_\text{O} }{2N}\\
 \]</span></p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 246.4574</code></pre>
+<pre><code>[1] 246</code></pre>
 </div>
 </div>
 <p><strong>Calculate degrees of freedom</strong></p>
@@ -410,14 +418,14 @@ q &amp;= \frac{2 \times \text{aa}_\text{O} + \text{Aa}_\text{O} }{2N}\\
 <p><strong>Calculate p-value</strong></p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 1.537378e-55</code></pre>
+<pre><code>[1] 1.54e-55</code></pre>
 </div>
 </div>
 <p>So we reject the null.</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code>   X-squared 
-1.537378e-55 </code></pre>
+<pre><code>X-squared 
+ 1.54e-55 </code></pre>
 </div>
 </div>
 <p><strong>Use built-in R function to calculate p-value</strong></p>
@@ -427,7 +435,7 @@ q &amp;= \frac{2 \times \text{aa}_\text{O} + \text{Aa}_\text{O} }{2N}\\
     Chi-squared test for given probabilities
 
 data:  c(AA_o, Aa_o, aa_o)
-X-squared = 246.46, df = 2, p-value &lt; 2.2e-16</code></pre>
+X-squared = 246, df = 2, p-value &lt;2e-16</code></pre>
 </div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -446,10 +454,10 @@ Note
 <div class="cell quarto-layout-panel" data-layout-ncol="2" data-caption="Two plots of a chi-square distribution.">
 <div class="quarto-layout-row">
 <div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
-<div id="fig-chi-square-plots-1" class="quarto-float quarto-figure quarto-figure-center anchored" width="672">
+<div id="fig-chi-square-plots-1" class="quarto-float quarto-figure quarto-figure-center anchored" width="90%">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-chi-square-plots-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="counts_files/figure-html/fig-chi-square-plots-1.png" id="fig-chi-square-plots-1" class="img-fluid figure-img" width="672">
+<img src="counts_files/figure-html/fig-chi-square-plots-1.png" id="fig-chi-square-plots-1" class="img-fluid figure-img" style="width:90.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-chi-square-plots-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;2.2
@@ -458,10 +466,10 @@ Figure&nbsp;2.2
 </div>
 </div>
 <div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
-<div id="fig-chi-square-plots-2" class="quarto-float quarto-figure quarto-figure-center anchored" width="672">
+<div id="fig-chi-square-plots-2" class="quarto-float quarto-figure quarto-figure-center anchored" width="90%">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-chi-square-plots-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="counts_files/figure-html/fig-chi-square-plots-2.png" id="fig-chi-square-plots-2" class="img-fluid figure-img" width="672">
+<img src="counts_files/figure-html/fig-chi-square-plots-2.png" id="fig-chi-square-plots-2" class="img-fluid figure-img" style="width:90.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-chi-square-plots-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;2.3
@@ -490,7 +498,7 @@ Figure&nbsp;2.3
     Chi-squared test for given probabilities
 
 data:  c(45, 55)
-X-squared = 1, df = 1, p-value = 0.3173</code></pre>
+X-squared = 1, df = 1, p-value = 0.3</code></pre>
 </div>
 </div>
 <ul>
@@ -531,7 +539,7 @@ X-squared = 1, df = 1, p-value = 0.3173</code></pre>
     Chi-squared test for given probabilities
 
 data:  stars
-X-squared = 2.3, df = 11, p-value = 0.9971</code></pre>
+X-squared = 2, df = 11, p-value = 1</code></pre>
 </div>
 </div>
 <ul>
@@ -975,6 +983,19 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>CC-BY-SA-4.0 (2026) Michael Hunt</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
 
 
 

@@ -6,6 +6,8 @@ book:
   title: "CORN276-RMGIS"
   author: "Michael Hunt"
   date: "2/6/2026"
+  license: "CC BY-SA"
+  page-footer: CC-BY-SA-4.0 (2026) Michael Hunt
   chapters:
     - index.qmd
     - visualising_data.qmd

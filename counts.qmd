@@ -1,5 +1,12 @@
 # Chi-squared analysis of count data
 
+```{r}
+#| include: false
+source("_common.R")
+```
+
+\vspace{-10mm}
+
 ```{r, include = FALSE}
 library(tidyverse)
 library(here)
@@ -57,13 +64,32 @@ Our expected counts of yellow and green are found by simply dividing the total c
 
 You would not normally do this, you would use software such as R, but for learning purposes let us go as far as we can in implementing a chi-square test on this data ourselves just to see the process behind it, then we can see how easy it is to do the test in R.
 
-To do the test manually you have to calculate two things yourself: the chi-square statistic and the degrees of freedom.
+What we need to do is to calculate from our data a number that tells us how likely is it that we would have got totals for yellow and green pea plants as far or further from the expected 3:1 ratio as we did, if the null hypothesis of Mendelian inheritance were correct. 
+
+That is the very definition of a p-value! So that is what we need to calculate, a p-value.
+
+It turns out that this p-value an be calculated from a number derived from the data that we call the **chi-square statistic**. This number is defined in such a way that the further your actual counts are from thier expected values, the bigger it is.
+
+It is calculated by looking at the squared difference, for each count, between the observed value and the expected value. The squared thing is because we don't care if the observed value is less than or more than the expected value. It is by how much that matters. 
 
 Here is the expression for the chi-square statistic:
 
 $$
-\chi^2 = \sum_{i=\text{H,T}{\frac{(O_i-E_i)^2}{O_i}} + \frac{(O_i-E_i)^2}{O_i}
+\begin{align}
+\chi^2 &= \sum_{i=\text{H,T}}\frac{(O_i-E_i)^2}{E_i}\\ &=\frac{(O_\text{Y}-E_\text{Y})^2}{E_\text{Y}} + \frac{(O_\text{G}-E_\text{G})^2}{E_\text{G}}
+\end{align}
 $$
+The first line is just a more compact way of witing the second line, where the $\sum$ symbol means 'sum over' a heads term and a tails term, as laid out in the second line. $O_\text{Y}$ and $O_\text{G}$ mean the observed numbe of yellow and green pea plants respectively, while $E_\text{Y}$ and $E_\text{G}$ mean the expected numbers of each.
+
+Defined in this way, the chi-square statistic is a term that will always be positive (because it is the sum of squared terms, and they are always positive) and will be bigger the further from the expected values aour observed values turn out to be.
+
+To do the test manually you have to calculate two things yourself: the **chi-square statistic** and the **degrees of freedom**.
+
+
+
+
+
+
 
 In this expression 
 
@@ -114,6 +140,7 @@ $$
 \end{align}
 $$
 
+
 ```{r}
 AA_o <- 756 # observed unaffected
 Aa_o <- 200 # observed carriers
@@ -137,6 +164,8 @@ p &= \frac{2 \times \text{AA}_\text{O} + \text{Aa}_\text{O} }{2N}\\
 &=0.778
 \end{align}
 $$
+
+
 Similarly, $q$, the proportion of all alleles that are $a$, will be the number of $a$ alleles in the population divided by the total number of alleles and will will be given by
 
 $$
@@ -193,6 +222,7 @@ $$
 &=246.5
 \end{align}
 $$
+
 ```{r}
 chi_sq <- (AA_o-AA_e)^2 / AA_e + (Aa_o-Aa_e)^2 / Aa_e + (aa_o - aa_e)^2 / aa_e
 chi_sq
