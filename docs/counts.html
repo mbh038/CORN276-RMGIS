@@ -280,9 +280,10 @@ Figure&nbsp;2.1: An outline of Mendel’s green:yellow pea crossing study. In th
 \chi^2 &amp;= \sum_{i=\text{H,T}}\frac{(O_i-E_i)^2}{E_i}\\ &amp;=\frac{(O_\text{Y}-E_\text{Y})^2}{E_\text{Y}} + \frac{(O_\text{G}-E_\text{G})^2}{E_\text{G}}
 \end{align}
 \]</span> The first line is just a more compact way of witing the second line, where the <span class="math inline">\(\sum\)</span> symbol means ‘sum over’ a heads term and a tails term, as laid out in the second line. <span class="math inline">\(O_\text{Y}\)</span> and <span class="math inline">\(O_\text{G}\)</span> mean the observed numbe of yellow and green pea plants respectively, while <span class="math inline">\(E_\text{Y}\)</span> and <span class="math inline">\(E_\text{G}\)</span> mean the expected numbers of each.</p>
-<p>Defined in this way, the chi-square statistic is a term that will always be positive (because it is the sum of squared terms, and they are always positive) and will be bigger the further from the expected values aour observed values turn out to be.</p>
-<p>To do the test manually you have to calculate two things yourself: the <strong>chi-square statistic</strong> and the <strong>degrees of freedom</strong>.</p>
-<p>In this expression</p>
+<p>Defined in this way, the chi-square statistic <span class="math inline">\(\chi^2\)</span>is a number that will always be positive (because it is the sum of squared terms, and they are always positive) and will be bigger the further from the expected values aour observed values turn out to be.</p>
+<p>It is also a number that will vary each time you repeat the study because while the expected values <span class="math inline">\(E_i\)</span> are fixed, the observed values <span class="math inline">\(O_i\)</span> will vary from one occasion to the next. In fact, if you were to repeat the study many times and each time calcuate the chi-sqare statistic you would find that it follows a known distribution, the so-called (who would have thought it?) chi-square distribution, provided each count is greater than about five.</p>
+<p>This last fact means that for our one study we can calculate the probability of getting a chi-squared value as great or greater than the one we got. This in turn means (becuase it is the same thing) that we can calculate the probability of getting data as far or further from the the expected values as the numbers we got - the magic p-value.</p>
+<p>Finally, on that basis we can either reject or fail to rejct the null hypothesis.</p>
 <p><strong>Doing the chi-square test in R</strong></p>
 <p>What we do in R is use the <code>chisq.test()</code> function to see how likely it is we would have got counts of 130 and 46 if the null hypothesis, with its expected counts in the ratio 3:1, were true.</p>
 <p>We do it like this:</p>
@@ -451,7 +452,7 @@ Note
 <div>
 
 </div>
-<div class="cell quarto-layout-panel" data-caption="Two plots of a chi-square distribution." data-layout-ncol="2">
+<div class="cell quarto-layout-panel" data-layout-ncol="2" data-caption="Two plots of a chi-square distribution.">
 <div class="quarto-layout-row">
 <div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
 <div id="fig-chi-square-plots-1" class="quarto-float quarto-figure quarto-figure-center anchored" width="90%">

@@ -21,7 +21,7 @@ library(ggfortify)
 library(ggridges)
 library(kableExtra)
 library(cowplot)
-set_theme(theme(legend.position = "none"))
+# set_theme(theme(legend.position = "none"))
 ```
 
 ```{r}
@@ -112,7 +112,8 @@ bc1 <- penguin_summary |>
        y = "Mean body mass (g)",
        title = "Rubbish!") +
   scale_fill_manual(values=c(Adelie='#fc8d59',Chinstrap='#8856a7', Gentoo='#2ca25f')) + # this line manually sets the fill colours for us
-  theme(legend.position="none") 
+  theme_minimal_hgrid() +
+  theme(legend.position="none")
   # scale_fill_brewer(palette = "Set2")
 ```
 

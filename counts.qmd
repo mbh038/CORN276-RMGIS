@@ -81,17 +81,14 @@ $$
 $$
 The first line is just a more compact way of witing the second line, where the $\sum$ symbol means 'sum over' a heads term and a tails term, as laid out in the second line. $O_\text{Y}$ and $O_\text{G}$ mean the observed numbe of yellow and green pea plants respectively, while $E_\text{Y}$ and $E_\text{G}$ mean the expected numbers of each.
 
-Defined in this way, the chi-square statistic is a term that will always be positive (because it is the sum of squared terms, and they are always positive) and will be bigger the further from the expected values aour observed values turn out to be.
+Defined in this way, the chi-square statistic $\chi^2$is a number that will always be positive (because it is the sum of squared terms, and they are always positive) and will be bigger the further from the expected values aour observed values turn out to be.
 
-To do the test manually you have to calculate two things yourself: the **chi-square statistic** and the **degrees of freedom**.
+It is also a number that will vary each time you repeat the study because while the expected values $E_i$ are fixed, the observed values $O_i$ will vary from one occasion to the next. In fact, if you were to repeat the study many times and each time calcuate the chi-sqare statistic you would find that it follows a known distribution, the so-called (who would have thought it?) chi-square distribution, provided each count is greater than about five.
 
+This last fact means that for our one study we can calculate the probability of getting a chi-squared value as great or greater than the one we got. This in turn means (becuase it is the same thing) that we can calculate the probability of getting data as far or further from the the expected values as the numbers we got - the magic p-value.
 
+Finally, on that basis we can either reject or fail to rejct the null hypothesis.
 
-
-
-
-
-In this expression 
 
 
 **Doing the chi-square test in R**
