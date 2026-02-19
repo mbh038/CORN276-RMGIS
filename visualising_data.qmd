@@ -21,7 +21,7 @@ library(ggfortify)
 library(ggridges)
 library(kableExtra)
 library(cowplot)
-set_theme(theme_cowplot() + theme(legend.position = "none"))
+set_theme(theme(legend.position = "none"))
 ```
 
 ```{r}
