@@ -265,9 +265,8 @@ Figure&nbsp;2.1: An outline of Mendel’s green:yellow pea crossing study. In th
 </div>
 </div>
 </div>
-<p>Suppose we have crossed pea plants that were all heterozygous for yellow/green pea colour. In the F1 generation we get 176 offspring , of which 130 were yellow and 46 were green.</p>
+<p>Suppose we have crossed pea plants that were all heterozygous for yellow/green pea colour. In the F2 generation we get 176 offspring, of which 125 are yellow and 51 are green. These are the <em>observed</em> counts of yellow and green pea plants. The <em>expected</em> counts of yellow and green are found by simply dividing the total count of offspring, 176, in the ratio 3:1, giving us an expected 132 yellow pea plants and an expected 44 green pea plants in the offspring F2 generation.</p>
 <p>The data here are raw counts, and an individual pea plant offspring contributes either to the yellow count or to the green count, but not to both.</p>
-<p>Our expected counts of yellow and green are found by simply dividing the total count of offspring, 176, in the ratio 3:1, giving us an expected 132 yellow pea plants and an expected 44 green pea plants in the offspring F1 generation.</p>
 <p><strong>Doing the chi-square test manually</strong></p>
 <p>You would not normally do this, you would use software such as R, but for learning purposes let us go as far as we can in implementing a chi-square test on this data ourselves just to see the process behind it, then we can see how easy it is to do the test in R.</p>
 <p>What we need to do is to calculate from our data a number that tells us how likely is it that we would have got totals for yellow and green pea plants as far or further from the expected 3:1 ratio as we did, if the null hypothesis of Mendelian inheritance were correct.</p>
@@ -277,15 +276,17 @@ Figure&nbsp;2.1: An outline of Mendel’s green:yellow pea crossing study. In th
 <p>Here is the expression for the chi-square statistic:</p>
 <p><span class="math display">\[
 \begin{align}
-\chi^2 &amp;= \sum_{i=\text{H,T}}\frac{(O_i-E_i)^2}{E_i}\\ &amp;=\frac{(O_\text{Y}-E_\text{Y})^2}{E_\text{Y}} + \frac{(O_\text{G}-E_\text{G})^2}{E_\text{G}}
+\chi^2 &amp;= \sum_{i=\text{Y,G}}\frac{(O_i-E_i)^2}{E_i}\\ &amp;=\frac{(O_\text{Y}-E_\text{Y})^2}{E_\text{Y}} + \frac{(O_\text{G}-E_\text{G})^2}{E_\text{G}}
 \end{align}
-\]</span> The first line is just a more compact way of witing the second line, where the <span class="math inline">\(\sum\)</span> symbol means ‘sum over’ a heads term and a tails term, as laid out in the second line. <span class="math inline">\(O_\text{Y}\)</span> and <span class="math inline">\(O_\text{G}\)</span> mean the observed numbe of yellow and green pea plants respectively, while <span class="math inline">\(E_\text{Y}\)</span> and <span class="math inline">\(E_\text{G}\)</span> mean the expected numbers of each.</p>
-<p>Defined in this way, the chi-square statistic <span class="math inline">\(\chi^2\)</span>is a number that will always be positive (because it is the sum of squared terms, and they are always positive) and will be bigger the further from the expected values aour observed values turn out to be.</p>
-<p>It is also a number that will vary each time you repeat the study because while the expected values <span class="math inline">\(E_i\)</span> are fixed, the observed values <span class="math inline">\(O_i\)</span> will vary from one occasion to the next. In fact, if you were to repeat the study many times and each time calcuate the chi-sqare statistic you would find that it follows a known distribution, the so-called (who would have thought it?) chi-square distribution, provided each count is greater than about five.</p>
-<p>This last fact means that for our one study we can calculate the probability of getting a chi-squared value as great or greater than the one we got. This in turn means (becuase it is the same thing) that we can calculate the probability of getting data as far or further from the the expected values as the numbers we got - the magic p-value.</p>
-<p>Finally, on that basis we can either reject or fail to rejct the null hypothesis.</p>
+\]</span> The first line is just a more compact way of witing the second line, where the <span class="math inline">\(\sum\)</span> symbol means ‘sum over’ a yellow peas term (Y) and a green peas term (G), as laid out in the second line. <span class="math inline">\(O_\text{Y}\)</span> and <span class="math inline">\(O_\text{G}\)</span> mean the observed numbers of yellow and green pea plants respectively, while <span class="math inline">\(E_\text{Y}\)</span> and <span class="math inline">\(E_\text{G}\)</span> mean the expected numbers of each.</p>
+<p>Defined in this way, the chi-square statistic <span class="math inline">\(\chi^2\)</span>is a number that will always be positive (because it is the sum of squared terms, and they are always positive, divided by an expected number, which can also only be positive) and will be bigger the further from the expected values our observed values turn out to be.</p>
+<p>It is also a number that will vary each time you repeat the study because while the expected values <span class="math inline">\(E_i\)</span> are fixed, the observed values <span class="math inline">\(O_i\)</span> will vary from one occasion to the next. In fact, if you were to repeat the study many times and each time calculate the chi-sqare statistic you would find that it follows one of a known family of distributions, the so-called (who would have thought it?) chi-square distributions, provided each count is greater than about five.</p>
+<p>To determine which one among them our own chi-squared statistic follows, we need to know one more thing, the so-called <em>degrees of freedom</em>. This is a term that crops up often in use of statistical tests. Roughly speaking, it refers to the number of independent pieces of information that are used in arriving at a result, given whatever constraints surround the problem. In our case, the constraint was that there were 176 pea plants in th F1 generation. That meant that only one of the totals for each of the colours could be freely chosen. Once it was known thae other could be determined as the difference between it an the total. Soin our case the degrees of freedom was one.</p>
+<p>This last fact means that for our one study we can calculate the probability of getting a chi-squared value as great or greater than the one we got. This in turn means (because it is the same thing in the end) that we can calculate the probability of getting data as far or further from the the expected values as the numbers we got - the magic p-value. We get software such as R to do this last bit for us.</p>
+<p>Finally, on that basis we can either reject or fail to reject the null hypothesis.</p>
+<p>Let’s have a go:</p>
 <p><strong>Doing the chi-square test in R</strong></p>
-<p>What we do in R is use the <code>chisq.test()</code> function to see how likely it is we would have got counts of 130 and 46 if the null hypothesis, with its expected counts in the ratio 3:1, were true.</p>
+<p>What we do in R is use the <code>chisq.test()</code> function to see how likely it is we would have got counts of 125 and 51 if the null hypothesis, with its expected counts in the ratio 3:1, were true.</p>
 <p>We do it like this:</p>
 <p><code>chisq.test(c(130,46),p=c(0.75,0.25))</code></p>
 <p>There are two arguments. The first is the counts we got, which we enter as a ‘vector’ <code>c(z,y,....)</code>, so we write <code>c(130,46)</code>. The second is a vector of the proportions we expect for the two counts, where these proportions should add up to one. So for our expected 3:1 ratio we enter <code>c(0.75,0.25)</code>.</p>
@@ -295,8 +296,8 @@ Figure&nbsp;2.1: An outline of Mendel’s green:yellow pea crossing study. In th
 <pre><code>
     Chi-squared test for given probabilities
 
-data:  c(130, 46)
-X-squared = 0.1, df = 1, p-value = 0.7</code></pre>
+data:  c(125, 51)
+X-squared = 1, df = 1, p-value = 0.2</code></pre>
 </div>
 </div>
 <p>This output is typical of tests done in R. We get the ‘test statistic’ whose name varies depending on the test. Here it is called <code>X-squared</code>, pronounced <code>chi-squared</code>. This is a number that the test calculates, based on the data you have given it. For the most part, we don’t need to worry about how it does that. Then there is the p-value, which is the probability of getting this test statistic if the null hypothesis were true.</p>

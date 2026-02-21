@@ -38,7 +38,7 @@ For example:
 
 ## Chi-square goodness of fit test
 
-In a chi-square 'goodness of fit' test, we are testing data where we have a number of counts for each of two or more possible outcomes of some procedure (heads/tails, dice scores etc). We have an idea of how these counts should be distributed under some null hypothesis (the coin is fair, the dice is fair, genetic inheritance works in this or that way etc). The chi-square goodness of fit test tests how likely it is we would have got the counts we actually got if that null hypothesis were correct. We are testing how well our actual counts 'fit' the expected values.
+In a chi-square 'goodness of fit' test, we are testing data where we have a number of counts for each of two or more possible outcomes of some procedure (heads/tails, dice scores etc). We have an idea of how these counts should be distributed under some null hypothesis (the coin is fair, the dice is fair, genetic inheritance works in this or that way etc). The chi-square goodness of fit test tests how likely it is we would have got the counts we actually got if that null hypothesis were correct. We are testing how well our actual counts 'fit' the expected values. 
 
 In a typical software implementation of the test, such as in R, we give it the counts we actually got for each possible outcome and also the expected proportion for each outcome. The test then gives us a p-value, a probability, for how likely it is that we would have got the counts we actually got, or counts even further from the null hypothesis, if that null hypothesis were correct. If this p-value is too small, and by that we usually mean less than 0.05, then we reject the null hypothesis.
 
@@ -54,11 +54,10 @@ myimages<-here::here("figures","mendelian_pea_plants.png")
 knitr::include_graphics(myimages)
 ```
 
-Suppose we have crossed pea plants that were all heterozygous for yellow/green pea colour. In the F1 generation we get 176 offspring , of which 130 were yellow and 46 were green.
+Suppose we have crossed pea plants that were all heterozygous for yellow/green pea colour. In the F2 generation we get 176 offspring, of which 125 are yellow and 51 are green. These are the *observed* counts of yellow and green pea plants. 
+The *expected* counts of yellow and green are found by simply dividing the total count of offspring, 176, in the ratio 3:1, giving us an expected 132 yellow pea plants and an expected 44 green pea plants in the offspring F2 generation.
 
 The data here are raw counts, and an individual pea plant offspring contributes either to the yellow count or to the green count, but not to both.
-
-Our expected counts of yellow and green are found by simply dividing the total count of offspring, 176, in the ratio 3:1, giving us an expected 132 yellow pea plants and an expected 44 green pea plants in the offspring F1 generation.
 
 **Doing the chi-square test manually**
 
@@ -76,24 +75,29 @@ Here is the expression for the chi-square statistic:
 
 $$
 \begin{align}
-\chi^2 &= \sum_{i=\text{H,T}}\frac{(O_i-E_i)^2}{E_i}\\ &=\frac{(O_\text{Y}-E_\text{Y})^2}{E_\text{Y}} + \frac{(O_\text{G}-E_\text{G})^2}{E_\text{G}}
+\chi^2 &= \sum_{i=\text{Y,G}}\frac{(O_i-E_i)^2}{E_i}\\ &=\frac{(O_\text{Y}-E_\text{Y})^2}{E_\text{Y}} + \frac{(O_\text{G}-E_\text{G})^2}{E_\text{G}}
 \end{align}
 $$
-The first line is just a more compact way of witing the second line, where the $\sum$ symbol means 'sum over' a heads term and a tails term, as laid out in the second line. $O_\text{Y}$ and $O_\text{G}$ mean the observed numbe of yellow and green pea plants respectively, while $E_\text{Y}$ and $E_\text{G}$ mean the expected numbers of each.
+The first line is just a more compact way of witing the second line, where the $\sum$ symbol means 'sum over' a yellow peas term (Y) and a green peas term (G), as laid out in the second line. $O_\text{Y}$ and $O_\text{G}$ mean the observed numbers of yellow and green pea plants respectively, while $E_\text{Y}$ and $E_\text{G}$ mean the expected numbers of each.
 
-Defined in this way, the chi-square statistic $\chi^2$is a number that will always be positive (because it is the sum of squared terms, and they are always positive) and will be bigger the further from the expected values aour observed values turn out to be.
+Defined in this way, the chi-square statistic $\chi^2$is a number that will always be positive (because it is the sum of squared terms, and they are always positive, divided by an expected number, which can also only be positive) and will be bigger the further from the expected values our observed values turn out to be.
 
-It is also a number that will vary each time you repeat the study because while the expected values $E_i$ are fixed, the observed values $O_i$ will vary from one occasion to the next. In fact, if you were to repeat the study many times and each time calcuate the chi-sqare statistic you would find that it follows a known distribution, the so-called (who would have thought it?) chi-square distribution, provided each count is greater than about five.
+It is also a number that will vary each time you repeat the study because while the expected values $E_i$ are fixed, the observed values $O_i$ will vary from one occasion to the next. In fact, if you were to repeat the study many times and each time calculate the chi-sqare statistic you would find that it follows one of a known family of distributions, the so-called (who would have thought it?) chi-square distributions, provided each count is greater than about five. 
 
-This last fact means that for our one study we can calculate the probability of getting a chi-squared value as great or greater than the one we got. This in turn means (becuase it is the same thing) that we can calculate the probability of getting data as far or further from the the expected values as the numbers we got - the magic p-value.
+To determine which one among them our own chi-squared statistic follows, we need to know one more thing, the so-called *degrees of freedom*. This is a term that crops up often in use of statistical tests. Roughly speaking, it refers to the number of independent pieces of information that are used in arriving at a result, given whatever constraints surround the problem. In our case, the constraint was that there were 176 pea plants in th F1 generation. That meant that only one of the totals for each of the colours could be freely chosen. Once it was known thae other could be determined as the difference between it an the total. Soin our case the degrees of freedom was one.
 
-Finally, on that basis we can either reject or fail to rejct the null hypothesis.
+This last fact means that for our one study we can calculate the probability of getting a chi-squared value as great or greater than the one we got. This in turn means (because it is the same thing in the end) that we can calculate the probability of getting data as far or further from the the expected values as the numbers we got - the magic p-value. We get software such as R to do this last bit for us.
+
+Finally, on that basis we can either reject or fail to reject the null hypothesis.
+
+Let's have a go:
+
 
 
 
 **Doing the chi-square test in R**
 
-What we do in R is use the `chisq.test()` function to see how likely it is we would have got counts of 130 and 46 if the null hypothesis, with its expected counts in the ratio 3:1, were true.
+What we do in R is use the `chisq.test()` function to see how likely it is we would have got counts of 125 and 51 if the null hypothesis, with its expected counts in the ratio 3:1, were true.
 
 We do it like this:
 
@@ -104,7 +108,7 @@ There are two arguments. The first is the counts we got, which we enter as a 've
 Let's do it: type the above function into the console window (bottom left). You will get an output something like this:
 
 ```{r,echo=FALSE}
-chisq.test(c(130,46),p=c(0.75,0.25))
+chisq.test(c(125,51),p=c(0.75,0.25))
 ```
 
 This output is typical of tests done in R. We get the 'test statistic' whose name varies depending on the test. Here it is called `X-squared`, pronounced `chi-squared`. This is a number that the test calculates, based on the data you have given it. For the most part, we don't need to worry about how it does that. Then there is the p-value, which is the probability of getting this test statistic if the null hypothesis were true.
@@ -260,8 +264,8 @@ chisq.test(c(AA_o, Aa_o, aa_o), p = c(AA_e, Aa_e, aa_e)/N)
 ::: callout-note
 
 ```{r}
-chisq_statistic <- 4 
-deg_freedom <- 3
+chisq_statistic <- 1.48 
+deg_freedom <- 1
 df <- data.frame(x1 = chisq_statistic, y1 = 0, x2 = chisq_statistic, y2 = dchisq(chisq_statistic,deg_freedom))
 
 pbase<- ggplot(data.frame(x=seq(0,10,0.1)), aes(x)) +
@@ -284,7 +288,7 @@ p2 <- pbase +
                 fill = fill_colour1,
                 args = list(df=deg_freedom)) +
     geom_segment(data = df, aes(x = x1, y = y1, xend = x2, yend = y2), linewidth = 0.2) +
-  annotate(geom = "text", x= 5, y = .15, label = "p-value =0.365")
+  annotate(geom = "text", x= 5, y = .15, label = "p-value =0.224")
 ```
 
 ```{r}
