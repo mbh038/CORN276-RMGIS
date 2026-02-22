@@ -237,7 +237,7 @@ window.Quarto = {
 </header>
 
 
-<p>A chi-square analysis is used when our data are in the form of raw counts for two or more categorical groups eg pea plants with either yellow peas or green peas, survival rate of mice if they took drug A or took drug B, etc. Each independent observation must definitely belong to either one group or the other, and there are no replicates. That is, for each category we just have one count.</p>
+<p>A chi-square analysis is used when our data are in the form of raw counts for two or more categorical groups eg pea plants with either yellow peas or green peas, survival rate of mice if they took drug A or took drug B, etc. Each independent observation must definitely belong to either one group or the other, and there should be no replicates. That is, for each category we should have just have one count.</p>
 <p>What we do is compare the counts we got to some <em>expected</em> value according either to chance or to some prior theory.</p>
 <p>For example:</p>
 <ul>
@@ -246,11 +246,11 @@ window.Quarto = {
 </ul>
 <section id="chi-square-goodness-of-fit-test" class="level2" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="chi-square-goodness-of-fit-test"><span class="header-section-number">2.1</span> Chi-square goodness of fit test</h2>
-<p>In a chi-square ‘goodness of fit’ test, we are testing data where we have a number of counts for each of two or more possible outcomes of some procedure (heads/tails, dice scores etc). We have an idea of how these counts should be distributed under some null hypothesis (the coin is fair, the dice is fair, genetic inheritance works in this or that way etc). The chi-square goodness of fit test tests how likely it is we would have got the counts we actually got if that null hypothesis were correct. We are testing how well our actual counts ‘fit’ the expected values.</p>
+<p>In a chi-square ‘goodness of fit’ test, we are testing data where we have a number of counts for each of two or more possible outcomes of some procedure (heads/tails, dice scores, pea colour etc). We have an idea of how these counts should be distributed under some null hypothesis (the coin is fair, the dice is fair, genetic inheritance works in this or that way etc). The chi-square goodness of fit test tests how likely it is we would have got the counts we actually got if that null hypothesis were correct. We are testing how well our actual counts ‘fit’ the expected values.</p>
 <p>In a typical software implementation of the test, such as in R, we give it the counts we actually got for each possible outcome and also the expected proportion for each outcome. The test then gives us a p-value, a probability, for how likely it is that we would have got the counts we actually got, or counts even further from the null hypothesis, if that null hypothesis were correct. If this p-value is too small, and by that we usually mean less than 0.05, then we reject the null hypothesis.</p>
 <section id="example-mendelian-genetics" class="level3" data-number="2.1.1">
 <h3 data-number="2.1.1" class="anchored" data-anchor-id="example-mendelian-genetics"><span class="header-section-number">2.1.1</span> Example: Mendelian Genetics</h3>
-<p>If the basic idea of Mendelian inheritance with independent assortment involving a single gene is correct, then we would expect that if we crossed a large number of pea plants that were heterozygous for yellow and green pea colour, as in the F1 genertion shown in <a href="#fig-mendelian-inheritance" class="quarto-xref">Figure&nbsp;<span>2.1</span></a> with yellow being dominant, then the offspring would have yellow:green peas in the ratio 3:1 (plants with genotypes YY, Yy, yY would all have yellow seeds and only those with yy would have green seeds). In practice, if the inheritance <em>were</em> according to the simplest type of Mendelian inheritance (ie involving just one gene, amongst other things) we would probably get yellow:green offspring in a ratio that was <em>approximately</em> but not exactly 3:1. How far from 3:1 would the ratio need to be before we would justified in claiming that the outcome was inconsistent with the Mendelian prediction?</p>
+<p>If the basic idea of Mendelian inheritance with independent assortment involving a single gene is correct, then we would expect that if we crossed a large number of pea plants that were heterozygous for yellow and green pea colour, as in the F1 genertion shown in <a href="#fig-mendelian-inheritance" class="quarto-xref">Figure&nbsp;<span>2.1</span></a> with yellow being dominant, then the offspring in the F2 generation would have yellow:green peas in the ratio 3:1 (plants with genotypes YY, Yy, yY would all have yellow seeds and only those with yy would have green seeds). In practice, if the inheritance <em>were</em> according to the simplest type of Mendelian inheritance (ie involving just one gene, amongst other things) we would probably get yellow:green offspring in a ratio that was <em>approximately</em> but not exactly 3:1. How far from 3:1 would the ratio need to be before we would justified in claiming that the outcome was inconsistent with the Mendelian prediction?</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-mendelian-inheritance" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -285,6 +285,19 @@ Figure&nbsp;2.1: An outline of Mendel’s green:yellow pea crossing study. In th
 <p>This last fact means that for our one study we can calculate the probability of getting a chi-squared value as great or greater than the one we got. This in turn means (because it is the same thing in the end) that we can calculate the probability of getting data as far or further from the the expected values as the numbers we got - the magic p-value. We get software such as R to do this last bit for us.</p>
 <p>Finally, on that basis we can either reject or fail to reject the null hypothesis.</p>
 <p>Let’s have a go:</p>
+<p>First we calculate our chi-squared statistic:</p>
+<p><span class="math display">\[
+\begin{align}
+\chi^2 &amp;=\frac{(O_\text{Y}-E_\text{Y})^2}{E_\text{Y}} + \frac{(O_\text{G}-E_\text{G})^2}{E_\text{G}}\\
+&amp;=\frac{(125-132)^2}{132} + \frac{(51-44)^2}{44}\\
+&amp;=1.48
+\end{align}
+\]</span></p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.224</code></pre>
+</div>
+</div>
 <p><strong>Doing the chi-square test in R</strong></p>
 <p>What we do in R is use the <code>chisq.test()</code> function to see how likely it is we would have got counts of 125 and 51 if the null hypothesis, with its expected counts in the ratio 3:1, were true.</p>
 <p>We do it like this:</p>
@@ -453,7 +466,7 @@ Note
 <div>
 
 </div>
-<div class="cell quarto-layout-panel" data-layout-ncol="2" data-caption="Two plots of a chi-square distribution.">
+<div class="cell quarto-layout-panel" data-caption="Two plots of a chi-square distribution." data-layout-ncol="2">
 <div class="quarto-layout-row">
 <div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
 <div id="fig-chi-square-plots-1" class="quarto-float quarto-figure quarto-figure-center anchored" width="90%">
@@ -494,7 +507,7 @@ Figure&nbsp;2.3
 </ul>
 <p>You use R to do a chi-square test of that null hypothesis. Here is the code to do that and the output it would give:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(<span class="fu">c</span>(<span class="dv">45</span>,<span class="dv">55</span>),<span class="at">p=</span><span class="fu">c</span>(<span class="fl">0.5</span>,<span class="fl">0.5</span>)) <span class="co"># we could leave out the second argument here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(<span class="fu">c</span>(<span class="dv">45</span>,<span class="dv">55</span>),<span class="at">p=</span><span class="fu">c</span>(<span class="fl">0.5</span>,<span class="fl">0.5</span>)) <span class="co"># we could leave out the second argument here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Chi-squared test for given probabilities
@@ -511,7 +524,7 @@ X-squared = 1, df = 1, p-value = 0.3</code></pre>
 <p>Suppose someone told you that the competence of scientists was linked to their astrological zodiac sign. I won’t name all of these, but there are twelve of them: Pisces, Scorpio, Cancer etc. To test this hypothesis, you spend a lot of time on Primo and identify 240 scientists, currently active, that have each published at least five papers in high impact journals in the last year. All of these people, you presume, are successful scientists. You write to each of them and ask them their date of birth. Amazingly(!), all of them respond. You then assign each of them to a zodiac sign according to their birth date and get the following counts for each sign:</p>
 <p>In this code chunk we have typed out the counts and collected them as a vector, using the function `<code>c()`</code>. we have saved this under the name <code>stars</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>stars<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="dv">22</span>,<span class="dv">20</span>,<span class="dv">17</span>,<span class="dv">22</span>,<span class="dv">20</span>,<span class="dv">19</span>,<span class="dv">18</span>,<span class="dv">21</span>,<span class="dv">19</span>,<span class="dv">22</span>,<span class="dv">23</span>,<span class="dv">17</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>stars<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="dv">22</span>,<span class="dv">20</span>,<span class="dv">17</span>,<span class="dv">22</span>,<span class="dv">20</span>,<span class="dv">19</span>,<span class="dv">18</span>,<span class="dv">21</span>,<span class="dv">19</span>,<span class="dv">22</span>,<span class="dv">23</span>,<span class="dv">17</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li>What would be a suitable null hypothesis in this investigation?</li>

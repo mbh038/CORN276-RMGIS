@@ -26,7 +26,7 @@ point_colour<-COL['blue','full']
 error_colour<-COL['red','full']
 ```
 
-A chi-square analysis is used when our data are in the form of raw counts for two or more categorical groups eg pea plants with either yellow peas or green peas, survival rate of mice if they took drug A or took drug B, etc. Each independent observation must definitely belong to either one group or the other, and there are no replicates. That is, for each category we just have one count.
+A chi-square analysis is used when our data are in the form of raw counts for two or more categorical groups eg pea plants with either yellow peas or green peas, survival rate of mice if they took drug A or took drug B, etc. Each independent observation must definitely belong to either one group or the other, and there should be no replicates. That is, for each category we should have just have one count.
 
 What we do is compare the counts we got to some *expected* value according either to chance or to some prior theory.
 
@@ -36,15 +36,16 @@ For example:
 
 -   If we threw a fair dice a large number of times we would *expect* each possible score, from 1 to 6, to occur the same number of times. ie each score would occur 1/6th of the time. In reality we would probably get each score *roughly* 1/6 of the time, but not exactly 1/6. How far from the expected proportions could the numbers of each score have to get before we would be justified in thinking that the dice was not fair?
 
+
 ## Chi-square goodness of fit test
 
-In a chi-square 'goodness of fit' test, we are testing data where we have a number of counts for each of two or more possible outcomes of some procedure (heads/tails, dice scores etc). We have an idea of how these counts should be distributed under some null hypothesis (the coin is fair, the dice is fair, genetic inheritance works in this or that way etc). The chi-square goodness of fit test tests how likely it is we would have got the counts we actually got if that null hypothesis were correct. We are testing how well our actual counts 'fit' the expected values. 
+In a chi-square 'goodness of fit' test, we are testing data where we have a number of counts for each of two or more possible outcomes of some procedure (heads/tails, dice scores, pea colour etc). We have an idea of how these counts should be distributed under some null hypothesis (the coin is fair, the dice is fair, genetic inheritance works in this or that way etc). The chi-square goodness of fit test tests how likely it is we would have got the counts we actually got if that null hypothesis were correct. We are testing how well our actual counts 'fit' the expected values. 
 
 In a typical software implementation of the test, such as in R, we give it the counts we actually got for each possible outcome and also the expected proportion for each outcome. The test then gives us a p-value, a probability, for how likely it is that we would have got the counts we actually got, or counts even further from the null hypothesis, if that null hypothesis were correct. If this p-value is too small, and by that we usually mean less than 0.05, then we reject the null hypothesis.
 
 ### Example: Mendelian Genetics
 
-If the basic idea of Mendelian inheritance with independent assortment involving a single gene is correct, then we would expect that if we crossed a large number of pea plants that were heterozygous for yellow and green pea colour, as in the F1 genertion shown in @fig-mendelian-inheritance with yellow being dominant, then the offspring would have yellow:green peas in the ratio 3:1 (plants with genotypes YY, Yy, yY would all have yellow seeds and only those with yy would have green seeds). In practice, if the inheritance *were* according to the simplest type of Mendelian inheritance (ie involving just one gene, amongst other things) we would probably get yellow:green offspring in a ratio that was *approximately* but not exactly 3:1. How far from 3:1 would the ratio need to be before we would justified in claiming that the outcome was inconsistent with the Mendelian prediction?
+If the basic idea of Mendelian inheritance with independent assortment involving a single gene is correct, then we would expect that if we crossed a large number of pea plants that were heterozygous for yellow and green pea colour, as in the F1 genertion shown in @fig-mendelian-inheritance with yellow being dominant, then the offspring in the F2 generation would have yellow:green peas in the ratio 3:1 (plants with genotypes YY, Yy, yY would all have yellow seeds and only those with yy would have green seeds). In practice, if the inheritance *were* according to the simplest type of Mendelian inheritance (ie involving just one gene, amongst other things) we would probably get yellow:green offspring in a ratio that was *approximately* but not exactly 3:1. How far from 3:1 would the ratio need to be before we would justified in claiming that the outcome was inconsistent with the Mendelian prediction?
 
 ```{r}
 #| label: fig-mendelian-inheritance
@@ -92,7 +93,18 @@ Finally, on that basis we can either reject or fail to reject the null hypothesi
 
 Let's have a go:
 
+First we calculate our chi-squared statistic:
 
+$$
+\begin{align}
+\chi^2 &=\frac{(O_\text{Y}-E_\text{Y})^2}{E_\text{Y}} + \frac{(O_\text{G}-E_\text{G})^2}{E_\text{G}}\\
+&=\frac{(125-132)^2}{132} + \frac{(51-44)^2}{44}\\
+&=1.48
+\end{align}
+$$
+```{r}
+pchisq(1.48,1, lower.tail=FALSE)
+```
 
 
 **Doing the chi-square test in R**
