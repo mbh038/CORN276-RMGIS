@@ -495,6 +495,11 @@ When we run a chi-square test in R on the data in the table above it gives us th
 chisq.test(lady.mat)
 ```
 
+::: {.callout-note}
+## Yates continuity correction
+This is mentioned is the output of the test. What does it mean? It adjusts for the fact that our data are discrete and the chi-square distribution that we are using to calculate the *p*-values is continuous. That's it.
+:::
+
 #### Conclusion
 
 Study the output of the chi-square test. Note that you are given a test-statistic (here called Chi-squared/X-squared) and a number of degrees of freedom (*df*) (in some tests you are given more than one of these). This is the number of independent pieces of information used to calculate the test statistic. Lastly, you are a given a *p*-value. This is the probability that you would have got a chi-squared value as big or bigger than the one you got *if* the null hypothesis were true. Here the null hypothesis is that there is no association between ladybird colour and location. Put another way, it is, roughly speaking the probability of getting the data you actually got if the null hypothesis were true.
@@ -505,6 +510,5 @@ An appropriate way to report these data would be:
 
 'Ladybird colour morphs are not equally common in the two habitats (Chi-sq =19.3, df = 1, p\<0.001)'
 
-#### Yates continuity correction
 
-This is mentioned is the output of the test. What does it mean? It adjusts for the fact that our data are discrete and the chi-square distribution that we are using to calculate the *p*-values is continuous. That's it.
+
