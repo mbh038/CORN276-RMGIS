@@ -89,6 +89,48 @@ To determine which one among them is followed by our own chi-squared statistic w
 
 Finally, knowing the chi-square statistic for our data, and knowing the degrees of freedom for our design, and thus knowing which chi-squae distribution is followed by our statistic, we can calculate the probability of getting a chi-squared value as great or greater than the one we got. This in turn means (because it is the same thing in the end) that we can calculate the probability of getting data as far or further from the the expected values as the numbers we got - the magic p-value. We get software such as R to do this last bit for us.
 
+::: {.callout-note}
+### Chi-square distributions and the p-value
+
+```{r}
+chisq_statistic <- 1.48 
+deg_freedom <- 1
+df <- data.frame(x1 = chisq_statistic, y1 = 0, x2 = chisq_statistic, y2 = dchisq(chisq_statistic,deg_freedom))
+
+pbase<- ggplot(data.frame(x=seq(0,10,0.1)), aes(x)) +
+  geom_function(fun = dchisq, args=list(df = deg_freedom)) +
+    theme_void()
+
+p1 <- pbase +
+    stat_function(fun = dchisq, 
+                xlim = c(0,10),
+                geom = "area",
+                fill = fill_colour1,
+                args = list(df=deg_freedom)) +
+  annotate(geom = "text", x= 5, y = .15, label = "Total area = 1")
+
+
+p2 <- pbase +
+    stat_function(fun = dchisq, 
+                xlim = c(chisq_statistic,10),
+                geom = "area",
+                fill = fill_colour1,
+                args = list(df=deg_freedom)) +
+    geom_segment(data = df, aes(x = x1, y = y1, xend = x2, yend = y2), linewidth = 0.2) +
+  annotate(geom = "text", x= 5, y = .15, label = "p-value =0.224")
+```
+
+```{r}
+#| label: fig-chi-square-plots
+#| caption: "Two plots of a chi-square distribution. The p-value for a given chi-square statistic is the shaded area under the curves, to the right of the statistic." 
+#| layout-ncol: 2
+
+p1
+p2
+```
+
+:::
+
 Finally, on that basis we can either reject or fail to reject the null hypothesis.
 
 Let's have a go:
@@ -240,8 +282,8 @@ $$
 
 ```{r}
 chi_sq <- (AA_o-AA_e)^2 / AA_e + (Aa_o-Aa_e)^2 / Aa_e + (aa_o - aa_e)^2 / aa_e
-chi_sq
 ```
+We find that the chi-sqaure value is `r chi_sq`, which is very large. Remember that, the larger the chi-square value, the the further our observed values must be from the expected values, and thus, intuitibely, the more likely it must be that we will reject the null hypothesis.
 
 **Calculate degrees of freedom**
 
@@ -254,6 +296,12 @@ df <- length(c(AA_o, Aa_o, aa_o)) - length(c("A", "a"))
 ```
 
 **Calculate p-value**
+
+The p-value will be the area under the chi-square distribution for one degree of freedom (or whatever that might be for another problem) to the right of the chi-square statistic. 
+
+Thus, the p-value is the probability of getting a chi-square statistic as large or larger than the one we got, if the null hypothesis were true. This is the *same thing* as saying that the p-value is the probability of getting observed values as far or further as ours were from the epxevted value, if the null were true.
+
+We get softwae such as R to calculate this for us. In this R would tell us that the p-value is *really tiny*, much less than 0.05.
 
 ```{r}
 pchisq(chi_sq,df, lower.tail = FALSE)
@@ -269,55 +317,30 @@ pchisq(chi_sq,1,lower.tail = FALSE)
 ```
 
 **Use built-in R function to calculate p-value**
-```{r}
-# not quite right
-# uses df = 2 when it should use df = 1
-chisq.test(c(AA_o, Aa_o, aa_o), p = c(AA_e, Aa_e, aa_e)/N)
-```
 
-::: callout-note
+Hang on! Do I need to go through all these calculations every time I want to carry out a chi-square test?
+
+No! You get software to do it. Her is how we would do it in R and what it would tell us, in this case:
 
 ```{r}
-chisq_statistic <- 1.48 
-deg_freedom <- 1
-df <- data.frame(x1 = chisq_statistic, y1 = 0, x2 = chisq_statistic, y2 = dchisq(chisq_statistic,deg_freedom))
-
-pbase<- ggplot(data.frame(x=seq(0,10,0.1)), aes(x)) +
-  geom_function(fun = dchisq, args=list(df = deg_freedom)) +
-    theme_void()
-
-p1 <- pbase +
-    stat_function(fun = dchisq, 
-                xlim = c(0,10),
-                geom = "area",
-                fill = fill_colour1,
-                args = list(df=deg_freedom)) +
-  annotate(geom = "text", x= 5, y = .15, label = "Total area = 1")
-
-
-p2 <- pbase +
-    stat_function(fun = dchisq, 
-                xlim = c(chisq_statistic,10),
-                geom = "area",
-                fill = fill_colour1,
-                args = list(df=deg_freedom)) +
-    geom_segment(data = df, aes(x = x1, y = y1, xend = x2, yend = y2), linewidth = 0.2) +
-  annotate(geom = "text", x= 5, y = .15, label = "p-value =0.224")
+# first we get R to calculate the Chi-square statistic
+chi_squared_statistic <- chisq.test(c(AA_o, Aa_o, aa_o), p = c(AA_e, Aa_e, aa_e)/N)$statistic
+chi_squared_statistic
 ```
 
 ```{r}
-#| label: fig-chi-square-plots
-#| caption: Two plots of a chi-square distribution. 
-#| layout-ncol: 2
-
-p1
-p2
+# then we ask it to use that and the degrees of freedom to find the p-value
+pchisq(246,df = 1, lower.tail = FALSE)
 ```
 
+This is R's way of saying that the p-value is more or less zero.
 
-:::
+**Conclusion**
+The p-value is very small indeed, much less than 0.05. Hence we reject the null hypothesis that the population is in Hardy-Weinberg equlibrium.
 
-## Exercises
+
+
+### Exercises
 
 **Exercise 1**
 
@@ -403,7 +426,7 @@ A **Chi-Square independence analysis** can be used to investigate this. This typ
 
 All these are true for the ladybird study.
 
-#### Hypotheses
+**Hypotheses**
 
 What do you think a suitable hypothesis should be for this investigation, and what would the corresponding null hypothesis be?
 
@@ -426,7 +449,7 @@ lady<-read_csv(filepath)
 #glimpse(lady)
 ```
 
-#### The data
+**The data**
 
 The data consist of counts of the number of ladybirds of each colour that were observed in 5 rural sites and 5 industrial sites. These data are in tidy form, with one variable per column. There are 20 rows, with each row containing the count of either red or black ladybirds found at a given site.
 
@@ -447,7 +470,7 @@ totals<- lady |>
 totals
 ```
 
-#### Plot the data.
+**Plot the data.**
 
 From these totals we can create a bar chart:
 
@@ -464,13 +487,13 @@ totals |>
 
 ```
 
-#### Interpret the graph before we do any 'stats'
+**Interpret the graph before we do any 'stats'**
 
 Look at the plot - does it look as though the proportion of black to red ladybirds is the same in the two habitats? Do you expect to retain or to reject the null hypothesis, which says that there is no association between habitat and ladybird colour, and hence that the proportions are the same?
 
 A chi-square test of independence will enable us to determine how likely it is that we would have got proportions of black to red as different as or more different than they actually are if the null hypothesis were true.
 
-#### The Chi-square test
+**The Chi-square test**
 
 To do the chi square test, it helps to set out our count data as a 2 x 2 table of total counts:
 
@@ -491,16 +514,16 @@ This is generally how statistical tests work. They take your data and use it in 
 
 When we run a chi-square test in R on the data in the table above it gives us this as output:
 
-```{r}
+```{r, echo = TRUE}
 chisq.test(lady.mat)
 ```
 
 ::: {.callout-note}
-## Yates continuity correction
+**Yates continuity correction**
 This is mentioned is the output of the test. What does it mean? It adjusts for the fact that our data are discrete and the chi-square distribution that we are using to calculate the *p*-values is continuous. That's it.
 :::
 
-#### Conclusion
+**Conclusion**
 
 Study the output of the chi-square test. Note that you are given a test-statistic (here called Chi-squared/X-squared) and a number of degrees of freedom (*df*) (in some tests you are given more than one of these). This is the number of independent pieces of information used to calculate the test statistic. Lastly, you are a given a *p*-value. This is the probability that you would have got a chi-squared value as big or bigger than the one you got *if* the null hypothesis were true. Here the null hypothesis is that there is no association between ladybird colour and location. Put another way, it is, roughly speaking the probability of getting the data you actually got if the null hypothesis were true.
 
@@ -509,6 +532,44 @@ Here, the p-value is much less than 0.05, so we can safely *reject* the null hyp
 An appropriate way to report these data would be:
 
 'Ladybird colour morphs are not equally common in the two habitats (Chi-sq =19.3, df = 1, p\<0.001)'
+
+### Example - are two species independent?
+
+A researcher investigates whether two species **A** and **B** are associated with one another. If one is present at a site, does the other tend to be present, and if one is absent, does the other tend to be absent?. If the species were not associated with one another, then the presence of one would say nothing about the likely presence or absence of the other. Their occurrences would be independent.
+
+The researcher goes to 100 sites and finds the following:
+
+| What was found       | Number |
+|----------------------|--------|
+| A present, B present | 33\.   |
+| A present, B absent  | 28\.   |
+| B present, A absent  | 12\.   |
+| A absent, B absent   | 27\.   |
+
+They enter these into a 2 x 2 contingency table in R, as follows:
+
+```{r, echo = TRUE}
+AB <- matrix(c(33,28,12,27),nrow = 2)
+AB # R calls this a matrix - we will refer to it as a table.
+```
+
+Think about what each row and column in this table represents: as we have constructed it, columns relate to A and rows relate to B. The left hand column gives counts of sites where A was present, the right hand column gives counts where it was absent. The top row gives gives counts of sites where B was present, the bottom row gives counts of sites where it was absent.
+
+1. It is valid here to use a chi square test for evidence of an association between species A and species B. Why?
+
+*Because the data are in the form of counts, each count is independent of the others and no count is less than 5.*
+
+We use the matrix AB as the argument for `chisq.test()` in R:
+
+```{r, echo = TRUE}
+chisq.test(AB)
+```
+
+2. What conclusion do we reach about the independence or otherwise of A and B?
+
+*We find p < 0.05, so we reject the null hypothesis of no association and can say that there is evidence, at the 5% significance level, that species A and B are associated.*
+
+
 
 
 
