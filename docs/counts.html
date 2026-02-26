@@ -212,6 +212,10 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#solutions" id="toc-solutions" class="nav-link" data-scroll-target="#solutions"><span class="header-section-number">2.2.1</span> Solutions</a></li>
   </ul></li>
+  <li><a href="#two-way-chi-square-analysis-test-of-independence" id="toc-two-way-chi-square-analysis-test-of-independence" class="nav-link" data-scroll-target="#two-way-chi-square-analysis-test-of-independence"><span class="header-section-number">2.3</span> Two-way Chi square analysis: test of independence</a>
+  <ul class="collapse">
+  <li><a href="#example---red-and-black-ladybirds" id="toc-example---red-and-black-ladybirds" class="nav-link" data-scroll-target="#example---red-and-black-ladybirds"><span class="header-section-number">2.3.1</span> Example - red and black ladybirds</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -250,7 +254,7 @@ window.Quarto = {
 <p>In a typical software implementation of the test, such as in R, we give it the counts we actually got for each possible outcome and also the expected proportion for each outcome. The test then gives us a p-value, a probability, for how likely it is that we would have got the counts we actually got, or counts even further from the null hypothesis, if that null hypothesis were correct. If this p-value is too small, and by that we usually mean less than 0.05, then we reject the null hypothesis.</p>
 <section id="example-mendelian-genetics" class="level3" data-number="2.1.1">
 <h3 data-number="2.1.1" class="anchored" data-anchor-id="example-mendelian-genetics"><span class="header-section-number">2.1.1</span> Example: Mendelian Genetics</h3>
-<p>If the basic idea of Mendelian inheritance with independent assortment involving a single gene is correct, then we would expect that if we crossed a large number of pea plants that were heterozygous for yellow and green pea colour, as in the F1 genertion shown in <a href="#fig-mendelian-inheritance" class="quarto-xref">Figure&nbsp;<span>2.1</span></a> with yellow being dominant, then the offspring in the F2 generation would have yellow:green peas in the ratio 3:1 (plants with genotypes YY, Yy, yY would all have yellow seeds and only those with yy would have green seeds). In practice, if the inheritance <em>were</em> according to the simplest type of Mendelian inheritance (ie involving just one gene, amongst other things) we would probably get yellow:green offspring in a ratio that was <em>approximately</em> but not exactly 3:1. How far from 3:1 would the ratio need to be before we would justified in claiming that the outcome was inconsistent with the Mendelian prediction?</p>
+<p>If the basic idea of Mendelian inheritance with independent assortment involving a single gene is correct, then we would expect that if we crossed a large number of pea plants that were heterozygous for yellow and green pea colour, as in the F1 generation shown in <a href="#fig-mendelian-inheritance" class="quarto-xref">Figure&nbsp;<span>2.1</span></a> with yellow being dominant, then the offspring in the F2 generation would in the long run be expected to have yellow:green peas in the ratio 3:1 (plants with genotypes YY, Yy, yY would all have yellow seeds and only those with yy would have green seeds). In practice, if the inheritance <em>were</em> according to the simplest type of Mendelian inheritance (ie involving just one gene, amongst other things) we would probably get yellow:green offspring in a ratio that was <em>approximately</em> but not exactly 3:1. How far from 3:1 would the ratio need to be before we would justified in claiming that the outcome was inconsistent with the Mendelian prediction?</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-mendelian-inheritance" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -259,7 +263,7 @@ window.Quarto = {
 <img src="figures/mendelian_pea_plants.png" class="img-fluid figure-img" style="width:90.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-mendelian-inheritance-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2.1: An outline of Mendel’s green:yellow pea crossing study. In the F1 generation there would necessarily be 100% yellow plants with genotype Yy. In the F2 generation the ratio 3:1 yellow:green is what is <em>expected</em> if random Mendelian inheritance is the underlying mechanism. In reality we would probably not see excatly that ratio. A chi-square goodness of fit test tells us how likely it is we would get the ratio we got, or a more extreme ratio, <em>if</em> Mendelian inheritance were correct.
+Figure&nbsp;2.1: An outline of Mendel’s green:yellow pea crossing study. In the F1 generation there would necessarily be 100% yellow plants with genotype Yy. In the F2 generation the ratio 3:1 yellow:green is what is <em>expected</em> if random Mendelian inheritance is the underlying mechanism. In reality we would probably not see excatly that ratio. A chi-square goodness of fit test tells us how likely it is we would get the ratio we got, or a more extreme ratio, <em>if</em> Mendelian inheritance were correct. Source: Khan Academy
 </figcaption>
 </figure>
 </div>
@@ -281,8 +285,8 @@ Figure&nbsp;2.1: An outline of Mendel’s green:yellow pea crossing study. In th
 \]</span> The first line is just a more compact way of witing the second line, where the <span class="math inline">\(\sum\)</span> symbol means ‘sum over’ a yellow peas term (Y) and a green peas term (G), as laid out in the second line. <span class="math inline">\(O_\text{Y}\)</span> and <span class="math inline">\(O_\text{G}\)</span> mean the observed numbers of yellow and green pea plants respectively, while <span class="math inline">\(E_\text{Y}\)</span> and <span class="math inline">\(E_\text{G}\)</span> mean the expected numbers of each.</p>
 <p>Defined in this way, the chi-square statistic <span class="math inline">\(\chi^2\)</span>is a number that will always be positive (because it is the sum of squared terms, and they are always positive, divided by an expected number, which can also only be positive) and will be bigger the further from the expected values our observed values turn out to be.</p>
 <p>It is also a number that will vary each time you repeat the study because while the expected values <span class="math inline">\(E_i\)</span> are fixed, the observed values <span class="math inline">\(O_i\)</span> will vary from one occasion to the next. In fact, if you were to repeat the study many times and each time calculate the chi-sqare statistic you would find that it follows one of a known family of distributions, the so-called (who would have thought it?) chi-square distributions, provided each count is greater than about five.</p>
-<p>To determine which one among them our own chi-squared statistic follows, we need to know one more thing, the so-called <em>degrees of freedom</em>. This is a term that crops up often in use of statistical tests. Roughly speaking, it refers to the number of independent pieces of information that are used in arriving at a result, given whatever constraints surround the problem. In our case, the constraint was that there were 176 pea plants in th F1 generation. That meant that only one of the totals for each of the colours could be freely chosen. Once it was known thae other could be determined as the difference between it an the total. Soin our case the degrees of freedom was one.</p>
-<p>This last fact means that for our one study we can calculate the probability of getting a chi-squared value as great or greater than the one we got. This in turn means (because it is the same thing in the end) that we can calculate the probability of getting data as far or further from the the expected values as the numbers we got - the magic p-value. We get software such as R to do this last bit for us.</p>
+<p>To determine which one among them is followed by our own chi-squared statistic we need to know one more thing, the so-called <em>degrees of freedom</em>. This is a term that crops up often when using statistical tests. Roughly speaking, it refers to the number of independent pieces of information that are used in arriving at a result, given whatever constraints surround the problem. In our case, the constraint was that there were 176 pea plants in total in the F2 generation. That meant that only one of the sub-totals for each of the colours could be freely chosen. Once it was known the other could be determined as the difference between it and the total: if there are 176 plants in total and 125 of them are yellow, then the green total <em>has</em> to be 176 - 125 = 51. So, in our case the degrees of freedom is one.</p>
+<p>Finally, knowing the chi-square statistic for our data, and knowing the degrees of freedom for our design, and thus knowing which chi-squae distribution is followed by our statistic, we can calculate the probability of getting a chi-squared value as great or greater than the one we got. This in turn means (because it is the same thing in the end) that we can calculate the probability of getting data as far or further from the the expected values as the numbers we got - the magic p-value. We get software such as R to do this last bit for us.</p>
 <p>Finally, on that basis we can either reject or fail to reject the null hypothesis.</p>
 <p>Let’s have a go:</p>
 <p>First we calculate our chi-squared statistic:</p>
@@ -301,7 +305,7 @@ Figure&nbsp;2.1: An outline of Mendel’s green:yellow pea crossing study. In th
 <p><strong>Doing the chi-square test in R</strong></p>
 <p>What we do in R is use the <code>chisq.test()</code> function to see how likely it is we would have got counts of 125 and 51 if the null hypothesis, with its expected counts in the ratio 3:1, were true.</p>
 <p>We do it like this:</p>
-<p><code>chisq.test(c(130,46),p=c(0.75,0.25))</code></p>
+<p><code>chisq.test(c(125,51),p=c(0.75,0.25))</code></p>
 <p>There are two arguments. The first is the counts we got, which we enter as a ‘vector’ <code>c(z,y,....)</code>, so we write <code>c(130,46)</code>. The second is a vector of the proportions we expect for the two counts, where these proportions should add up to one. So for our expected 3:1 ratio we enter <code>c(0.75,0.25)</code>.</p>
 <p>Let’s do it: type the above function into the console window (bottom left). You will get an output something like this:</p>
 <div class="cell">
@@ -314,10 +318,10 @@ X-squared = 1, df = 1, p-value = 0.2</code></pre>
 </div>
 </div>
 <p>This output is typical of tests done in R. We get the ‘test statistic’ whose name varies depending on the test. Here it is called <code>X-squared</code>, pronounced <code>chi-squared</code>. This is a number that the test calculates, based on the data you have given it. For the most part, we don’t need to worry about how it does that. Then there is the p-value, which is the probability of getting this test statistic if the null hypothesis were true.</p>
-<p>In this case, we see that the p-value is 0.73, which is large. We could very plausibly have got yellow:green numbers of 130 and 46 if the null hypothesis were true, so we cannot reject that null hypothesis. In other words, our data are consistent at the 5% significance level with the predictions of simple Mendelian inheritance.</p>
+<p>In this case, we see that the p-value is 0.223, which is large. We could very plausibly have got yellow:green numbers of 125 and 51 if the null hypothesis were true, so we cannot reject that null hypothesis. In other words, our data are consistent at the 5% significance level with the predictions of simple Mendelian inheritance.</p>
 <p><strong>Reporting the result in English</strong></p>
 <p>In English, we might report this result as:</p>
-<p><em>We found counts of 130 yellow plants and 46 green plants, which are consistent at the 5% significance level with the predictions of Mendelian inheritance (chi-squared test, X-squared = 0.12, p=0.73).</em></p>
+<p><em>We found counts of 125 yellow plants and 51 green plants, which are consistent at the 5% significance level with the predictions of Mendelian inheritance (chi-squared test, X-squared = 1.48, df = 1, p=0.223).</em></p>
 <p>Note that we do not say we have proved Mendelian inheritance to be correct. We haven’t. We never prove things in science. We haven’t said anything about the truth of the null hypothesis. All we can say is whether our data are or are not consistent with the null hypothesis. In this case they are. We then report the test we used and the values of the test statistic and p-value. Other tests might give you other details to report too.</p>
 </section>
 <section id="testing-if-hardy-weinberg-equilibrium-is-satisfied" class="level3" data-number="2.1.2">
@@ -562,8 +566,125 @@ X-squared = 2, df = 11, p-value = 1</code></pre>
 <li>We find no evidence that star sign affects success in science (X-sq=2.29, df = 11, p=0.997)</li>
 </ul>
 <p>Note the degrees of freedom that is reported: df = 11. The degrees of freedom is the number of independent pieces of information. Here, given that we know the total number of researchers, only eleven of the individual counts are independent. Once they are known, the twelfth can be calculated.</p>
+</section>
+</section>
+<section id="two-way-chi-square-analysis-test-of-independence" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="two-way-chi-square-analysis-test-of-independence"><span class="header-section-number">2.3</span> Two-way Chi square analysis: test of independence</h2>
+<p><em>Adapted from Chapter 5: Beckerman, Childs and Petchey: Getting Started with R</em></p>
+<ul>
+<li>For R code to implement this section, scroll down to the next section *</li>
+</ul>
+<p>A common scenario we have with count data is that there are two explanatory factors each with two or more levels that enable us to classify the data. This can happen when something is either true or not true, and a test for for this truth gives either a positive or a negative result. We might want to know if the test to determine truth was any better than flipping a coin: is there some association between what the truth is (eg I do or do not have a disease) and what the test says about that (testing positive or negative for the disease). In this example our data would be counts of people in each of four categories: have the disease / test positive, have the disease / test negative, do not have the disease / test positive and do not have the disease / test negative.</p>
+<section id="example---red-and-black-ladybirds" class="level3" data-number="2.3.1">
+<h3 data-number="2.3.1" class="anchored" data-anchor-id="example---red-and-black-ladybirds"><span class="header-section-number">2.3.1</span> Example - red and black ladybirds</h3>
+<p>We are going to analyse a scenario of this type to see if there is evidence for an association between two factors. Suppose we have some count data of ladybirds found in both an industrial and a rural location. In each location, some of the ladybirds are red and some are black. We would like to test for whether there is an association between the ladybird colour and its location. If there isn’t then we would expect the proportion of black to red ladybirds to be roughly the same in both habitats. If there is, then we would expect the proportions to be different, meaning that knowing the habitat would tell us something about the likelihood of a ladybird found there being black or red. That is way of saying that the colour of the ladybirds would not be independent of the location.</p>
+<p>Behind this the research purpose might be to investigate whether matching of morphological colour of the ladybirds to the prevalent colour of the environment confers an evolutionary advantage. If it does then we would expect there to be an association between morphological colour and environment so that the proportion of black to red ladybirds would be higher in a grimy industrial setting than in it would be in a shiny bright rural setting.</p>
+<p>A <strong>Chi-Square independence analysis</strong> can be used to investigate this. This type of analysis is used when you have</p>
+<ul>
+<li>Count data - for example, how many red ladybirds in a rural setting, how many in an industrial setting, how many black ladydbirds in each of the settings?</li>
+<li>Enough count data - typically at least 5 individuals for each combination of the levels in question, which would be rural/red, rural/black, industrial/red and industrial/black in this case.</li>
+<li>Independent counts - each ladybird contributes to only one sub-total. For example, if it is red and found in a rural location, then it contributes to the count of red ladybirds found in a rural location, and not to any other sub-total, such as black ladybirds found in a rural location.</li>
+<li>No replicates - for ach combination of the levels of the fators, we have just one count.</li>
+</ul>
+<p>All these are true for the ladybird study.</p>
+<section id="hypotheses" class="level4" data-number="2.3.1.1">
+<h4 data-number="2.3.1.1" class="anchored" data-anchor-id="hypotheses"><span class="header-section-number">2.3.1.1</span> Hypotheses</h4>
+<p>What do you think a suitable hypothesis should be for this investigation, and what would the corresponding null hypothesis be?</p>
+<ul>
+<li>The null hypotheses could be: <strong>H<sub>0</sub></strong>: There is no association between habitat and ladybird colour. This means that whatever the proportion is of black to red ladybirds, it is the same in both habitats.<br>
+</li>
+<li>The alternate hypothesis could be: <strong>H1</strong>: There is an association between habitat and ladybird colour. That is, the proportion of red to black differs between the two habitats.</li>
+</ul>
+</section>
+<section id="the-data" class="level4" data-number="2.3.1.2">
+<h4 data-number="2.3.1.2" class="anchored" data-anchor-id="the-data"><span class="header-section-number">2.3.1.2</span> The data</h4>
+<p>The data consist of counts of the number of ladybirds of each colour that were observed in 5 rural sites and 5 industrial sites. These data are in tidy form, with one variable per column. There are 20 rows, with each row containing the count of either red or black ladybirds found at a given site.</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 20 × 4
+  Habitat Site  morph_colour number
+  &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;         &lt;dbl&gt;
+1 Rural   R1    black            10
+2 Rural   R2    black             3
+3 Rural   R3    black             4
+4 Rural   R4    black             7
+5 Rural   R5    black             6
+6 Rural   R1    red              15
+# ℹ 14 more rows</code></pre>
+</div>
+</div>
+<p>The total counts for red and black ladybirds observed in industrial and rural settings are shown below:</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 3
+# Groups:   Habitat [2]
+  Habitat    morph_colour total.number
+  &lt;chr&gt;      &lt;chr&gt;               &lt;dbl&gt;
+1 Industrial black                 115
+2 Industrial red                    85
+3 Rural      black                  30
+4 Rural      red                    70</code></pre>
+</div>
+</div>
+</section>
+<section id="plot-the-data." class="level4" data-number="2.3.1.3">
+<h4 data-number="2.3.1.3" class="anchored" data-anchor-id="plot-the-data."><span class="header-section-number">2.3.1.3</span> Plot the data.</h4>
+<p>From these totals we can create a bar chart:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="counts_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid figure-img" style="width:90.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="interpret-the-graph-before-we-do-any-stats" class="level4" data-number="2.3.1.4">
+<h4 data-number="2.3.1.4" class="anchored" data-anchor-id="interpret-the-graph-before-we-do-any-stats"><span class="header-section-number">2.3.1.4</span> Interpret the graph before we do any ‘stats’</h4>
+<p>Look at the plot - does it look as though the proportion of black to red ladybirds is the same in the two habitats? Do you expect to retain or to reject the null hypothesis, which says that there is no association between habitat and ladybird colour, and hence that the proportions are the same?</p>
+<p>A chi-square test of independence will enable us to determine how likely it is that we would have got proportions of black to red as different as or more different than they actually are if the null hypothesis were true.</p>
+</section>
+<section id="the-chi-square-test" class="level4" data-number="2.3.1.5">
+<h4 data-number="2.3.1.5" class="anchored" data-anchor-id="the-chi-square-test"><span class="header-section-number">2.3.1.5</span> The Chi-square test</h4>
+<p>To do the chi square test, it helps to set out our count data as a 2 x 2 table of total counts:</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>            morph_colour
+Habitat      black red
+  Industrial   115  85
+  Rural         30  70</code></pre>
+</div>
+</div>
+<p>This kind of table is sometimes called a <strong>contingency table</strong>.</p>
+<p>When we give these numbers to some statistical software such as R and ask it to carry out a ‘chi-square test’ it will use the data to calculate a ‘test statistic’ <span class="math inline">\(X^2\)</span> by comparing the actual counts of the ladybirds in the table above with their expected counts under the null hypothesis. The further the actual counts are from their expected values, on the whole, the bigger this test statistic will be. For the gory (they are not that gory!) details on how this is done, see section 4 below but do note that, while these are interesting, if you find that kind of thing interesting, as I do, you do not need to be familiar with them to be able to apply a chi-square test. What you do need to know is when it is OK to use one, and when it is not, as is true for any statistical test.</p>
+<p>We’ll turn to that issue now:</p>
+<p>Providing a number of conditions are met by the data (principally, that they are count data, that all the cell values are greater than or equal to about five and that they are all independent ie any ladybird contributes to the count of only one cell), this test statistic <span class="math inline">\(X^2\)</span> has a so-called ‘chi-squared’ distribution. This is a known mathematical distribution, which makes it possible to calculate the probability that the statistic would be as big as it is, or bigger, if the null hypothesis were true. We call this probability the <em>p</em>-value.</p>
+<p>This is generally how statistical tests work. They take your data and use it in a carefully chosen way to calculate some number that in general is called a <em>test statistic</em> but which is referred to by different names when calculated for particular tests. How it is calculated depends on the test and these days we never have to manually do the calculations ourselves. That’s taken care of by software like R. Providing the data meet certain criteria, the statistic will typically have a known probability distribution. This means that the probability that it will exceed a given value if the null hypothesis is true can be calculated. This probability is the <em>p</em>-value. If the <em>p</em>-value is very small, and by that we typically mean less than 0.05 or 0.01, then we can reject the null hypothesis.</p>
+<p>When we run a chi-square test in R on the data in the table above it gives us this as output:</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Pearson's Chi-squared test with Yates' continuity correction
+
+data:  lady.mat
+X-squared = 19, df = 1, p-value = 1e-05</code></pre>
+</div>
+</div>
+</section>
+<section id="conclusion" class="level4" data-number="2.3.1.6">
+<h4 data-number="2.3.1.6" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">2.3.1.6</span> Conclusion</h4>
+<p>Study the output of the chi-square test. Note that you are given a test-statistic (here called Chi-squared/X-squared) and a number of degrees of freedom (<em>df</em>) (in some tests you are given more than one of these). This is the number of independent pieces of information used to calculate the test statistic. Lastly, you are a given a <em>p</em>-value. This is the probability that you would have got a chi-squared value as big or bigger than the one you got <em>if</em> the null hypothesis were true. Here the null hypothesis is that there is no association between ladybird colour and location. Put another way, it is, roughly speaking the probability of getting the data you actually got if the null hypothesis were true.</p>
+<p>Here, the p-value is much less than 0.05, so we can safely <em>reject</em> the null hypothesis. The ladybird colour does not appear to be independent of the setting.</p>
+<p>An appropriate way to report these data would be:</p>
+<p>‘Ladybird colour morphs are not equally common in the two habitats (Chi-sq =19.3, df = 1, p&lt;0.001)’</p>
+</section>
+<section id="yates-continuity-correction" class="level4" data-number="2.3.1.7">
+<h4 data-number="2.3.1.7" class="anchored" data-anchor-id="yates-continuity-correction"><span class="header-section-number">2.3.1.7</span> Yates continuity correction</h4>
+<p>This is mentioned is the output of the test. What does it mean? It adjusts for the fact that our data are discrete and the chi-square distribution that we are using to calculate the <em>p</em>-values is continuous. That’s it.</p>
 
 
+</section>
 </section>
 </section>
 
