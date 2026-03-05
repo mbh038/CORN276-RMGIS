@@ -1,4 +1,4 @@
-# Two samples
+# Two samples - test for difference
 
 
 ```{r}
@@ -11,15 +11,16 @@ knitr::opts_chunk$set(echo=FALSE)
 ```
 
 
-Suppose we have sampled males from a population of two species of penguin, the Gentoo and the Adelie. All the individuals were found on islands in the Paler archipelago of Antarctica. We want to know if there are morphologial (shape) differences between these species. If there are, then that might give us some insight as to differences between the  ecological niches that the two species occupy.
+Suppose we have sampled males from a population of two species of penguin, the Gentoo and the Adelie. All the individuals were found on islands in the Palmer archipelago of Antarctica. We want to know if there are morphologial (shape) differences between these species. If there are, then that might give us some insight as to differences between the  ecological niches that the two species occupy.
 
 Here are the first few rows of the data
 
 ```{r}
 data(penguins)
 penguins <- penguins |>
-  filter(sex == "male") |>
-  filter(species != "Gentoo")
+  # filter(species != "Adelie") |>
+  filter(sex == "male")
+
 head(penguins)
 ```
 Let's create a new variable `bill_stocky` which is the ratio of the bill depth to the bill lenth. The higher this value is, the shorter and thicker the bill.A stocky bill would likely be more powerful and able to crunch thicker bones in fish.
@@ -27,14 +28,14 @@ Let's create a new variable `bill_stocky` which is the ratio of the bill depth t
 ```{r}
 penguins <- penguins |>
   mutate(bill_stocky = bill_depth_mm / bill_length_mm)
-head(penguins)
 ```
 
 
-If we summarise the data by calculating the mean and standard deviation and standard error of the means stockiness for each species we find:
+If we summarise the data by calculating the mean and standard deviation and standard error of the mean stockiness for each species we find:
 
 ```{r}
 penguins_summary <- penguins |> 
+  filter(species != "Adelie") |>
   group_by(species) |>
   summarise(n = n(), mean.bill_stocky = mean(bill_stocky),sd.bill_stocky = sd(bill_stocky), se.bill_stocky=sd(bill_stocky)/sqrt(n()))
 penguins_summary
@@ -57,6 +58,7 @@ ns <- penguins |>
   summarise(n=n())
 
 penguins |>
+  filter(species != "Adelie") |>
   ggplot(aes(x = species, y = bill_stocky)) +
   geom_boxplot() +
   labs(x = "Species",
@@ -78,26 +80,89 @@ Use the test finder to decide which statistical test for difference might be app
 Note that we have:
 
 * A difference question
-* Replicates - there are 73 Adelie males and 34 Chinstrap males
+* Replicates - there are 34 Chinstrap and 61 Gentoo males
 * Independent data - each penguin is either an Adelie or a Chinstrap
-* One **factor**: Species which has two **levels**: Adelie and Chinstrap. We this have two samples: the 73 Adelies and the 34 Chinstraps.
+* One **factor**: Species which has two **levels**: Adelie and Chinstrap. We thus have two samples: the 34 Chinstrap and the 61 Gentoos.
 * a continuous reponse variable - bill stockiness.
 
 
 You should find that the test-finder tells you to use either a **2-sample t-test** or a **Mann-Whitney U-test**. These are both tests for difference where you have two independent samples, each with replicates
 
-You use the t-test if you can because it is more powerful than the Mann Whitney test. This is not surprising because the t-test is an example of a `parametric test` while the Mann Whitney test is a `non-parametric` test. In making comparisons between the two sets of data it only looks at their ranks, not their actual values. it thus has thrown away some information.
+You use the t-test if you can because it is more powerful than the Mann Whitney test. This is not surprising because the t-test is an example of a `parametric test` while the Mann Whitney test is a `non-parametric` test. In making comparisons between the two sets of data it only looks at their ranks, not their actual values. It thus has thrown away some information.
 
-Why would it do that?
+::: callout-note
+The terms **parametric** and **non-parametric** refer to whether the tests assume that the data used follow some known distribution, usually a normal distribution. These distributions are described by a small number of *parameters*, hence the names. For a normal distribution, the key parameters that enable it to be drawn are its mean, which tells us where it is centred, and its standard deviation, which tells us how widely spread it is.
 
+In general, parametric tests are preferred to non-parametric tests, but we can only use them if the data *do* meet the criteria they require, prominent among these being that the data are plausibly drawn from a population with some known distribution, which often means a normal distribution.
+:::
 
+Why would it do that? Because to use the t-test the data need to satisfy various criteria. Here we will focus on one: that the data need to be drawn from populations that are normally distributed about their mean values. If this is not at least approximately the case, then we should not use the t-test and should instead use an alternative, which typically is the non-parametric equivalent test, here the Mann Whitney U test. The Mann Whitney test, like other non-parametric tests, uses the ranks of the data  instead of their actual values and in this way is not affected by whatever distribution the data may have.
 
-To use the t-test the two sets of data need to be normally distributed
+## Testing for normality
 
+You can either:
 
+**Plot the data using a box plot**
+If you plot the at using a box plot as we have above, you are looking to see whether the boxes look roughly symmetrical, with the median line roughly in the middle of the box, and no string of outliers heading off to one side or the other. This is because a normay distribution is symmetric, so we should see that at least approximatly in the box plot.
+
+Other plot types that show the distribution of the data can work too, such as a histogram or a violin plot, but a box plot is easy to make and effective.
+
+**Plot the data using a quantile-quantile plot**
+
+The best plot to use to determine if a data set is plausibly drawn from a normal distribution is a quantile-quantile (QQ) plot. Best of all when the data set is small.
+
+In these, the percentiles of a data set are plotted against the equivalent percentiles of a normal distribution. If the data are roughly normally distributed then the line will be roughly straight.
 
 
 ```{r}
-t.test(bill_stocky ~ species, data = penguins)
+penguins |>
+  filter(species != "Adelie") |>
+  ggplot(aes(sample=bill_stocky)) +
+  stat_qq(colour="blue") +
+  stat_qq_line() +
+  facet_wrap(~species, scales = "free") +
+  theme_minimal()
 ```
+
+The line for the Gentoos is not quite straight, but it is not too bad. We don't mind a bit of raggedness at the ends.
+
+
+**Use a normality test**
+I don't favour these, espceicailly for large data sets, but if you must use them...
+
+The most commonly used one is the Shapiro-Wilk test. It tests a data set against its null hypothesis that the data were drawn from a normally distrivuted population. If the returned p-value is higher than 0.05 then we fail to reject this null and can confidently go on to use a paramteric test such as a t-test that required normality.
+
+```{r}
+penguins |>
+  filter(species != "Adelie") |>
+  group_by(species) |>
+  shapiro_test(bill_stocky)
+```
+
+For these data, both p-values are greater than 0.05 so we do not reject the null: it is plausible that both data sets are drawn from normally distributed populations
+
+**So all in all, the graphs looks OK and it looks like the data have passed our normality tests. Hence it is OK to use a t-test for difference and we do not need to use a Mann-Whitneyy test instead.**
+
+## The two sample t-test
+
+Th t-test is going to test our data against the null that the two sets are drawn from the same population - that there is no difference in the mean bill stockiness between the species.
+
+On the basis of the summary we made and the box plot, do you think we are going to reject or fail to reject this null?
+
+We can carry out the t-test in R like this
+
+```{r, eho = TRUE}
+t.test(bill_stocky ~ species, data = penguins |> filter(species != "Adelie"))
+```
+
+* Is the p value less than 0.05?
+* Do we reject the null hypothesis?
+* What does the t-value mean?
+* What is the 95% confidence interval for the difference between the mean values for each species?
+* Is zero within this confidence interval?
+
+**Reporting the test**
+We find that the bills of the Chinstrap males are significantly stockier than those of the Gentoo males, as measured by our stockiness index, defined as the ratio of the bill depth to the bill length. (t-test, t = 17, df = 86, p <0.001). The 95% confidence interval for the difference is from 0.052 to 0.065
+
+
 

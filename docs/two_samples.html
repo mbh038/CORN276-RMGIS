@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>3&nbsp; Two samples – CORN276-RMGIS</title>
+<title>3&nbsp; Two samples - test for difference – CORN276-RMGIS</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -81,7 +81,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./two_samples.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Two samples</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./two_samples.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Two samples - test for difference</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -133,7 +133,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./two_samples.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Two samples</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Two samples - test for difference</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -153,6 +153,8 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
   <li><a href="#statistical-test-for-difference" id="toc-statistical-test-for-difference" class="nav-link active" data-scroll-target="#statistical-test-for-difference"><span class="header-section-number">3.1</span> Statistical test for difference</a></li>
+  <li><a href="#testing-for-normality" id="toc-testing-for-normality" class="nav-link" data-scroll-target="#testing-for-normality"><span class="header-section-number">3.2</span> Testing for normality</a></li>
+  <li><a href="#the-two-sample-t-test" id="toc-the-two-sample-t-test" class="nav-link" data-scroll-target="#the-two-sample-t-test"><span class="header-section-number">3.3</span> The two sample t-test</a></li>
   </ul>
 </nav>
     </div>
@@ -161,7 +163,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Two samples</span></h1>
+<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Two samples - test for difference</span></h1>
 </div>
 
 
@@ -178,7 +180,7 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Suppose we have sampled males from a population of two species of penguin, the Gentoo and the Adelie. All the individuals were found on islands in the Paler archipelago of Antarctica. We want to know if there are morphologial (shape) differences between these species. If there are, then that might give us some insight as to differences between the ecological niches that the two species occupy.</p>
+<p>Suppose we have sampled males from a population of two species of penguin, the Gentoo and the Adelie. All the individuals were found on islands in the Palmer archipelago of Antarctica. We want to know if there are morphologial (shape) differences between these species. If there are, then that might give us some insight as to differences between the ecological niches that the two species occupy.</p>
 <p>Here are the first few rows of the data</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
@@ -195,28 +197,14 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 <p>Let’s create a new variable <code>bill_stocky</code> which is the ratio of the bill depth to the bill lenth. The higher this value is, the shorter and thicker the bill.A stocky bill would likely be more powerful and able to crunch thicker bones in fish.</p>
-<div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 9
-  species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
-  &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;
-1 Adelie  Torgersen           39.1          18.7               181        3750
-2 Adelie  Torgersen           39.3          20.6               190        3650
-3 Adelie  Torgersen           39.2          19.6               195        4675
-4 Adelie  Torgersen           38.6          21.2               191        3800
-5 Adelie  Torgersen           34.6          21.1               198        4400
-6 Adelie  Torgersen           42.5          20.7               197        4500
-# ℹ 3 more variables: sex &lt;fct&gt;, year &lt;int&gt;, bill_stocky &lt;dbl&gt;</code></pre>
-</div>
-</div>
-<p>If we summarise the data by calculating the mean and standard deviation and standard error of the means stockiness for each species we find:</p>
+<p>If we summarise the data by calculating the mean and standard deviation and standard error of the mean stockiness for each species we find:</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2 × 5
   species       n mean.bill_stocky sd.bill_stocky se.bill_stocky
   &lt;fct&gt;     &lt;int&gt;            &lt;dbl&gt;          &lt;dbl&gt;          &lt;dbl&gt;
-1 Adelie       73            0.474         0.0386        0.00452
-2 Chinstrap    34            0.377         0.0142        0.00244</code></pre>
+1 Chinstrap    34            0.377         0.0142        0.00244
+2 Gentoo       61            0.318         0.0195        0.00250</code></pre>
 </div>
 </div>
 <p>See how big the difference is between the mean values, compared to the standard errors of those means?</p>
@@ -257,30 +245,89 @@ Standard deviation and standard error of the mean
 <p>Note that we have:</p>
 <ul>
 <li>A difference question</li>
-<li>Replicates - there are 73 Adelie males and 34 Chinstrap males</li>
+<li>Replicates - there are 34 Chinstrap and 61 Gentoo males</li>
 <li>Independent data - each penguin is either an Adelie or a Chinstrap</li>
-<li>One <strong>factor</strong>: Species which has two <strong>levels</strong>: Adelie and Chinstrap. We this have two samples: the 73 Adelies and the 34 Chinstraps.</li>
+<li>One <strong>factor</strong>: Species which has two <strong>levels</strong>: Adelie and Chinstrap. We thus have two samples: the 34 Chinstrap and the 61 Gentoos.</li>
 <li>a continuous reponse variable - bill stockiness.</li>
 </ul>
 <p>You should find that the test-finder tells you to use either a <strong>2-sample t-test</strong> or a <strong>Mann-Whitney U-test</strong>. These are both tests for difference where you have two independent samples, each with replicates</p>
-<p>You use the t-test if you can because it is more powerful than the Mann Whitney test. This is not surprising because the t-test is an example of a <code>parametric test</code> while the Mann Whitney test is a <code>non-parametric</code> test. In making comparisons between the two sets of data it only looks at their ranks, not their actual values. it thus has thrown away some information.</p>
-<p>Why would it do that?</p>
-<p>To use the t-test the two sets of data need to be normally distributed</p>
+<p>You use the t-test if you can because it is more powerful than the Mann Whitney test. This is not surprising because the t-test is an example of a <code>parametric test</code> while the Mann Whitney test is a <code>non-parametric</code> test. In making comparisons between the two sets of data it only looks at their ranks, not their actual values. It thus has thrown away some information.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The terms <strong>parametric</strong> and <strong>non-parametric</strong> refer to whether the tests assume that the data used follow some known distribution, usually a normal distribution. These distributions are described by a small number of <em>parameters</em>, hence the names. For a normal distribution, the key parameters that enable it to be drawn are its mean, which tells us where it is centred, and its standard deviation, which tells us how widely spread it is.</p>
+<p>In general, parametric tests are preferred to non-parametric tests, but we can only use them if the data <em>do</em> meet the criteria they require, prominent among these being that the data are plausibly drawn from a population with some known distribution, which often means a normal distribution.</p>
+</div>
+</div>
+<p>Why would it do that? Because to use the t-test the data need to satisfy various criteria. Here we will focus on one: that the data need to be drawn from populations that are normally distributed about their mean values. If this is not at least approximately the case, then we should not use the t-test and should instead use an alternative, which typically is the non-parametric equivalent test, here the Mann Whitney U test. The Mann Whitney test, like other non-parametric tests, uses the ranks of the data instead of their actual values and in this way is not affected by whatever distribution the data may have.</p>
+</section>
+<section id="testing-for-normality" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="testing-for-normality"><span class="header-section-number">3.2</span> Testing for normality</h2>
+<p>You can either:</p>
+<p><strong>Plot the data using a box plot</strong> If you plot the at using a box plot as we have above, you are looking to see whether the boxes look roughly symmetrical, with the median line roughly in the middle of the box, and no string of outliers heading off to one side or the other. This is because a normay distribution is symmetric, so we should see that at least approximatly in the box plot.</p>
+<p>Other plot types that show the distribution of the data can work too, such as a histogram or a violin plot, but a box plot is easy to make and effective.</p>
+<p><strong>Plot the data using a quantile-quantile plot</strong></p>
+<p>The best plot to use to determine if a data set is plausibly drawn from a normal distribution is a quantile-quantile (QQ) plot. Best of all when the data set is small.</p>
+<p>In these, the percentiles of a data set are plotted against the equivalent percentiles of a normal distribution. If the data are roughly normally distributed then the line will be roughly straight.</p>
 <div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="two_samples_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" style="width:90.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The line for the Gentoos is not quite straight, but it is not too bad. We don’t mind a bit of raggedness at the ends.</p>
+<p><strong>Use a normality test</strong> I don’t favour these, espceicailly for large data sets, but if you must use them…</p>
+<p>The most commonly used one is the Shapiro-Wilk test. It tests a data set against its null hypothesis that the data were drawn from a normally distrivuted population. If the returned p-value is higher than 0.05 then we fail to reject this null and can confidently go on to use a paramteric test such as a t-test that required normality.</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 4
+  species   variable    statistic      p
+  &lt;fct&gt;     &lt;chr&gt;           &lt;dbl&gt;  &lt;dbl&gt;
+1 Chinstrap bill_stocky     0.977 0.671 
+2 Gentoo    bill_stocky     0.963 0.0591</code></pre>
+</div>
+</div>
+<p>For these data, both p-values are greater than 0.05 so we do not reject the null: it is plausible that both data sets are drawn from normally distributed populations</p>
+<p><strong>So all in all, the graphs looks OK and it looks like the data have passed our normality tests. Hence it is OK to use a t-test for difference and we do not need to use a Mann-Whitneyy test instead.</strong></p>
+</section>
+<section id="the-two-sample-t-test" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="the-two-sample-t-test"><span class="header-section-number">3.3</span> The two sample t-test</h2>
+<p>Th t-test is going to test our data against the null that the two sets are drawn from the same population - that there is no difference in the mean bill stockiness between the species.</p>
+<p>On the basis of the summary we made and the box plot, do you think we are going to reject or fail to reject this null?</p>
+<p>We can carry out the t-test in R like this</p>
+<div class="cell" data-eho="true">
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Welch Two Sample t-test
 
 data:  bill_stocky by species
-t = 19, df = 101, p-value &lt;2e-16
-alternative hypothesis: true difference in means between group Adelie and group Chinstrap is not equal to 0
+t = 17, df = 86, p-value &lt;2e-16
+alternative hypothesis: true difference in means between group Chinstrap and group Gentoo is not equal to 0
 95 percent confidence interval:
- 0.0866 0.1070
+ 0.0516 0.0655
 sample estimates:
-   mean in group Adelie mean in group Chinstrap 
-                  0.474                   0.377 </code></pre>
+mean in group Chinstrap    mean in group Gentoo 
+                  0.377                   0.318 </code></pre>
 </div>
 </div>
+<ul>
+<li>Is the p value less than 0.05?</li>
+<li>Do we reject the null hypothesis?</li>
+<li>What does the t-value mean?</li>
+<li>What is the 95% confidence interval for the difference between the mean values for each species?</li>
+<li>Is zero within this confidence interval?</li>
+</ul>
+<p><strong>Reporting the test</strong> We find that the bills of the Chinstrap males are significantly stockier than those of the Gentoo males, as measured by our stockiness index, defined as the ratio of the bill depth to the bill length. (t-test, t = 17, df = 86, p &lt;0.001). The 95% confidence interval for the difference is from 0.052 to 0.065</p>
 
 
 </section>
