@@ -383,7 +383,8 @@ Note
 <p>Th t-test is going to test our data against the null that the two sets are drawn from the same population - that there is no difference in the mean bill stockiness between the species.</p>
 <p>On the basis of the summary we made and the box plot, do you think we are going to reject or fail to reject this null?</p>
 <p>We can carry out the t-test in R like this</p>
-<div class="cell" data-eho="true">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(bill_stocky <span class="sc">~</span> species, <span class="at">data =</span> penguins2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Welch Two Sample t-test
@@ -442,10 +443,23 @@ mean in group Chinstrap    mean in group Gentoo
 </div>
 <p>Note the curvature for the Adelie QQ plot</p>
 <p>Now the Shapiro-Wilk test</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(species <span class="sc">!=</span> <span class="st">"Gentoo"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(species) <span class="sc">|&gt;</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">shapiro_test</span>(bill_stocky)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 4
+  species   variable    statistic       p
+  &lt;fct&gt;     &lt;chr&gt;           &lt;dbl&gt;   &lt;dbl&gt;
+1 Adelie    bill_stocky     0.954 0.00962
+2 Chinstrap bill_stocky     0.977 0.671  </code></pre>
+</div>
+</div>
 <p>The p-value is a lot less than 0.05 for the Adelies.</p>
 <p>So, even though the Chinstraps seem OK, the Adelie bills really don’t seem to be normally distributed in terms of their stockiness. This means that we can’t use a parametrioc test such as a t-test to see if their bills are differenlty stocky to the bill of any other species. What we can do is use a non-parametric test, if one exists. In this cae, where we have replicates, and one factor with two levels there is such a test. It is called the** Mann Whitney U test**. Let’s use it:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wilcox.test</span>(bill_stocky <span class="sc">~</span> species, <span class="at">data =</span> penguins <span class="sc">|&gt;</span> <span class="fu">filter</span>(species <span class="sc">!=</span> <span class="st">"Gentoo"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wilcox.test</span>(bill_stocky <span class="sc">~</span> species, <span class="at">data =</span> penguins <span class="sc">|&gt;</span> <span class="fu">filter</span>(species <span class="sc">!=</span> <span class="st">"Gentoo"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Wilcoxon rank sum test with continuity correction

@@ -162,7 +162,7 @@ penguins2 <- penguins |> filter(species != "Adelie") |>   filter(!(species == "G
 ```
 
 
-```{r, eho = TRUE}
+```{r, echo = TRUE}
 t.test(bill_stocky ~ species, data = penguins2)
 ```
 
@@ -227,7 +227,7 @@ penguins |>
 Note the curvature for the Adelie QQ plot
 
 Now the Shapiro-Wilk test
-```{echo = TRUE}
+```{r, echo = TRUE}
 penguins |>
   filter(species != "Gentoo") |>
   group_by(species) |>
