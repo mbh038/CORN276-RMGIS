@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>References – CORN276-RMGIS</title>
+<title>3&nbsp; Two samples – CORN276-RMGIS</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,26 +20,7 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -49,7 +30,8 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./two_samples.html" rel="prev">
+<link href="./references.html" rel="next">
+<link href="./counts.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -99,7 +81,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./references.html">References</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./two_samples.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Two samples</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -150,13 +132,13 @@ div.csl-indent {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./two_samples.html" class="sidebar-item-text sidebar-link">
+  <a href="./two_samples.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Two samples</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link active">
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">References</span></a>
   </div>
 </li>
@@ -165,15 +147,21 @@ div.csl-indent {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#statistical-test-for-difference" id="toc-statistical-test-for-difference" class="nav-link active" data-scroll-target="#statistical-test-for-difference"><span class="header-section-number">3.1</span> Statistical test for difference</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">References</h1>
+<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Two samples</span></h1>
 </div>
 
 
@@ -190,10 +178,112 @@ div.csl-indent {
 </header>
 
 
+<p>Suppose we have sampled males from a population of two species of penguin, the Gentoo and the Adelie. All the individuals were found on islands in the Paler archipelago of Antarctica. We want to know if there are morphologial (shape) differences between these species. If there are, then that might give us some insight as to differences between the ecological niches that the two species occupy.</p>
+<p>Here are the first few rows of the data</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 8
+  species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+  &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;
+1 Adelie  Torgersen           39.1          18.7               181        3750
+2 Adelie  Torgersen           39.3          20.6               190        3650
+3 Adelie  Torgersen           39.2          19.6               195        4675
+4 Adelie  Torgersen           38.6          21.2               191        3800
+5 Adelie  Torgersen           34.6          21.1               198        4400
+6 Adelie  Torgersen           42.5          20.7               197        4500
+# ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;</code></pre>
+</div>
+</div>
+<p>Let’s create a new variable <code>bill_stocky</code> which is the ratio of the bill depth to the bill lenth. The higher this value is, the shorter and thicker the bill.A stocky bill would likely be more powerful and able to crunch thicker bones in fish.</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 9
+  species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+  &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;
+1 Adelie  Torgersen           39.1          18.7               181        3750
+2 Adelie  Torgersen           39.3          20.6               190        3650
+3 Adelie  Torgersen           39.2          19.6               195        4675
+4 Adelie  Torgersen           38.6          21.2               191        3800
+5 Adelie  Torgersen           34.6          21.1               198        4400
+6 Adelie  Torgersen           42.5          20.7               197        4500
+# ℹ 3 more variables: sex &lt;fct&gt;, year &lt;int&gt;, bill_stocky &lt;dbl&gt;</code></pre>
+</div>
+</div>
+<p>If we summarise the data by calculating the mean and standard deviation and standard error of the means stockiness for each species we find:</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 5
+  species       n mean.bill_stocky sd.bill_stocky se.bill_stocky
+  &lt;fct&gt;     &lt;int&gt;            &lt;dbl&gt;          &lt;dbl&gt;          &lt;dbl&gt;
+1 Adelie       73            0.474         0.0386        0.00452
+2 Chinstrap    34            0.377         0.0142        0.00244</code></pre>
+</div>
+</div>
+<p>See how big the difference is between the mean values, compared to the standard errors of those means?</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Standard deviation and standard error of the mean
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>standard deviations</strong>: These tell us about the spread of values in a sample or a population. They do not systematically get bigger or smaller as the sample size increases. The standard deviation of a sample can be used as an estimate of the standard deviation of the population. We use standard deviations for <em>descriptive purposes</em></p>
+<p><strong>standard errors of the mean</strong> These are used to indicate how precisely a sample mean estimates the true population mean. They are used for <em>inferential purposes</em>, whereby we try to infer from the sample mean the range of values in which the true population mean might be. Assuming normally distributed values, it would be very surprising if the true population means were more than two standard errors away from the sample means.</p>
+</div>
+</div>
+<p>Let’s plot the data, using a box plot:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="two_samples_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" style="width:90.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<ul>
+<li>On this box plot, identify the 25th, 50th and 75th percentile values for each species.</li>
+<li>Which of these is the median value?</li>
+<li>What do the whiskers represent?</li>
+<li>Are there any outliers?</li>
+<li>Do you think the distributions of the data are roughly symmetrical?</li>
+</ul>
+<section id="statistical-test-for-difference" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="statistical-test-for-difference"><span class="header-section-number">3.1</span> Statistical test for difference</h2>
+<p>Use the test finder to decide which statistical test for difference might be appropriate.</p>
+<p>Note that we have:</p>
+<ul>
+<li>A difference question</li>
+<li>Replicates - there are 73 Adelie males and 34 Chinstrap males</li>
+<li>Independent data - each penguin is either an Adelie or a Chinstrap</li>
+<li>One <strong>factor</strong>: Species which has two <strong>levels</strong>: Adelie and Chinstrap. We this have two samples: the 73 Adelies and the 34 Chinstraps.</li>
+<li>a continuous reponse variable - bill stockiness.</li>
+</ul>
+<p>You should find that the test-finder tells you to use either a <strong>2-sample t-test</strong> or a <strong>Mann-Whitney U-test</strong>. These are both tests for difference where you have two independent samples, each with replicates</p>
+<p>You use the t-test if you can because it is more powerful than the Mann Whitney test. This is not surprising because the t-test is an example of a <code>parametric test</code> while the Mann Whitney test is a <code>non-parametric</code> test. In making comparisons between the two sets of data it only looks at their ranks, not their actual values. it thus has thrown away some information.</p>
+<p>Why would it do that?</p>
+<p>To use the t-test the two sets of data need to be normally distributed</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Welch Two Sample t-test
+
+data:  bill_stocky by species
+t = 19, df = 101, p-value &lt;2e-16
+alternative hypothesis: true difference in means between group Adelie and group Chinstrap is not equal to 0
+95 percent confidence interval:
+ 0.0866 0.1070
+sample estimates:
+   mean in group Adelie mean in group Chinstrap 
+                  0.474                   0.377 </code></pre>
+</div>
+</div>
 
 
-
-
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -615,11 +705,14 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./two_samples.html" class="pagination-link" aria-label="Two samples">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Two samples</span></span>
+      <a href="./counts.html" class="pagination-link" aria-label="Chi-squared analysis of count data">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Chi-squared analysis of count data</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="./references.html" class="pagination-link" aria-label="References">
+        <span class="nav-page-text">References</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->

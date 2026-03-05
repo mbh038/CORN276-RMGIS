@@ -1,0 +1,57 @@
+# Test finder {.unnumbered}
+
+```{r, include = FALSE}
+library(here)
+```
+
+You can either use this [text version of a test finder](figures/test_finder_and_help.pdf), taken from [@gilbert2017]
+
+or use this flowchart to see which test is appropriate for your study design and your data:
+
+```{mermaid, include = TRUE, echo = FALSE}
+
+%%| fig-width: 10
+%%| fig-align: "centre"
+%%| column: page-right
+
+flowchart TD
+  A{Difference or Trend Question?} --> B[Trend]
+  B --> B2{Are you testing for degree of associationor are you trying to make predictions?}
+  B2 --> B33[Association:Test for correlation coefficient Pearson or  Spearman's Rank]
+  B2 --> B44[Predictions: Simple linear regression]
+  A --> C[Difference]
+  C --> C22{Do you have replicates?}
+  C22 --> C22Y[Yes]
+  C22 --> C22N[No]
+  C22N --> C23{Do you have count data?}
+  C23 --> C23Y[Yes]
+  C23 --> C23N[N0]
+  C23Y --> C24(Chi square test: Goodness of fit or Test of independence)
+  C23N --> C25[These data cannot be analysed]
+  C22Y --> D{How many factors?}
+  D --> F[Two or more]
+  F --> F2{Independent samples?}
+  F2 --> F2Y[Yes]
+  F2 --> F2N[No]
+  F2Y --> F22Y(n-way ANOVA)
+  F2N --> F22N(n-way repeated measures ANOVA)
+  D --> E[One]
+  E --> G{How many levels?}
+  G --> H[One]
+  G --> Ha[Two]
+  G --> I[More than two]
+  I --> J{Independent samples?}
+  J --> K[No]
+  J --> L[Yes]
+  K --> S(Repeated measures one-way ANOVA or Friedman Test)
+  L --> T(One way ANOVA or Kruskal Wallis one-way test)
+  H --> R(One sample t-test or Mann Whitney U test)
+  Ha --> M{Independent samples?}
+  M --> N[No]
+  M --> O[Yes]
+  N --> P(Paired t-test or Signed rank test)
+  O --> Q(Two sample t-test or Mann Whitney U test)
+  
+```
+
+Now go to whichever chapter of this book covers the test you need.

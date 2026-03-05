@@ -1,0 +1,103 @@
+# Two samples
+
+
+```{r}
+#| include: false
+source(here::here("_common.R"))
+```
+
+```{r}
+knitr::opts_chunk$set(echo=FALSE)
+```
+
+
+Suppose we have sampled males from a population of two species of penguin, the Gentoo and the Adelie. All the individuals were found on islands in the Paler archipelago of Antarctica. We want to know if there are morphologial (shape) differences between these species. If there are, then that might give us some insight as to differences between the  ecological niches that the two species occupy.
+
+Here are the first few rows of the data
+
+```{r}
+data(penguins)
+penguins <- penguins |>
+  filter(sex == "male") |>
+  filter(species != "Gentoo")
+head(penguins)
+```
+Let's create a new variable `bill_stocky` which is the ratio of the bill depth to the bill lenth. The higher this value is, the shorter and thicker the bill.A stocky bill would likely be more powerful and able to crunch thicker bones in fish.
+
+```{r}
+penguins <- penguins |>
+  mutate(bill_stocky = bill_depth_mm / bill_length_mm)
+head(penguins)
+```
+
+
+If we summarise the data by calculating the mean and standard deviation and standard error of the means stockiness for each species we find:
+
+```{r}
+penguins_summary <- penguins |> 
+  group_by(species) |>
+  summarise(n = n(), mean.bill_stocky = mean(bill_stocky),sd.bill_stocky = sd(bill_stocky), se.bill_stocky=sd(bill_stocky)/sqrt(n()))
+penguins_summary
+```
+
+See how big the difference is between the mean values, compared to the standard errors of those means?
+
+:::callout-note
+## Standard deviation and standard error of the mean
+**standard deviations**: These tell us about the spread of values in a sample or a population. They do not systematically get bigger or smaller as the sample size increases. The standard deviation of a sample can be used as an estimate of the standard deviation of the population. We use standard deviations for *descriptive purposes*
+
+**standard errors of the mean** These are used to indicate how precisely a sample mean estimates the true population mean. They are used for *inferential purposes*, whereby we try to infer from the sample mean the range of values in which the true population mean might be. Assuming normally distributed values, it would be very surprising if the true population means were more than two standard errors away from the sample means.
+:::
+
+Let's plot the data, using a box plot:
+
+```{r}
+ns <- penguins |>
+  group_by(species) |>
+  summarise(n=n())
+
+penguins |>
+  ggplot(aes(x = species, y = bill_stocky)) +
+  geom_boxplot() +
+  labs(x = "Species",
+       y = "BIll shape index") +
+  geom_text(data = ns, aes(y = 0.28, label = paste("n = ",n)), vjust = 0, nudge_y = -.05) + 
+  theme_minimal()
+```
+
+* On this box plot, identify the 25th, 50th and 75th percentile values for each species.
+* Which of these is the median value?
+* What do the whiskers represent?
+* Are there any outliers?
+* Do you think the distributions of the data are roughly symmetrical?
+
+## Statistical test for difference
+
+Use the test finder to decide which statistical test for difference might be appropriate.
+
+Note that we have:
+
+* A difference question
+* Replicates - there are 73 Adelie males and 34 Chinstrap males
+* Independent data - each penguin is either an Adelie or a Chinstrap
+* One **factor**: Species which has two **levels**: Adelie and Chinstrap. We this have two samples: the 73 Adelies and the 34 Chinstraps.
+* a continuous reponse variable - bill stockiness.
+
+
+You should find that the test-finder tells you to use either a **2-sample t-test** or a **Mann-Whitney U-test**. These are both tests for difference where you have two independent samples, each with replicates
+
+You use the t-test if you can because it is more powerful than the Mann Whitney test. This is not surprising because the t-test is an example of a `parametric test` while the Mann Whitney test is a `non-parametric` test. In making comparisons between the two sets of data it only looks at their ranks, not their actual values. it thus has thrown away some information.
+
+Why would it do that?
+
+
+
+To use the t-test the two sets of data need to be normally distributed
+
+
+
+
+```{r}
+t.test(bill_stocky ~ species, data = penguins)
+```
+

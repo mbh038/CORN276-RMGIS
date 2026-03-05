@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>References – CORN276-RMGIS</title>
+<title>Test finder – CORN276-RMGIS</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,26 +20,7 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -49,7 +30,8 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./two_samples.html" rel="prev">
+<link href="./visualising_data.html" rel="next">
+<link href="./index.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -86,6 +68,9 @@ div.csl-indent {
     "search-label": "Search"
   }
 }</script>
+<script src="site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 
 
 </head>
@@ -99,7 +84,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./references.html">References</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./test_finder.html">Test finder</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -132,7 +117,7 @@ div.csl-indent {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./test_finder.html" class="sidebar-item-text sidebar-link">
+  <a href="./test_finder.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Test finder</span></a>
   </div>
 </li>
@@ -156,7 +141,7 @@ div.csl-indent {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link active">
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">References</span></a>
   </div>
 </li>
@@ -173,7 +158,7 @@ div.csl-indent {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">References</h1>
+<h1 class="title">Test finder</h1>
 </div>
 
 
@@ -190,8 +175,62 @@ div.csl-indent {
 </header>
 
 
+<p>You can either use this <a href="figures/test_finder_and_help.pdf">text version of a test finder</a>, taken from <span class="citation" data-cites="gilbert2017">(<a href="references.html#ref-gilbert2017" role="doc-biblioref"><strong>gilbert2017?</strong></a>)</span></p>
+<p>or use this flowchart to see which test is appropriate for your study design and your data:</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">%%| fig-width: 10
+%%| fig-align: "centre"
+%%| column: page-right
 
-
+flowchart TD
+  A{Difference or Trend Question?} --&gt; B[Trend]
+  B --&gt; B2{Are you testing for degree of associationor are you trying to make predictions?}
+  B2 --&gt; B33[Association:Test for correlation coefficient Pearson or  Spearman's Rank]
+  B2 --&gt; B44[Predictions: Simple linear regression]
+  A --&gt; C[Difference]
+  C --&gt; C22{Do you have replicates?}
+  C22 --&gt; C22Y[Yes]
+  C22 --&gt; C22N[No]
+  C22N --&gt; C23{Do you have count data?}
+  C23 --&gt; C23Y[Yes]
+  C23 --&gt; C23N[N0]
+  C23Y --&gt; C24(Chi square test: Goodness of fit or Test of independence)
+  C23N --&gt; C25[These data cannot be analysed]
+  C22Y --&gt; D{How many factors?}
+  D --&gt; F[Two or more]
+  F --&gt; F2{Independent samples?}
+  F2 --&gt; F2Y[Yes]
+  F2 --&gt; F2N[No]
+  F2Y --&gt; F22Y(n-way ANOVA)
+  F2N --&gt; F22N(n-way repeated measures ANOVA)
+  D --&gt; E[One]
+  E --&gt; G{How many levels?}
+  G --&gt; H[One]
+  G --&gt; Ha[Two]
+  G --&gt; I[More than two]
+  I --&gt; J{Independent samples?}
+  J --&gt; K[No]
+  J --&gt; L[Yes]
+  K --&gt; S(Repeated measures one-way ANOVA or Friedman Test)
+  L --&gt; T(One way ANOVA or Kruskal Wallis one-way test)
+  H --&gt; R(One sample t-test or Mann Whitney U test)
+  Ha --&gt; M{Independent samples?}
+  M --&gt; N[No]
+  M --&gt; O[Yes]
+  N --&gt; P(Paired t-test or Signed rank test)
+  O --&gt; Q(Two sample t-test or Mann Whitney U test)
+  
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p>Now go to whichever chapter of this book covers the test you need.</p>
 
 
 
@@ -615,11 +654,14 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./two_samples.html" class="pagination-link" aria-label="Two samples">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Two samples</span></span>
+      <a href="./index.html" class="pagination-link" aria-label="Preface">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Preface</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="./visualising_data.html" class="pagination-link" aria-label="Visualising data">
+        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Visualising data</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->
