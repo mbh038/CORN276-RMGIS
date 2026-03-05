@@ -10,12 +10,18 @@ book:
   page-footer: CC-BY-SA-4.0 (2026) Michael Hunt
   chapters:
     - index.qmd
-    - test_finder.qmd
-    - visualising_data.qmd
-    - counts.qmd
-    - two_samples.qmd
-    - qq_plots.qmd
-    - references.qmd
+    - part: "Main chapters"
+      chapters:
+      - visualising_data.qmd
+      - counts.qmd
+      - two_samples.qmd
+    - part: "Additional help"
+      chapters:
+      - test_finder.qmd
+      - qq_plots.qmd
+    - part: "References"
+      chapters:
+      - references.qmd
 
 bibliography: references.bib
 

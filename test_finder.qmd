@@ -1,4 +1,4 @@
-# Test finder {.unnumbered}
+# Test finder
 
 ```{r, include = FALSE}
 library(here)

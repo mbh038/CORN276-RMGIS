@@ -130,9 +130,9 @@ The line for the Gentoos is not quite straight, but it is not too bad. We don't 
 
 
 **Use a normality test**
-I don't favour these, espceicailly for large data sets, but if you must use them...
+I don't favour these, especially for large data sets, but if you must use them...
 
-The most commonly used one is the Shapiro-Wilk test. It tests a data set against its null hypothesis that the data were drawn from a normally distrivuted population. If the returned p-value is higher than 0.05 then we fail to reject this null and can confidently go on to use a paramteric test such as a t-test that required normality.
+The most commonly used one is the Shapiro-Wilk test. It tests a data set against its null hypothesis that the data were drawn from a normally distributed population. If the returned p-value is higher than 0.05 then we fail to reject this null and can confidently go on to use a parametric test such as a t-test that required normality.
 
 ```{r}
 penguins |>
