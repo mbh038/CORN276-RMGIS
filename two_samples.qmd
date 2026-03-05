@@ -192,6 +192,8 @@ Here, we will try option 2, to illustrate its use.
 
 As an example, let's do the same test for difference as above, but now comparing Adelie males to Chinstrap males.
 
+First the box plots:
+
 ```{r}
 
 ns2 <- penguins |>
@@ -211,6 +213,8 @@ penguins |>
 
  Note the outlier in the Adelie data set
  
+ Now the QQ plots:
+ 
 ```{r}
 penguins |>
   filter(species != "Gentoo") |>
@@ -222,7 +226,7 @@ penguins |>
 ```
 Note the curvature for the Adelie QQ plot
 
-
+Now the Shapiro-Wilk test
 ```{echo = TRUE}
 penguins |>
   filter(species != "Gentoo") |>

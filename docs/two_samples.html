@@ -419,6 +419,7 @@ mean in group Chinstrap    mean in group Gentoo
 </ol>
 <p>Here, we will try option 2, to illustrate its use.</p>
 <p>As an example, let’s do the same test for difference as above, but now comparing Adelie males to Chinstrap males.</p>
+<p>First the box plots:</p>
 <div class="cell">
 <div class="cell-output-display">
 <div>
@@ -429,6 +430,7 @@ mean in group Chinstrap    mean in group Gentoo
 </div>
 </div>
 <p>Note the outlier in the Adelie data set</p>
+<p>Now the QQ plots:</p>
 <div class="cell">
 <div class="cell-output-display">
 <div>
@@ -439,6 +441,7 @@ mean in group Chinstrap    mean in group Gentoo
 </div>
 </div>
 <p>Note the curvature for the Adelie QQ plot</p>
+<p>Now the Shapiro-Wilk test</p>
 <p>The p-value is a lot less than 0.05 for the Adelies.</p>
 <p>So, even though the Chinstraps seem OK, the Adelie bills really don’t seem to be normally distributed in terms of their stockiness. This means that we can’t use a parametrioc test such as a t-test to see if their bills are differenlty stocky to the bill of any other species. What we can do is use a non-parametric test, if one exists. In this cae, where we have replicates, and one factor with two levels there is such a test. It is called the** Mann Whitney U test**. Let’s use it:</p>
 <div class="cell">
