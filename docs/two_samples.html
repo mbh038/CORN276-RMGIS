@@ -30,7 +30,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./references.html" rel="next">
+<link href="./qq_plots.html" rel="next">
 <link href="./counts.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -138,6 +138,12 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./qq_plots.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Quantile-quantile plots</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">References</span></a>
   </div>
@@ -152,9 +158,11 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#statistical-test-for-difference" id="toc-statistical-test-for-difference" class="nav-link active" data-scroll-target="#statistical-test-for-difference"><span class="header-section-number">3.1</span> Statistical test for difference</a></li>
-  <li><a href="#testing-for-normality" id="toc-testing-for-normality" class="nav-link" data-scroll-target="#testing-for-normality"><span class="header-section-number">3.2</span> Testing for normality</a></li>
-  <li><a href="#the-two-sample-t-test" id="toc-the-two-sample-t-test" class="nav-link" data-scroll-target="#the-two-sample-t-test"><span class="header-section-number">3.3</span> The two sample t-test</a></li>
+  <li><a href="#penguin-data" id="toc-penguin-data" class="nav-link active" data-scroll-target="#penguin-data"><span class="header-section-number">3.1</span> Penguin data</a></li>
+  <li><a href="#statistical-test-for-difference-one-factor-two-levels" id="toc-statistical-test-for-difference-one-factor-two-levels" class="nav-link" data-scroll-target="#statistical-test-for-difference-one-factor-two-levels"><span class="header-section-number">3.2</span> Statistical test for difference: one factor, two levels</a></li>
+  <li><a href="#testing-for-normality" id="toc-testing-for-normality" class="nav-link" data-scroll-target="#testing-for-normality"><span class="header-section-number">3.3</span> Testing for normality</a></li>
+  <li><a href="#the-two-sample-t-test" id="toc-the-two-sample-t-test" class="nav-link" data-scroll-target="#the-two-sample-t-test"><span class="header-section-number">3.4</span> The two sample t-test</a></li>
+  <li><a href="#mann-whitney-test-for-difference---for-data-that-are-not-normally-distributed" id="toc-mann-whitney-test-for-difference---for-data-that-are-not-normally-distributed" class="nav-link" data-scroll-target="#mann-whitney-test-for-difference---for-data-that-are-not-normally-distributed"><span class="header-section-number">3.5</span> Mann-Whitney test for difference - for data that are not normally distributed</a></li>
   </ul>
 </nav>
     </div>
@@ -180,6 +188,8 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<section id="penguin-data" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="penguin-data"><span class="header-section-number">3.1</span> Penguin data</h2>
 <p>Suppose we have sampled males from a population of two species of penguin, the Gentoo and the Adelie. All the individuals were found on islands in the Palmer archipelago of Antarctica. We want to know if there are morphologial (shape) differences between these species. If there are, then that might give us some insight as to differences between the ecological niches that the two species occupy.</p>
 <p>Here are the first few rows of the data</p>
 <div class="cell">
@@ -239,8 +249,9 @@ Standard deviation and standard error of the mean
 <li>Are there any outliers?</li>
 <li>Do you think the distributions of the data are roughly symmetrical?</li>
 </ul>
-<section id="statistical-test-for-difference" class="level2" data-number="3.1">
-<h2 data-number="3.1" class="anchored" data-anchor-id="statistical-test-for-difference"><span class="header-section-number">3.1</span> Statistical test for difference</h2>
+</section>
+<section id="statistical-test-for-difference-one-factor-two-levels" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="statistical-test-for-difference-one-factor-two-levels"><span class="header-section-number">3.2</span> Statistical test for difference: one factor, two levels</h2>
 <p>Use the test finder to decide which statistical test for difference might be appropriate.</p>
 <p>Note that we have:</p>
 <ul>
@@ -268,8 +279,8 @@ Note
 </div>
 <p>Why would it do that? Because to use the t-test the data need to satisfy various criteria. Here we will focus on one: that the data need to be drawn from populations that are normally distributed about their mean values. If this is not at least approximately the case, then we should not use the t-test and should instead use an alternative, which typically is the non-parametric equivalent test, here the Mann Whitney U test. The Mann Whitney test, like other non-parametric tests, uses the ranks of the data instead of their actual values and in this way is not affected by whatever distribution the data may have.</p>
 </section>
-<section id="testing-for-normality" class="level2" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="testing-for-normality"><span class="header-section-number">3.2</span> Testing for normality</h2>
+<section id="testing-for-normality" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="testing-for-normality"><span class="header-section-number">3.3</span> Testing for normality</h2>
 <p>You can either:</p>
 <p><strong>Plot the data using a box plot</strong> If you plot the at using a box plot as we have above, you are looking to see whether the boxes look roughly symmetrical, with the median line roughly in the middle of the box, and no string of outliers heading off to one side or the other. This is because a normay distribution is symmetric, so we should see that at least approximatly in the box plot.</p>
 <p>Other plot types that show the distribution of the data can work too, such as a histogram or a violin plot, but a box plot is easy to make and effective.</p>
@@ -300,8 +311,8 @@ Note
 <p>For these data, both p-values are greater than 0.05 so we do not reject the null: it is plausible that both data sets are drawn from normally distributed populations</p>
 <p><strong>So all in all, the graphs looks OK and it looks like the data have passed our normality tests. Hence it is OK to use a t-test for difference and we do not need to use a Mann-Whitneyy test instead.</strong></p>
 </section>
-<section id="the-two-sample-t-test" class="level2" data-number="3.3">
-<h2 data-number="3.3" class="anchored" data-anchor-id="the-two-sample-t-test"><span class="header-section-number">3.3</span> The two sample t-test</h2>
+<section id="the-two-sample-t-test" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="the-two-sample-t-test"><span class="header-section-number">3.4</span> The two sample t-test</h2>
 <p>Th t-test is going to test our data against the null that the two sets are drawn from the same population - that there is no difference in the mean bill stockiness between the species.</p>
 <p>On the basis of the summary we made and the box plot, do you think we are going to reject or fail to reject this null?</p>
 <p>We can carry out the t-test in R like this</p>
@@ -328,6 +339,61 @@ mean in group Chinstrap    mean in group Gentoo
 <li>Is zero within this confidence interval?</li>
 </ul>
 <p><strong>Reporting the test</strong> We find that the bills of the Chinstrap males are significantly stockier than those of the Gentoo males, as measured by our stockiness index, defined as the ratio of the bill depth to the bill length. (t-test, t = 17, df = 86, p &lt;0.001). The 95% confidence interval for the difference is from 0.052 to 0.065</p>
+</section>
+<section id="mann-whitney-test-for-difference---for-data-that-are-not-normally-distributed" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="mann-whitney-test-for-difference---for-data-that-are-not-normally-distributed"><span class="header-section-number">3.5</span> Mann-Whitney test for difference - for data that are not normally distributed</h2>
+<p>What if the data had failed the normality test? That is, what if one or both of the QQ plots had looked distinctly curved, or at least one of the box plots was not at all symmetrical, or the p-values from at least one of the Shapiro-Wilk tests wass less than 0.05? What then?</p>
+<p>Well, we shouldn’t use a parametric test like a t-test.</p>
+<p>Instead, we could:</p>
+<ol type="1">
+<li>transform the data and make it more normal, often by taking the log of the variable then doing a t-test on that. maybe then we could use the t-test</li>
+<li>Use an equaivalent non-parametric test such a Mann Whitney test.</li>
+<li>Use a fancy generalised linear model.</li>
+</ol>
+<p>As an example, let’s do the same test for difference as above, but now compring Adelie males to Chinstrap males.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="two_samples_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" style="width:90.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Note the outlier in the Adelie data set</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="two_samples_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" style="width:90.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Note the curvature for the Adelie QQ plot</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 4
+  species   variable    statistic       p
+  &lt;fct&gt;     &lt;chr&gt;           &lt;dbl&gt;   &lt;dbl&gt;
+1 Adelie    bill_stocky     0.954 0.00962
+2 Chinstrap bill_stocky     0.977 0.671  </code></pre>
+</div>
+</div>
+<p>The p-value is a lot less than 0.05 for the Adelies.</p>
+<p>So, even though the Chinstraps seem OK, the Adelie bills really don’t seem to be normally distributed in terms of their stockiness. This means that we can’t use a parametrioc test such as a t-test to see if their bills are differenlty stocky to the bill of any other species. What we can do is use a non-parametric test, if one exists. In this cae, where we have replicates, and one factor with two levels there is such a test. It is called the Mann Whitney U test. Let’s use it:</p>
+<div class="cell" data-eho="true">
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Wilcoxon rank sum test with continuity correction
+
+data:  bill_stocky by species
+W = 2482, p-value &lt;2e-16
+alternative hypothesis: true location shift is not equal to 0</code></pre>
+</div>
+</div>
+<p>This tells us that there is evidence of a significant difference between the stockiness of the bills of Adelie males and those of Chinstrap males. (Mann Whitney, W = 2482, p&lt;-.001).</p>
+<p>…but we already knew that, from the box plot.</p>
 
 
 </section>
@@ -757,8 +823,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./references.html" class="pagination-link" aria-label="References">
-        <span class="nav-page-text">References</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./qq_plots.html" class="pagination-link" aria-label="Quantile-quantile plots">
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Quantile-quantile plots</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
