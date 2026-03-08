@@ -1,4 +1,4 @@
-# Two samples - test for difference
+# Two samples, indepentdent data - test for difference
 
 
 ```{r}
@@ -12,7 +12,14 @@ knitr::opts_chunk$set(echo=FALSE)
 
 ## Penguin data
 
-Suppose we have sampled males from a population of two species of penguin, the Gentoo and the Adelie. All the individuals were found on islands in the Palmer archipelago of Antarctica. We want to know if there are morphologial (shape) differences between these species. If there are, then that might give us some insight as to differences between the  ecological niches that the two species occupy.
+Suppose we have sampled males from a population of two species of penguin, the Gentoo and the Adelie. All the individuals were found on islands in the Palmer archipelago of Antarctica. For each penguin, measurements were made of their bill length, bill depth, flipper length and body weight. We want to know if there are morphological (shape) differences between the bills of these species, so let's focus on those two bill measurements, as shown in @fig-bill-measurements. If there is a difference, then that might give us some insight as to differences between the  ecological niches that the two species occupy.
+
+```{r}
+#label: fig-bill-measurements
+#fig-cap: DImensions of the pengions bills as measired in the Palmer penguinds data set. Artwork by [Allison Horst](https://allisonhorst.github.io/palmerpenguins/articles/art.html)
+
+knitr::include_graphics(here("figures","culmen_depth.jpg"))
+```
 
 Here are the first few rows of the data
 
@@ -46,7 +53,7 @@ penguins_summary
 See how big the difference is between the mean values, compared to the standard errors of those means?
 
 :::callout-note
-## Standard deviation and standard error of the mean
+
 **standard deviations**: These tell us about the spread of values in a sample or a population. They do not systematically get bigger or smaller as the sample size increases. The standard deviation of a sample can be used as an estimate of the standard deviation of the population. We use standard deviations for *descriptive purposes*
 
 **standard errors of the mean** These are used to indicate how precisely a sample mean estimates the true population mean. They are used for *inferential purposes*, whereby we try to infer from the sample mean the range of values in which the true population mean might be. Assuming normally distributed values, it would be very surprising if the true population means were more than two standard errors away from the sample means.
@@ -86,8 +93,8 @@ Note that we have:
 * A difference question
 * Replicates - there are 34 Chinstrap and 61 Gentoo males
 * Independent data - each penguin is either an Adelie or a Chinstrap
-* One **factor**: Species which has two **levels**: Adelie and Chinstrap. We thus have two samples: the 34 Chinstrap and the 61 Gentoos.
-* a continuous reponse variable - bill stockiness.
+* One **factor**: Species. This has two **levels**: Adelie and Chinstrap. We thus have two samples: the 34 Chinstrap and the 61 Gentoos.
+* a continuous and numeric reponse variable - bill stockiness.
 
 
 You should find that the test-finder tells you to use either a **2-sample t-test** or a **Mann-Whitney U-test**. These are both tests for difference where you have two independent samples, each with replicates
@@ -106,14 +113,14 @@ Why would it do that? Because to use the t-test the data need to satisfy various
 
 You can either:
 
-**Plot the data using a box plot**
-If you plot the at using a box plot as we have above, you are looking to see whether the boxes look roughly symmetrical, with the median line roughly in the middle of the box, and no string of outliers heading off to one side or the other. This is because a normay distribution is symmetric, so we should see that at least approximatly in the box plot.
+**Plot the data using a box plot or similar**
+If you plot the data using a box plot as we have above, you are looking to see whether the boxes look roughly symmetrical, with the median line roughly in the middle of the box, and no string of outliers heading off to one side or the other. This is because a normal distribution is symmetric, so we should see that reflected at least approximately in the box plot.
 
-Other plot types that show the distribution of the data can work too, such as a histogram or a violin plot, but a box plot is easy to make and effective.
+Other plot types that show the distribution of the data can work too, such as a histogram or a violin plot, but a box plot is easy to make and is effective.
 
 **Plot the data using a quantile-quantile plot**
 
-The best plot to use to determine if a data set is plausibly drawn from a normal distribution is a quantile-quantile (QQ) plot. Best of all when the data set is small.
+The best plot to use to determine if a data set is plausibly drawn from a normal distributed population is a quantile-quantile (QQ) plot, particularly when the data set is small.
 
 In these, the percentiles of a data set are plotted against the equivalent percentiles of a normal distribution. If the data are roughly normally distributed then the line will be roughly straight.
 
@@ -129,7 +136,7 @@ penguins |>
   theme_minimal()
 ```
 
-The line for the Gentoos is not quite straight, but it is not too bad. We don't mind a bit of raggedness at the ends.
+The line for the Gentoos is not quite straight, but it is not too bad. We don't mind a bit of raggedness at the ends since we are only looking for the data to be close enough to being normally distributed for a parametric test to be reliable. We don't need the data to be perfectly normally distributed.
 
 
 **Use a normality test**
@@ -236,7 +243,7 @@ penguins |>
 
 The p-value is a lot less than 0.05 for the Adelies.
 
-So, even though the Chinstraps seem OK, the Adelie bills really don't seem to be normally distributed in terms of their stockiness. This means that we can't use a parametrioc test such as a t-test to see if their bills are differenlty stocky to the bill of any other species. What we can do is use a non-parametric test, if one exists. In this cae, where we have replicates, and one factor with two levels there is such a test. It is called the** Mann Whitney U test**. Let's use it:
+So, even though the Chinstraps seem OK, the Adelie bills really don't seem to be normally distributed in terms of their stockiness. This means that we can't use a parametric test such as a t-test to see if their bills are differently stocky to the bill of any other species. What we can do is use a non-parametric test, if one exists. In this case, where we have replicates, and one factor with two levels, there is such a test. It is called the **Mann Whitney U test**. Let's use it:
 
 ```{r, echo = TRUE}
 wilcox.test(bill_stocky ~ species, data = penguins |> filter(species != "Gentoo"))
@@ -244,3 +251,81 @@ wilcox.test(bill_stocky ~ species, data = penguins |> filter(species != "Gentoo"
 This tells us that there is evidence of a significant difference between the stockiness of the bills of Adelie males and those of Chinstrap males. (Mann Whitney, W = 2482, p<-.001).
 
 ...but we already knew that, from the box plot.
+
+## Exercises
+
+
+### Exercise One: tests for normality
+
+In each of the examples below we show the results of plotting or testing each of two data sets, each of size N = 100 replicates.
+
+For each case, decide which of the two samples might plausibly be drawn from a normally distributed population:
+
+
+```{r}
+N <- 100
+d1 <- rnorm(N, mean = 2)
+d2 <- rlnorm(N)
+ds <- tibble(category = c(rep("A", N), rep("B", N)),
+             response = c(d1, d2)
+)
+```
+
+**Histograms: A or B**
+```{r}
+ds |>
+  mutate(category = rep(sample(c("A","B"),2),each = N)) |>
+  ggplot(aes(x = response)) +
+  geom_histogram(bins = 15) +
+  labs(x = "Value",
+       y = "Frequency") +
+  facet_wrap(~category) +
+  theme_minimal()
+```
+**Box plots: C or D**
+```{r}
+ds |>
+  mutate(category = rep(sample(c("C","D"),2),each = N)) |>
+  ggplot(aes(x = category, y = response)) +
+  geom_boxplot() +
+  labs(x = "Data Set",
+       y = "Frequency") +
+  theme_minimal()
+```
+**Violin plots: E or F
+```{r}
+ds |>
+  mutate(category = rep(sample(c("E","F"),2),each = N)) |>
+  ggplot(aes(x = category, y = response)) +
+  geom_violin() +
+  labs(x = "Data Set",
+       y = "Frequency") +
+  theme_minimal()
+```
+
+**Quantile-Quantile plots**: G or H?
+```{r}
+ds |>
+  mutate(category = rep(sample(c("G","H"),2),each = N)) |>
+  ggplot(aes(sample=response)) +
+  stat_qq() +
+  stat_qq_line() +
+  facet_wrap(~category, scales = "free") +
+  theme_minimal()
+```
+**Shapiro-Wilk tests**: I or J?
+```{r}
+ds |>
+  mutate(category = rep(sample(c("I","J"),2),each = N)) |>
+  group_by(category) |>
+  shapiro_test(response)  |>
+  kbl(digits = c(0,0,3,3), width='60%') |>
+  kable_styling(full_width = FALSE)
+```
+
+### Exercise Two: 
+Match each of the following scenarios with the appropriate test
+
+A: Among Chinese goose breeds the KIT gene affects plumage colour. In a population of 91 of these geese the frequencies of the two alleles *A* and *a* of this gene are such that *if* the population were in Hardy-Weinberg equilibrium *then* one would expect 54 individuals to have genotype *AA*, 23 to have geneotype *Aa* and 14 to have genotype *aa*. he actual numbers are 48, 30 and 13. We want to test whether these numbers are consistent with Hardy-Weinnberg equilibrium.
+
+B: 

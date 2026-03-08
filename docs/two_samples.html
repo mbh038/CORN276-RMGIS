@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>3&nbsp; Two samples - test for difference – CORN276-RMGIS</title>
+<title>3&nbsp; Two samples, indepentdent data - test for difference – CORN276-RMGIS</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -102,6 +102,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<link href="site_libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet">
+<script src="site_libs/bsTable-3.3.7/bootstrapTable.js"></script>
 
 
 </head>
@@ -115,7 +119,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./visualising_data.html">Main chapters</a></li><li class="breadcrumb-item"><a href="./two_samples.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Two samples - test for difference</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./visualising_data.html">Main chapters</a></li><li class="breadcrumb-item"><a href="./two_samples.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Two samples, indepentdent data - test for difference</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -170,7 +174,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./two_samples.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Two samples - test for difference</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Two samples, indepentdent data - test for difference</span></span></a>
   </div>
 </li>
       </ul>
@@ -230,15 +234,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#testing-for-normality" id="toc-testing-for-normality" class="nav-link" data-scroll-target="#testing-for-normality"><span class="header-section-number">3.3</span> Testing for normality</a></li>
   <li><a href="#the-two-sample-t-test" id="toc-the-two-sample-t-test" class="nav-link" data-scroll-target="#the-two-sample-t-test"><span class="header-section-number">3.4</span> The two sample t-test</a></li>
   <li><a href="#mann-whitney-test-for-difference---for-data-that-are-not-normally-distributed" id="toc-mann-whitney-test-for-difference---for-data-that-are-not-normally-distributed" class="nav-link" data-scroll-target="#mann-whitney-test-for-difference---for-data-that-are-not-normally-distributed"><span class="header-section-number">3.5</span> Mann-Whitney test for difference - for data that are not normally distributed</a></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">3.6</span> Exercises</a>
+  <ul class="collapse">
+  <li><a href="#exercise-one-tests-for-normality" id="toc-exercise-one-tests-for-normality" class="nav-link" data-scroll-target="#exercise-one-tests-for-normality"><span class="header-section-number">3.6.1</span> Exercise One: tests for normality</a></li>
+  <li><a href="#exercise-two" id="toc-exercise-two" class="nav-link" data-scroll-target="#exercise-two"><span class="header-section-number">3.6.2</span> Exercise Two:</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./visualising_data.html">Main chapters</a></li><li class="breadcrumb-item"><a href="./two_samples.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Two samples - test for difference</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./visualising_data.html">Main chapters</a></li><li class="breadcrumb-item"><a href="./two_samples.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Two samples, indepentdent data - test for difference</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Two samples - test for difference</span></h1>
+<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Two samples, indepentdent data - test for difference</span></h1>
 </div>
 
 
@@ -257,7 +266,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="penguin-data" class="level2" data-number="3.1">
 <h2 data-number="3.1" class="anchored" data-anchor-id="penguin-data"><span class="header-section-number">3.1</span> Penguin data</h2>
-<p>Suppose we have sampled males from a population of two species of penguin, the Gentoo and the Adelie. All the individuals were found on islands in the Palmer archipelago of Antarctica. We want to know if there are morphologial (shape) differences between these species. If there are, then that might give us some insight as to differences between the ecological niches that the two species occupy.</p>
+<p>Suppose we have sampled males from a population of two species of penguin, the Gentoo and the Adelie. All the individuals were found on islands in the Palmer archipelago of Antarctica. For each penguin, measurements were made of their bill length, bill depth, flipper length and body weight. We want to know if there are morphological (shape) differences between the bills of these species, so let’s focus on those two bill measurements, as shown in <span class="quarto-unresolved-ref">?fig-bill-measurements</span>. If there is a difference, then that might give us some insight as to differences between the ecological niches that the two species occupy.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="figures/culmen_depth.jpg" class="img-fluid figure-img" style="width:90.0%"></p>
+</figure>
+</div>
+</div>
+</div>
 <p>Here are the first few rows of the data</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
@@ -291,7 +309,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Standard deviation and standard error of the mean
+Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -304,7 +322,7 @@ Standard deviation and standard error of the mean
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="two_samples_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" style="width:90.0%"></p>
+<p><img src="two_samples_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" style="width:90.0%"></p>
 </figure>
 </div>
 </div>
@@ -325,8 +343,8 @@ Standard deviation and standard error of the mean
 <li>A difference question</li>
 <li>Replicates - there are 34 Chinstrap and 61 Gentoo males</li>
 <li>Independent data - each penguin is either an Adelie or a Chinstrap</li>
-<li>One <strong>factor</strong>: Species which has two <strong>levels</strong>: Adelie and Chinstrap. We thus have two samples: the 34 Chinstrap and the 61 Gentoos.</li>
-<li>a continuous reponse variable - bill stockiness.</li>
+<li>One <strong>factor</strong>: Species. This has two <strong>levels</strong>: Adelie and Chinstrap. We thus have two samples: the 34 Chinstrap and the 61 Gentoos.</li>
+<li>a continuous and numeric reponse variable - bill stockiness.</li>
 </ul>
 <p>You should find that the test-finder tells you to use either a <strong>2-sample t-test</strong> or a <strong>Mann-Whitney U-test</strong>. These are both tests for difference where you have two independent samples, each with replicates</p>
 <p>You use the t-test if you can because it is more powerful than the Mann Whitney test. This is not surprising because the t-test is an example of a <code>parametric test</code> while the Mann Whitney test is a <code>non-parametric</code> test. In making comparisons between the two sets of data it only looks at their ranks, not their actual values. It thus has thrown away some information.</p>
@@ -349,21 +367,21 @@ Note
 <section id="testing-for-normality" class="level2" data-number="3.3">
 <h2 data-number="3.3" class="anchored" data-anchor-id="testing-for-normality"><span class="header-section-number">3.3</span> Testing for normality</h2>
 <p>You can either:</p>
-<p><strong>Plot the data using a box plot</strong> If you plot the at using a box plot as we have above, you are looking to see whether the boxes look roughly symmetrical, with the median line roughly in the middle of the box, and no string of outliers heading off to one side or the other. This is because a normay distribution is symmetric, so we should see that at least approximatly in the box plot.</p>
-<p>Other plot types that show the distribution of the data can work too, such as a histogram or a violin plot, but a box plot is easy to make and effective.</p>
+<p><strong>Plot the data using a box plot or similar</strong> If you plot the data using a box plot as we have above, you are looking to see whether the boxes look roughly symmetrical, with the median line roughly in the middle of the box, and no string of outliers heading off to one side or the other. This is because a normal distribution is symmetric, so we should see that reflected at least approximately in the box plot.</p>
+<p>Other plot types that show the distribution of the data can work too, such as a histogram or a violin plot, but a box plot is easy to make and is effective.</p>
 <p><strong>Plot the data using a quantile-quantile plot</strong></p>
-<p>The best plot to use to determine if a data set is plausibly drawn from a normal distribution is a quantile-quantile (QQ) plot. Best of all when the data set is small.</p>
+<p>The best plot to use to determine if a data set is plausibly drawn from a normal distributed population is a quantile-quantile (QQ) plot, particularly when the data set is small.</p>
 <p>In these, the percentiles of a data set are plotted against the equivalent percentiles of a normal distribution. If the data are roughly normally distributed then the line will be roughly straight.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="two_samples_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" style="width:90.0%"></p>
+<p><img src="two_samples_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" style="width:90.0%"></p>
 </figure>
 </div>
 </div>
 </div>
-<p>The line for the Gentoos is not quite straight, but it is not too bad. We don’t mind a bit of raggedness at the ends.</p>
+<p>The line for the Gentoos is not quite straight, but it is not too bad. We don’t mind a bit of raggedness at the ends since we are only looking for the data to be close enough to being normally distributed for a parametric test to be reliable. We don’t need the data to be perfectly normally distributed.</p>
 <p><strong>Use a normality test</strong> I don’t favour these, especially for large data sets, but if you must use them…</p>
 <p>The most commonly used one is the Shapiro-Wilk test. It tests a data set against its null hypothesis that the data were drawn from a normally distributed population. If the returned p-value is higher than 0.05 then we fail to reject this null and can confidently go on to use a parametric test such as a t-test that required normality.</p>
 <div class="cell">
@@ -425,7 +443,7 @@ mean in group Chinstrap    mean in group Gentoo
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="two_samples_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" style="width:90.0%"></p>
+<p><img src="two_samples_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" style="width:90.0%"></p>
 </figure>
 </div>
 </div>
@@ -436,7 +454,7 @@ mean in group Chinstrap    mean in group Gentoo
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="two_samples_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" style="width:90.0%"></p>
+<p><img src="two_samples_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" style="width:90.0%"></p>
 </figure>
 </div>
 </div>
@@ -457,7 +475,7 @@ mean in group Chinstrap    mean in group Gentoo
 </div>
 </div>
 <p>The p-value is a lot less than 0.05 for the Adelies.</p>
-<p>So, even though the Chinstraps seem OK, the Adelie bills really don’t seem to be normally distributed in terms of their stockiness. This means that we can’t use a parametrioc test such as a t-test to see if their bills are differenlty stocky to the bill of any other species. What we can do is use a non-parametric test, if one exists. In this cae, where we have replicates, and one factor with two levels there is such a test. It is called the** Mann Whitney U test**. Let’s use it:</p>
+<p>So, even though the Chinstraps seem OK, the Adelie bills really don’t seem to be normally distributed in terms of their stockiness. This means that we can’t use a parametric test such as a t-test to see if their bills are differently stocky to the bill of any other species. What we can do is use a non-parametric test, if one exists. In this case, where we have replicates, and one factor with two levels, there is such a test. It is called the <strong>Mann Whitney U test</strong>. Let’s use it:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wilcox.test</span>(bill_stocky <span class="sc">~</span> species, <span class="at">data =</span> penguins <span class="sc">|&gt;</span> <span class="fu">filter</span>(species <span class="sc">!=</span> <span class="st">"Gentoo"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -471,8 +489,93 @@ alternative hypothesis: true location shift is not equal to 0</code></pre>
 </div>
 <p>This tells us that there is evidence of a significant difference between the stockiness of the bills of Adelie males and those of Chinstrap males. (Mann Whitney, W = 2482, p&lt;-.001).</p>
 <p>…but we already knew that, from the box plot.</p>
+</section>
+<section id="exercises" class="level2" data-number="3.6">
+<h2 data-number="3.6" class="anchored" data-anchor-id="exercises"><span class="header-section-number">3.6</span> Exercises</h2>
+<section id="exercise-one-tests-for-normality" class="level3" data-number="3.6.1">
+<h3 data-number="3.6.1" class="anchored" data-anchor-id="exercise-one-tests-for-normality"><span class="header-section-number">3.6.1</span> Exercise One: tests for normality</h3>
+<p>In each of the examples below we show the results of plotting or testing each of two data sets, each of size N = 100 replicates.</p>
+<p>For each case, decide which of the two samples might plausibly be drawn from a normally distributed population:</p>
+<p><strong>Histograms: A or B</strong></p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="two_samples_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" style="width:90.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Box plots: C or D</strong></p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="two_samples_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" style="width:90.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>**Violin plots: E or F</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="two_samples_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" style="width:90.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Quantile-Quantile plots</strong>: G or H?</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="two_samples_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid figure-img" style="width:90.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Shapiro-Wilk tests</strong>: I or J?</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table caption-top table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">category</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">variable</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">statistic</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">p</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">I</td>
+<td style="text-align: left;">response</td>
+<td style="text-align: right;">0.627</td>
+<td style="text-align: right;">0.00</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">J</td>
+<td style="text-align: left;">response</td>
+<td style="text-align: right;">0.995</td>
+<td style="text-align: right;">0.98</td>
+</tr>
+</tbody>
+</table>
 
 
+</div>
+</div>
+</section>
+<section id="exercise-two" class="level3" data-number="3.6.2">
+<h3 data-number="3.6.2" class="anchored" data-anchor-id="exercise-two"><span class="header-section-number">3.6.2</span> Exercise Two:</h3>
+<p>Match each of the following scenarios with the appropriate test</p>
+<p>A: Among Chinese goose breeds the KIT gene affects plumage colour. In a population of 91 of these geese the frequencies of the two alleles <em>A</em> and <em>a</em> of this gene are such that <em>if</em> the population were in Hardy-Weinberg equilibrium <em>then</em> one would expect 54 individuals to have genotype <em>AA</em>, 23 to have geneotype <em>Aa</em> and 14 to have genotype <em>aa</em>. he actual numbers are 48, 30 and 13. We want to test whether these numbers are consistent with Hardy-Weinnberg equilibrium.</p>
+<p>B:</p>
+
+
+</section>
 </section>
 
 </main> <!-- /main -->
