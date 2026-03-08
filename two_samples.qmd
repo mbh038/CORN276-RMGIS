@@ -290,7 +290,8 @@ ds |>
   geom_boxplot() +
   labs(x = "Data Set",
        y = "Frequency") +
-  theme_minimal()
+  theme_minimal() +
+  theme(legend.position = "none")
 ```
 **Violin plots: E or F
 ```{r}
@@ -300,7 +301,8 @@ ds |>
   geom_violin() +
   labs(x = "Data Set",
        y = "Frequency") +
-  theme_minimal()
+  theme_minimal() +
+  theme(legend.position = "none")
 ```
 
 **Quantile-Quantile plots**: G or H?
