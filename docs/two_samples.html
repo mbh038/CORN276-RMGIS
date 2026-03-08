@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>3&nbsp; Two samples, indepentdent data - test for difference – CORN276-RMGIS</title>
+<title>3&nbsp; Two samples, independent data - test for difference – CORN276-RMGIS</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -119,7 +119,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./visualising_data.html">Main chapters</a></li><li class="breadcrumb-item"><a href="./two_samples.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Two samples, indepentdent data - test for difference</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./visualising_data.html">Main chapters</a></li><li class="breadcrumb-item"><a href="./two_samples.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Two samples, independent data - test for difference</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -174,7 +174,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./two_samples.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Two samples, indepentdent data - test for difference</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Two samples, independent data - test for difference</span></span></a>
   </div>
 </li>
       </ul>
@@ -245,9 +245,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./visualising_data.html">Main chapters</a></li><li class="breadcrumb-item"><a href="./two_samples.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Two samples, indepentdent data - test for difference</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./visualising_data.html">Main chapters</a></li><li class="breadcrumb-item"><a href="./two_samples.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Two samples, independent data - test for difference</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Two samples, indepentdent data - test for difference</span></h1>
+<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Two samples, independent data - test for difference</span></h1>
 </div>
 
 
@@ -349,10 +349,10 @@ Note
 <li>Replicates - there are 34 Chinstrap and 61 Gentoo males</li>
 <li>Independent data - each penguin is either an Adelie or a Chinstrap</li>
 <li>One <strong>factor</strong>: Species. This has two <strong>levels</strong>: Adelie and Chinstrap. We thus have two samples: the 34 Chinstrap and the 61 Gentoos.</li>
-<li>a continuous and numeric reponse variable - bill stockiness.</li>
+<li>a continuous and numeric response variable - bill stockiness.</li>
 </ul>
 <p>You should find that the test-finder tells you to use either a <strong>2-sample t-test</strong> or a <strong>Mann-Whitney U-test</strong>. These are both tests for difference where you have two independent samples, each with replicates</p>
-<p>You use the t-test if you can because it is more powerful than the Mann Whitney test. This is not surprising because the t-test is an example of a <code>parametric test</code> while the Mann Whitney test is a <code>non-parametric</code> test. In making comparisons between the two sets of data it only looks at their ranks, not their actual values. It thus has thrown away some information.</p>
+<p>You use the t-test if you can because it is more powerful than the Mann Whitney test. This is not surprising because the t-test is an example of a <code>parametric test</code> while the Mann Whitney test is a <code>non-parametric</code> test. In making comparisons between the two sets of data it only looks at their ranks, not their actual values. That means it does not care what the actual distribution of the data is, but also that it has thrown away some information and so must be less powerful.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">

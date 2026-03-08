@@ -1,4 +1,4 @@
-# Two samples, indepentdent data - test for difference
+# Two samples, independent data - test for difference
 
 
 ```{r}
@@ -94,12 +94,12 @@ Note that we have:
 * Replicates - there are 34 Chinstrap and 61 Gentoo males
 * Independent data - each penguin is either an Adelie or a Chinstrap
 * One **factor**: Species. This has two **levels**: Adelie and Chinstrap. We thus have two samples: the 34 Chinstrap and the 61 Gentoos.
-* a continuous and numeric reponse variable - bill stockiness.
+* a continuous and numeric response variable - bill stockiness.
 
 
 You should find that the test-finder tells you to use either a **2-sample t-test** or a **Mann-Whitney U-test**. These are both tests for difference where you have two independent samples, each with replicates
 
-You use the t-test if you can because it is more powerful than the Mann Whitney test. This is not surprising because the t-test is an example of a `parametric test` while the Mann Whitney test is a `non-parametric` test. In making comparisons between the two sets of data it only looks at their ranks, not their actual values. It thus has thrown away some information.
+You use the t-test if you can because it is more powerful than the Mann Whitney test. This is not surprising because the t-test is an example of a `parametric test` while the Mann Whitney test is a `non-parametric` test. In making comparisons between the two sets of data it only looks at their ranks, not their actual values. That means it does not care what the actual distribution of the data is, but also that it has thrown away some information and so must be less powerful.
 
 ::: callout-note
 The terms **parametric** and **non-parametric** refer to whether the tests assume that the data used follow some known distribution, usually a normal distribution. These distributions are described by a small number of *parameters*, hence the names. For a normal distribution, the key parameters that enable it to be drawn are its mean, which tells us where it is centred, and its standard deviation, which tells us how widely spread it is.
