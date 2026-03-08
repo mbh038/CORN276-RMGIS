@@ -49,7 +49,7 @@ Let's take the example of the Palmer penguins dataset. This set contains measure
 
 ```{r}
 #| label: fig-meet-the-penguins
-#| fig-cap: Meet the penguins. Artwork by [Allison Horst](https://allisonhorst.com)](figures/penguins.png)
+#| fig-cap: Meet the penguins. Artwork by [Allison Horst](https://allisonhorst.com)
 
 knitr::include_graphics(here("figures","penguins.jpg"))
 ```
