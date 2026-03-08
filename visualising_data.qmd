@@ -51,7 +51,7 @@ Let's take the example of the Palmer penguins dataset. This set contains measure
 #| label: fig-meet-the-penguins
 #| fig-cap: Meet the penguins. Artwork by [Allison Horst](https://allisonhorst.com)
 
-knitr::include_graphics(here("figures","penguins.jpg"))
+knitr::include_graphics(here("figures","penguins.png"))
 ```
 
 Let's consider only the females and ask the question:
