@@ -15,8 +15,8 @@ knitr::opts_chunk$set(echo=FALSE)
 Suppose we have sampled males from a population of two species of penguin, the Gentoo and the Adelie. All the individuals were found on islands in the Palmer archipelago of Antarctica. For each penguin, measurements were made of their bill length, bill depth, flipper length and body weight. We want to know if there are morphological (shape) differences between the bills of these species, so let's focus on those two bill measurements, as shown in @fig-bill-measurements. If there is a difference, then that might give us some insight as to differences between the  ecological niches that the two species occupy.
 
 ```{r}
-#label: fig-bill-measurements
-#fig-cap: DImensions of the pengions bills as measired in the Palmer penguinds data set. Artwork by [Allison Horst](https://allisonhorst.github.io/palmerpenguins/articles/art.html)
+#| label: fig-bill-measurements
+#| fig-cap: Dimensions of the pengions bills as measired in the Palmer penguinds data set. Artwork by [Allison Horst](https://allisonhorst.github.io/palmerpenguins/articles/art.html)
 
 knitr::include_graphics(here("figures","culmen_depth.jpg"))
 ```
