@@ -16,7 +16,7 @@ Suppose we have sampled males from a population of two species of penguin, the G
 
 ```{r}
 #| label: fig-bill-measurements
-#| fig-cap: Dimensions of the pengions bills as measired in the Palmer penguinds data set. Artwork by [Allison Horst](https://allisonhorst.github.io/palmerpenguins/articles/art.html)
+#| fig-cap: Dimensions of the penguin bills as measured in the Palmerpenguins data set avaialble as a package in R. Artwork adapted from [Allison Horst](https://allisonhorst.github.io/palmerpenguins/articles/art.html)
 
 knitr::include_graphics(here("figures","culmen_depth.jpg"))
 ```

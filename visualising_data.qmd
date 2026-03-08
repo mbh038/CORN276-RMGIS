@@ -45,9 +45,14 @@ female_penguins <- penguins |>
   filter(sex == "female")
 ```
 
-Let's take the example of the Palmer penguins dataset. This set contains measurements of bill depth, bill length, flipper length and body mass of males and females of three species of penguins: Adelie, Chinstrap and Gentoo observed on any one of three islands in the Palmer Archipelago, Antarctica.
+Let's take the example of the Palmer penguins dataset. This set contains measurements of bill depth, bill length, flipper length and body mass of males and females of three species of penguins: Adelie, Chinstrap and Gentoo observed on any one of three islands in the Palmer Archipelago, Antarctica. The data set is included as a package in R maintained by Allison Horst.
 
-![Meet the penguins. Artwork by [Allison Horst](https://allisonhorst.com)](figures/penguins.png)
+```{r}
+#| label: fig-meet-the-penguins
+#| fig-cap: Meet the penguins. Artwork by [Allison Horst](https://allisonhorst.com)](figures/penguins.png)
+
+knitr::include_graphics(here("figures","penguins.jpg"))
+```
 
 Let's consider only the females and ask the question:
 
