@@ -328,6 +328,6 @@ ds |>
 ### Exercise Two: 
 Match each of the following scenarios with the appropriate test
 
-A: Among Chinese goose breeds the KIT gene affects plumage colour. In a population of 91 of these geese the frequencies of the two alleles *A* and *a* of this gene are such that *if* the population were in Hardy-Weinberg equilibrium *then* one would expect 54 individuals to have genotype *AA*, 23 to have geneotype *Aa* and 14 to have genotype *aa*. he actual numbers are 48, 30 and 13. We want to test whether these numbers are consistent with Hardy-Weinnberg equilibrium.
+A: Among Chinese goose breeds the KIT gene affects plumage colour. In a population of 91 of these geese the frequencies of the two alleles *A* and *a* of this gene are such that *if* the population were in Hardy-Weinberg equilibrium *then* one would expect 54 individuals to have genotype *AA*, 23 to have geneotype *Aa* and 14 to have genotype *aa*. The actual numbers are 48, 30 and 13. We want to test whether these numbers are consistent with Hardy-Weinnberg equilibrium.
 
 B: 
