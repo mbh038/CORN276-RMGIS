@@ -51,24 +51,23 @@ library(cowplot) # to make the plots look nice
 ```
 
 ```{r, echo = FALSE}
+library(kableExtra)
 # Load data
 filepath <- here("data","poplars-paired_np.csv")
 poplars <- read_csv(filepath,show_col_types = FALSE)
-head(poplars,20)
+poplars |>
+  kbl()
 ```
 
 **Plot the data**
 
 Before we do any test on some data to find evidence for a difference or a trend, it is a good idea to plot the data. This will reveal whatever patterns there are in the data and how likely they are to reveal a truth about the population from which they have been drawn.
 
-First, let us look at the data:
 
 ```{r, echo = FALSE}
-library(kableExtra)
+# tidy the data
 poplars_tidy <- poplars |>
   pivot_longer (August:November,names_to="month",values_to="Al_conc")
-poplars_tidy |>
-  kbl()
 ```
 
 Now we can plot the data as a box plot, with one box for August and one for November ie one for each level of the factor `month`. Had we not first tidied the data, we could not have done this.
