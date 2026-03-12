@@ -64,9 +64,11 @@ Before we do any test on some data to find evidence for a difference or a trend,
 First, let us look at the data:
 
 ```{r, echo = FALSE}
+library(kableExtra)
 poplars_tidy <- poplars |>
   pivot_longer (August:November,names_to="month",values_to="Al_conc")
-head(poplars_tidy,8)
+poplars_tidy |>
+  kbl()
 ```
 
 Now we can plot the data as a box plot, with one box for August and one for November ie one for each level of the factor `month`. Had we not first tidied the data, we could not have done this.

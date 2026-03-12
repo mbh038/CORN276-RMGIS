@@ -102,6 +102,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 
 
 </head>
@@ -320,18 +322,177 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Before we do any test on some data to find evidence for a difference or a trend, it is a good idea to plot the data. This will reveal whatever patterns there are in the data and how likely they are to reveal a truth about the population from which they have been drawn.</p>
 <p>First, let us look at the data:</p>
 <div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 8 × 4
-     ID Clone        month    Al_conc
-  &lt;dbl&gt; &lt;chr&gt;        &lt;chr&gt;      &lt;dbl&gt;
-1     1 Balsam_Spire August       8.1
-2     1 Balsam_Spire November    11.2
-3     2 Beaupre      August      10  
-4     2 Beaupre      November    16.3
-5     3 Hazendans    August      16.5
-6     3 Hazendans    November    15.3
-7     4 Hoogvorst    August      13.6
-8     4 Hoogvorst    November    15.6</code></pre>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: right;" data-quarto-table-cell-role="th">ID</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Clone</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">month</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Al_conc</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">Balsam_Spire</td>
+<td style="text-align: left;">August</td>
+<td style="text-align: right;">8.1</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">Balsam_Spire</td>
+<td style="text-align: left;">November</td>
+<td style="text-align: right;">11.2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">Beaupre</td>
+<td style="text-align: left;">August</td>
+<td style="text-align: right;">10.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">Beaupre</td>
+<td style="text-align: left;">November</td>
+<td style="text-align: right;">16.3</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">Hazendans</td>
+<td style="text-align: left;">August</td>
+<td style="text-align: right;">16.5</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">Hazendans</td>
+<td style="text-align: left;">November</td>
+<td style="text-align: right;">15.3</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">4</td>
+<td style="text-align: left;">Hoogvorst</td>
+<td style="text-align: left;">August</td>
+<td style="text-align: right;">13.6</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">4</td>
+<td style="text-align: left;">Hoogvorst</td>
+<td style="text-align: left;">November</td>
+<td style="text-align: right;">15.6</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">5</td>
+<td style="text-align: left;">Raspalje</td>
+<td style="text-align: left;">August</td>
+<td style="text-align: right;">9.5</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">5</td>
+<td style="text-align: left;">Raspalje</td>
+<td style="text-align: left;">November</td>
+<td style="text-align: right;">10.5</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">6</td>
+<td style="text-align: left;">Unal</td>
+<td style="text-align: left;">August</td>
+<td style="text-align: right;">8.3</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">6</td>
+<td style="text-align: left;">Unal</td>
+<td style="text-align: left;">November</td>
+<td style="text-align: right;">15.5</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">7</td>
+<td style="text-align: left;">Columbia_River</td>
+<td style="text-align: left;">August</td>
+<td style="text-align: right;">18.3</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">7</td>
+<td style="text-align: left;">Columbia_River</td>
+<td style="text-align: left;">November</td>
+<td style="text-align: right;">12.7</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">8</td>
+<td style="text-align: left;">Fritzi_Pauley</td>
+<td style="text-align: left;">August</td>
+<td style="text-align: right;">13.3</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">8</td>
+<td style="text-align: left;">Fritzi_Pauley</td>
+<td style="text-align: left;">November</td>
+<td style="text-align: right;">11.1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">9</td>
+<td style="text-align: left;">Trichobel</td>
+<td style="text-align: left;">August</td>
+<td style="text-align: right;">7.9</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">9</td>
+<td style="text-align: left;">Trichobel</td>
+<td style="text-align: left;">November</td>
+<td style="text-align: right;">19.9</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">10</td>
+<td style="text-align: left;">Gaver</td>
+<td style="text-align: left;">August</td>
+<td style="text-align: right;">8.1</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">10</td>
+<td style="text-align: left;">Gaver</td>
+<td style="text-align: left;">November</td>
+<td style="text-align: right;">20.4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">11</td>
+<td style="text-align: left;">Gibecq</td>
+<td style="text-align: left;">August</td>
+<td style="text-align: right;">8.9</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">11</td>
+<td style="text-align: left;">Gibecq</td>
+<td style="text-align: left;">November</td>
+<td style="text-align: right;">14.2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">12</td>
+<td style="text-align: left;">Primo</td>
+<td style="text-align: left;">August</td>
+<td style="text-align: right;">12.6</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">12</td>
+<td style="text-align: left;">Primo</td>
+<td style="text-align: left;">November</td>
+<td style="text-align: right;">12.7</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">13</td>
+<td style="text-align: left;">Wolterson</td>
+<td style="text-align: left;">August</td>
+<td style="text-align: right;">13.4</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">13</td>
+<td style="text-align: left;">Wolterson</td>
+<td style="text-align: left;">November</td>
+<td style="text-align: right;">36.8</td>
+</tr>
+</tbody>
+</table>
+
+
 </div>
 </div>
 <p>Now we can plot the data as a box plot, with one box for August and one for November ie one for each level of the factor <code>month</code>. Had we not first tidied the data, we could not have done this.</p>
@@ -352,7 +513,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Before we use the t-test, we need to check that it is OK to do so. This means checking whether the paired differences are plausibly drawn from a normal distribution centred on zero.</p>
 <p>The null hypothesis of the Shapiro-Wilk test is that the data set given to it <em>is</em> plausibly drawn from a normally distributed population. So let us give our sample of paired differences:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(poplars<span class="sc">$</span>August<span class="sc">-</span>poplars<span class="sc">$</span>November)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(poplars<span class="sc">$</span>August<span class="sc">-</span>poplars<span class="sc">$</span>November)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Shapiro-Wilk normality test
@@ -365,7 +526,7 @@ W = 0.92667, p-value = 0.3081</code></pre>
 <p><strong>The actual t-test</strong></p>
 <p>We can do this in R using the function <code>t.test()</code>, where we give to the function both the August and the November data, knowing that each August value has a counterpart November value, and we set the argument <code>paired</code> to <code>TRUE</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(poplars<span class="sc">$</span>August, poplars<span class="sc">$</span>November, <span class="at">paired =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(poplars<span class="sc">$</span>August, poplars<span class="sc">$</span>November, <span class="at">paired =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Paired t-test
@@ -390,7 +551,7 @@ mean difference
 <h3 data-number="4.1.6" class="anchored" data-anchor-id="the-non-parametric-alternative-the-wilcoxon-signed-rank-test"><span class="header-section-number">4.1.6</span> The non-parametric alternative: The Wilcoxon signed rank test</h3>
 <p>To be safe, because of that outlier, let us test for difference using the Wilcoxon signed rank test. In R this is done using the function <code>wilcox.test()</code>, with the argument <code>paired</code> set to <code>TRUE</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wilcox.test</span>(poplars<span class="sc">$</span>August, poplars<span class="sc">$</span>November, <span class="at">paired =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wilcox.test</span>(poplars<span class="sc">$</span>August, poplars<span class="sc">$</span>November, <span class="at">paired =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Wilcoxon signed rank exact test
@@ -407,7 +568,7 @@ alternative hypothesis: true location shift is not equal to 0</code></pre>
 <p>The two-sample paired tests as we have done above are the same as doing a one-sample test to see if the differences between the August and November paired values is different from zero. This is true whether we do a t-test or a Wilcoxon signed rank test.</p>
 <p>In either case, the first argument is the vector of differences, and the second <code>mu</code> is the threshold value against which we want to compare those differences, in this case zero.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(poplars<span class="sc">$</span>August <span class="sc">-</span> poplars<span class="sc">$</span>November, <span class="at">mu =</span> <span class="dv">0</span>, <span class="at">data =</span> poplars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(poplars<span class="sc">$</span>August <span class="sc">-</span> poplars<span class="sc">$</span>November, <span class="at">mu =</span> <span class="dv">0</span>, <span class="at">data =</span> poplars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     One Sample t-test
@@ -423,7 +584,7 @@ mean of x
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wilcox.test</span>(poplars<span class="sc">$</span>August <span class="sc">-</span> poplars<span class="sc">$</span>November, <span class="at">mu =</span> <span class="dv">0</span>, <span class="at">data =</span> poplars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wilcox.test</span>(poplars<span class="sc">$</span>August <span class="sc">-</span> poplars<span class="sc">$</span>November, <span class="at">mu =</span> <span class="dv">0</span>, <span class="at">data =</span> poplars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Wilcoxon signed rank exact test
