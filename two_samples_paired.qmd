@@ -43,7 +43,7 @@ Concentrations of aluminum (in micrograms of Al per gram of wood) are shown belo
 
 **Load packages**
 
-```{r, echo = TRUE}
+```{r, echo = FALSE}
 library (tidyverse)
 library(here)
 library(cowplot) # to make the plots look nice
@@ -51,7 +51,7 @@ library(cowplot) # to make the plots look nice
 
 **Load data**
 
-```{r, echo = TRUE}
+```{r, echo = FALSE}
 filepath <- here("data","poplars-paired_np.csv")
 poplars <- read_csv(filepath,show_col_types = FALSE)
 head(poplars,20)
