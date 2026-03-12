@@ -41,17 +41,17 @@ Laureysens, I. et al. (2004) ‘Clonal variation in heavy metal accumulation and
 
 Concentrations of aluminum (in micrograms of Al per gram of wood) are shown below.
 
-**Load packages**
+
 
 ```{r, echo = FALSE}
+# Load packages
 library (tidyverse)
 library(here)
 library(cowplot) # to make the plots look nice
 ```
 
-**Load data**
-
 ```{r, echo = FALSE}
+# Load data
 filepath <- here("data","poplars-paired_np.csv")
 poplars <- read_csv(filepath,show_col_types = FALSE)
 head(poplars,20)
