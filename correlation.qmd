@@ -580,9 +580,12 @@ All the p-values for this test are comfortably greater than 0.05 so we can reaso
 
 Looking at each graph, it appears that there is a positive correlation for each species, but that this is weaker for *versicolar* and *virginica* than it is for *setosa*. Knowing the sepal width for that species gives you a much better idea of the sepal length, and vice-versa, than is the case for the other two species.
 
-Let us find out:
+Let us find out by calculating the correlation coefficents fpr each species, as well as the 95% confidence intervals on these estiamted values, and finally the p-values in each case. We will do these calculations using R but we are not concerned here with how that is done.
 
-```{r,echo=FALSE}
+```{r}
+#| echo: true
+#| code-fold: true
+
 iris |>
   group_by(Species) |>
   summarise(r=cor.test(Sepal.Width,Sepal.Length)$estimate,
