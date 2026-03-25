@@ -598,7 +598,7 @@ Do these outputs provide evidence for a correlation between sepal length and sep
 
 Suppose in the above analysis we had not distinguished between the three species. If we had plotted the speal length and width data we would have seen this:
 
-```{r,echo=TRUE}
+```{r,echo = FALSE}
 iris |>
   ggplot(aes(x = Sepal.Width, y = Sepal.Length)) +
   geom_point(colour = point_colour) +
