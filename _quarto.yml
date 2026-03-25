@@ -16,6 +16,7 @@ book:
       - counts.qmd
       - two_samples.qmd
       - two_samples_paired.qmd
+      - correlation.qmd
     - part: "Additional help"
       chapters:
       - test_finder.qmd
