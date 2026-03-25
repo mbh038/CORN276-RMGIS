@@ -612,7 +612,7 @@ This looks like a weak *negative* correlation, as is confirmed by calculating th
 
 If we had in fact accounted for species and plotted the data separately for each species, or together but distinguishing each species by colour we would have seen the falsity of that conclusion:
 
-```{r,echo=TRUE}
+```{r,echo=FALSE}
 iris |>
   ggplot(aes(x = Sepal.Width, y = Sepal.Length, colour = Species)) +
   geom_point() +
