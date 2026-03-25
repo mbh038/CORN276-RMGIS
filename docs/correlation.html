@@ -102,6 +102,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 
 
 </head>
@@ -385,13 +387,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     Pearson's product-moment correlation
 
 data:  x and y
-t = 9.2081, df = 48, p-value = 3.512e-12
+t = 9.0943, df = 48, p-value = 5.154e-12
 alternative hypothesis: true correlation is not equal to 0
 95 percent confidence interval:
- 0.6696801 0.8813856
+ 0.6641781 0.8791547
 sample estimates:
       cor 
-0.7990768 </code></pre>
+0.7954661 </code></pre>
 </div>
 </div>
 <p>There are different ways to calculate the correlation coefficient. Which of them is appropriate depends mainly on the type of data, and if they are numeric, whether they are normally distributed. If they are, then we use the Pearson method. If they are not, for example because they are ordinal data, then we use the Spearman’s Rank method and write <em>method=“spearman”</em> instead. In this case we can relax the requirement that there is a linear association between the data sets, but there does still need to be a monotonic relationship.</p>
@@ -483,19 +485,43 @@ W = 0.97172, p-value = 0.2715</code></pre>
 <p>Looking at each graph, it appears that there is a positive correlation for each species, but that this is weaker for <em>versicolar</em> and <em>virginica</em> than it is for <em>setosa</em>. Knowing the sepal width for that species gives you a much better idea of the sepal length, and vice-versa, than is the case for the other two species.</p>
 <p>Let us find out:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>iris <span class="sc">|&gt;</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Species) <span class="sc">|&gt;</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">r=</span><span class="fu">cor.test</span>(Sepal.Width,Sepal.Length)<span class="sc">$</span>estimate,</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">lower.bound95 =</span> <span class="fu">cor.test</span>(Sepal.Width,Sepal.Length)<span class="sc">$</span>conf.int[<span class="dv">1</span>],</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">upper.bound95 =</span> <span class="fu">cor.test</span>(Sepal.Width,Sepal.Length)<span class="sc">$</span>conf.int[<span class="dv">2</span>],</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>            <span class="st">"p value"</span> <span class="ot">=</span> <span class="fu">cor.test</span>(Sepal.Width,Sepal.Length)<span class="sc">$</span>p.value)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 3 × 5
-  Species        r lower.bound95 upper.bound95 `p value`
-  &lt;fct&gt;      &lt;dbl&gt;         &lt;dbl&gt;         &lt;dbl&gt;     &lt;dbl&gt;
-1 setosa     0.743         0.585         0.846  6.71e-10
-2 versicolor 0.526         0.290         0.702  8.77e- 5
-3 virginica  0.457         0.205         0.653  8.43e- 4</code></pre>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Species</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">r</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">lower.bound95</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">upper.bound95</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">p value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">setosa</td>
+<td style="text-align: right;">0.7425467</td>
+<td style="text-align: right;">0.5851391</td>
+<td style="text-align: right;">0.8460314</td>
+<td style="text-align: right;">0.0000000</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">versicolor</td>
+<td style="text-align: right;">0.5259107</td>
+<td style="text-align: right;">0.2900175</td>
+<td style="text-align: right;">0.7015599</td>
+<td style="text-align: right;">0.0000877</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">virginica</td>
+<td style="text-align: right;">0.4572278</td>
+<td style="text-align: right;">0.2049657</td>
+<td style="text-align: right;">0.6525292</td>
+<td style="text-align: right;">0.0008435</td>
+</tr>
+</tbody>
+</table>
+
+
 </div>
 </div>
 <p>The table gives the estimated value for the Pearson correlation coefficient in each case, the lower and upper bound of the 95% confidence interval for that coefficient and the <em>p</em>-value.</p>
@@ -542,7 +568,7 @@ W = 0.97172, p-value = 0.2715</code></pre>
 </div>
 </div>
 </div>
-<p>The outlier in the left-hand figure above brings the correlation coefficient down to 0.08, which is close to zero. The correlation coefficient in the right-hand figure is similarly small at 0.133, despite that there is a strong association between the <em>x</em> and <em>y</em> data. The reason is that the association is non-linear.</p>
+<p>The outlier in the left-hand figure above brings the correlation coefficient down to 0.08, which is close to zero. The correlation coefficient in the right-hand figure is similarly small at 0.029, despite that there is a strong association between the <em>x</em> and <em>y</em> data. The reason is that the association is non-linear.</p>
 </section>
 <section id="spearmans-rank-correlation-coefficient-rsp" class="level3" data-number="5.6.2">
 <h3 data-number="5.6.2" class="anchored" data-anchor-id="spearmans-rank-correlation-coefficient-rsp"><span class="header-section-number">5.6.2</span> Spearman’s rank correlation coefficient <em>r</em><sub>Sp</sub></h3>
@@ -609,7 +635,7 @@ W = 0.97172, p-value = 0.2715</code></pre>
 <h4 data-number="5.9.2.1" class="anchored" data-anchor-id="tests-for-normality"><span class="header-section-number">5.9.2.1</span> Tests for normality</h4>
 <p>Shapiro-Wilk tests are carried out to check for normality of the two sets of data:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(bill_depths)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(bill_depths)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Shapiro-Wilk normality test
@@ -619,7 +645,7 @@ W = 0.9831, p-value = 0.4364</code></pre>
 </div>
 </div>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(bill_lengths)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(bill_lengths)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Shapiro-Wilk normality test
@@ -634,8 +660,8 @@ W = 0.99117, p-value = 0.8952</code></pre>
 <h4 data-number="5.9.2.2" class="anchored" data-anchor-id="calculate-correlation-coefficient"><span class="header-section-number">5.9.2.2</span> Calculate correlation coefficient</h4>
 <p>For these data, we calculate the correlation coefficient using the Pearson method.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Pearson</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(bill_depths,bill_lengths, <span class="at">method =</span> <span class="st">"pearson"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Pearson</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(bill_depths,bill_lengths, <span class="at">method =</span> <span class="st">"pearson"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Pearson's product-moment correlation

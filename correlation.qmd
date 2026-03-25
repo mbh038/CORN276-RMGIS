@@ -23,6 +23,7 @@ library(cowplot)
 library(gridExtra)
 library(janitor)
 library(HistData) # for PearsonLee
+library(kableExtra)
 data(PearsonLee) # Pearson and Lee's data on the Heights of Parents and Children by Gender
 data(iris)
 
@@ -581,13 +582,14 @@ Looking at each graph, it appears that there is a positive correlation for each 
 
 Let us find out:
 
-```{r,echo=TRUE}
+```{r,echo=FALSE}
 iris |>
   group_by(Species) |>
   summarise(r=cor.test(Sepal.Width,Sepal.Length)$estimate,
             lower.bound95 = cor.test(Sepal.Width,Sepal.Length)$conf.int[1],
             upper.bound95 = cor.test(Sepal.Width,Sepal.Length)$conf.int[2],
-            "p value" = cor.test(Sepal.Width,Sepal.Length)$p.value)
+            "p value" = cor.test(Sepal.Width,Sepal.Length)$p.value) |>
+  kbl()
 ```
 
 The table gives the estimated value for the Pearson correlation coefficient in each case, the lower and upper bound of the 95% confidence interval for that coefficient and the *p*-value.
