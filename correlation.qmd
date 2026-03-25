@@ -690,7 +690,9 @@ Be careful though, as spurious correlations can easily arise. See [Spurious Corr
 
 
 
-## Exercise 1
+## Exercises
+
+### Excercise 1
 
 ```{r}
 cor_plot <-function(plot_data){
@@ -731,7 +733,7 @@ Plots A to F above show scatter plots of different data sets *Y* against *X*.
     -   Pearson *r*
     -   Spearman rank *r*~sp~
 
-## Exercise 2
+### Exercise 2
 
 Measurements were made on female Adelie penguins on a series of islands in the Antarctic. The bill lengths and depths of 73 individuals were recorded and are shown in the plot below.
 

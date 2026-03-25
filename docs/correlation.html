@@ -254,8 +254,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul></li>
   <li><a href="#when-is-it-appropriate-to-calculate-a-correlation-coefficient" id="toc-when-is-it-appropriate-to-calculate-a-correlation-coefficient" class="nav-link" data-scroll-target="#when-is-it-appropriate-to-calculate-a-correlation-coefficient"><span class="header-section-number">5.7</span> When is it appropriate to calculate a correlation coefficient?</a></li>
   <li><a href="#association-is-not-the-same-thing-as-causation" id="toc-association-is-not-the-same-thing-as-causation" class="nav-link" data-scroll-target="#association-is-not-the-same-thing-as-causation"><span class="header-section-number">5.8</span> Association is not the same thing as causation</a></li>
-  <li><a href="#exercise-1" id="toc-exercise-1" class="nav-link" data-scroll-target="#exercise-1"><span class="header-section-number">5.9</span> Exercise 1</a></li>
-  <li><a href="#exercise-2" id="toc-exercise-2" class="nav-link" data-scroll-target="#exercise-2"><span class="header-section-number">5.10</span> Exercise 2</a></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">5.9</span> Exercises</a>
+  <ul class="collapse">
+  <li><a href="#excercise-1" id="toc-excercise-1" class="nav-link" data-scroll-target="#excercise-1"><span class="header-section-number">5.9.1</span> Excercise 1</a></li>
+  <li><a href="#exercise-2" id="toc-exercise-2" class="nav-link" data-scroll-target="#exercise-2"><span class="header-section-number">5.9.2</span> Exercise 2</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -382,13 +385,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     Pearson's product-moment correlation
 
 data:  x and y
-t = 9.2361, df = 48, p-value = 3.197e-12
+t = 9.3268, df = 48, p-value = 2.357e-12
 alternative hypothesis: true correlation is not equal to 0
 95 percent confidence interval:
- 0.6710155 0.8819257
+ 0.6753023 0.8836556
 sample estimates:
       cor 
-0.7999517 </code></pre>
+0.8027568 </code></pre>
 </div>
 </div>
 <p>There are different ways to calculate the correlation coefficient. Which of them is appropriate depends mainly on the type of data, and if they are numeric, whether they are normally distributed. If they are, then we use the Pearson method. If they are not, for example because they are ordinal data, then we use the Spearman’s Rank method and write <em>method=“spearman”</em> instead. In this case we can relax the requirement that there is a linear association between the data sets, but there does still need to be a monotonic relationship.</p>
@@ -574,7 +577,7 @@ W = 0.97172, p-value = 0.2715</code></pre>
 </div>
 </div>
 </div>
-<p>The outlier in the left-hand figure above brings the correlation coefficient down to 0.08, which is close to zero. The correlation coefficient in the right-hand figure is similarly small at 0.286, despite that there is a strong association between the <em>x</em> and <em>y</em> data. The reason is that the association is non-linear.</p>
+<p>The outlier in the left-hand figure above brings the correlation coefficient down to 0.08, which is close to zero. The correlation coefficient in the right-hand figure is similarly small at 0.119, despite that there is a strong association between the <em>x</em> and <em>y</em> data. The reason is that the association is non-linear.</p>
 </section>
 <section id="spearmans-rank-correlation-coefficient-rsp" class="level3" data-number="5.6.2">
 <h3 data-number="5.6.2" class="anchored" data-anchor-id="spearmans-rank-correlation-coefficient-rsp"><span class="header-section-number">5.6.2</span> Spearman’s rank correlation coefficient <em>r</em><sub>Sp</sub></h3>
@@ -594,8 +597,10 @@ W = 0.97172, p-value = 0.2715</code></pre>
 <p>That said, if you spot a strong association beween two variables, it <em>may</em> be an indicator of a causal relationship, so it is at least worth pausing for thought to decide whether this is worthy of further investigation.</p>
 <p>Be careful though, as spurious correlations can easily arise. See <a href="https://www.tylervigen.com/spurious-correlations">Spurious Correlations</a> for many amusing examples of these.</p>
 </section>
-<section id="exercise-1" class="level2" data-number="5.9">
-<h2 data-number="5.9" class="anchored" data-anchor-id="exercise-1"><span class="header-section-number">5.9</span> Exercise 1</h2>
+<section id="exercises" class="level2" data-number="5.9">
+<h2 data-number="5.9" class="anchored" data-anchor-id="exercises"><span class="header-section-number">5.9</span> Exercises</h2>
+<section id="excercise-1" class="level3" data-number="5.9.1">
+<h3 data-number="5.9.1" class="anchored" data-anchor-id="excercise-1"><span class="header-section-number">5.9.1</span> Excercise 1</h3>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -616,8 +621,8 @@ W = 0.97172, p-value = 0.2715</code></pre>
 </ul></li>
 </ul>
 </section>
-<section id="exercise-2" class="level2" data-number="5.10">
-<h2 data-number="5.10" class="anchored" data-anchor-id="exercise-2"><span class="header-section-number">5.10</span> Exercise 2</h2>
+<section id="exercise-2" class="level3" data-number="5.9.2">
+<h3 data-number="5.9.2" class="anchored" data-anchor-id="exercise-2"><span class="header-section-number">5.9.2</span> Exercise 2</h3>
 <p>Measurements were made on female Adelie penguins on a series of islands in the Antarctic. The bill lengths and depths of 73 individuals were recorded and are shown in the plot below.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
@@ -635,8 +640,8 @@ W = 0.97172, p-value = 0.2715</code></pre>
 <li>Whether the correlation is ‘strong’ or ‘weak’ ie is the absolute value of the correlation coefficient likely to be close to 1 or close to zero</li>
 <li>Whether there might be evidence from this data that there is any correlation between bill depth and bill length in the population from which this data set was drawn.</li>
 </ul>
-<section id="tests-for-normality" class="level4" data-number="5.10.0.1">
-<h4 data-number="5.10.0.1" class="anchored" data-anchor-id="tests-for-normality"><span class="header-section-number">5.10.0.1</span> Tests for normality</h4>
+<section id="tests-for-normality" class="level4" data-number="5.9.2.1">
+<h4 data-number="5.9.2.1" class="anchored" data-anchor-id="tests-for-normality"><span class="header-section-number">5.9.2.1</span> Tests for normality</h4>
 <p>Shapiro-Wilk tests are carried out to check for normality of the two sets of data:</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(bill_depths)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -660,8 +665,8 @@ W = 0.99117, p-value = 0.8952</code></pre>
 </div>
 <p>On this basis, we see that we can use the Pearson method to calculate the correlation coefficient between bill depth and bill length. What is telling us this?</p>
 </section>
-<section id="calculate-correlation-coefficient" class="level4" data-number="5.10.0.2">
-<h4 data-number="5.10.0.2" class="anchored" data-anchor-id="calculate-correlation-coefficient"><span class="header-section-number">5.10.0.2</span> Calculate correlation coefficient</h4>
+<section id="calculate-correlation-coefficient" class="level4" data-number="5.9.2.2">
+<h4 data-number="5.9.2.2" class="anchored" data-anchor-id="calculate-correlation-coefficient"><span class="header-section-number">5.9.2.2</span> Calculate correlation coefficient</h4>
 <p>For these data, we calculate the correlation coefficient using the Pearson method.</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Pearson</span></span>
@@ -688,6 +693,7 @@ sample estimates:
 <p>How would you report this result?</p>
 
 
+</section>
 </section>
 </section>
 
