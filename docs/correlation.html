@@ -256,7 +256,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#association-is-not-the-same-thing-as-causation" id="toc-association-is-not-the-same-thing-as-causation" class="nav-link" data-scroll-target="#association-is-not-the-same-thing-as-causation"><span class="header-section-number">5.8</span> Association is not the same thing as causation</a></li>
   <li><a href="#exercise-1" id="toc-exercise-1" class="nav-link" data-scroll-target="#exercise-1"><span class="header-section-number">5.9</span> Exercise 1</a></li>
   <li><a href="#exercise-2" id="toc-exercise-2" class="nav-link" data-scroll-target="#exercise-2"><span class="header-section-number">5.10</span> Exercise 2</a></li>
-  <li><a href="#exercise-3" id="toc-exercise-3" class="nav-link" data-scroll-target="#exercise-3"><span class="header-section-number">5.11</span> Exercise 3</a></li>
   </ul>
 </nav>
     </div>
@@ -384,13 +383,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     Pearson's product-moment correlation
 
 data:  x and y
-t = 9.1165, df = 48, p-value = 4.782e-12
+t = 9.1309, df = 48, p-value = 4.556e-12
 alternative hypothesis: true correlation is not equal to 0
 95 percent confidence interval:
- 0.6652616 0.8795948
+ 0.6659596 0.8798781
 sample estimates:
       cor 
-0.7961778 </code></pre>
+0.7966362 </code></pre>
 </div>
 </div>
 <p>There are different ways to calculate the correlation coefficient. Which of them is appropriate depends mainly on the type of data, and if they are numeric, whether they are normally distributed. If they are, then we use the Pearson method. If they are not, for example because they are ordinal data, then we use the Spearman’s Rank method and write <em>method=“spearman”</em> instead. In this case we can relax the requirement that there is a linear association between the data sets, but there does still need to be a monotonic relationship.</p>
@@ -576,7 +575,7 @@ W = 0.97172, p-value = 0.2715</code></pre>
 </div>
 </div>
 </div>
-<p>The outlier in the left-hand figure above brings the correlation coefficient down to 0.08, which is close to zero. The correlation coefficient in the right-hand figure is similarly small at 0.33, despite that there is a strong association between the <em>x</em> and <em>y</em> data. The reason is that the association is non-linear.</p>
+<p>The outlier in the left-hand figure above brings the correlation coefficient down to 0.08, which is close to zero. The correlation coefficient in the right-hand figure is similarly small at 0.132, despite that there is a strong association between the <em>x</em> and <em>y</em> data. The reason is that the association is non-linear.</p>
 </section>
 <section id="spearmans-rank-correlation-coefficient-rsp" class="level3" data-number="5.6.2">
 <h3 data-number="5.6.2" class="anchored" data-anchor-id="spearmans-rank-correlation-coefficient-rsp"><span class="header-section-number">5.6.2</span> Spearman’s rank correlation coefficient <em>r</em><sub>Sp</sub></h3>
@@ -688,55 +687,9 @@ sample estimates:
 <li>There is no evidence that this correlation exists in the wider population from which this data set was drawn?</li>
 </ul>
 <p>How would you report this result?</p>
-</section>
-</section>
-<section id="exercise-3" class="level2" data-number="5.11">
-<h2 data-number="5.11" class="anchored" data-anchor-id="exercise-3"><span class="header-section-number">5.11</span> Exercise 3</h2>
-<ol type="1">
-<li><p>If you haven’t done so already, click on <a href="https://github.com/mbh038/correlation/archive/refs/heads/main.zip">this link</a> to download the practice project for correlation. You may then need to unzip it.</p></li>
-<li><p>Open the project in RStudio using File/Open Project then navigating to the project and clicking on the <code>correlation.Rproj</code> file</p></li>
-<li><p>Open the notebook <code>correlation.qmd</code> that you will find in the notebooks subfolder.</p></li>
-<li><p>Run the initial code chunks to load packages and the penguin and iris data</p></li>
-<li><p>Check in the Environment pane that you have created data frames called <code>penguins</code> and <code>iris</code>. Note the variable (column) names in each case.</p></li>
-<li><p>Using the code in section <a href="#sec-iris-correlation" class="quarto-xref"><span>Section 5.4</span></a> as a guide, create a faceted plot of petal length against petal width for each species. To do this you need to create a new code chunk, paste the code from <a href="#sec-iris-correlation" class="quarto-xref"><span>Section 5.4</span></a> into it and then adapt it a necessary.</p></li>
-<li><p>Again using <a href="#sec-iris-correlation" class="quarto-xref"><span>Section 5.4</span></a> as a guide, calculate the Pearson correlation coefficient between petal length and petal width for each species, and display this, plus the lower and upper bounds of the confidence interval and the <em>p</em>-value for each species in a table.</p></li>
-</ol>
-<ul>
-<li>Does it appear that the petal length and petal width are correlated for each species?<br>
-</li>
-<li>Is the correlation positive or negative?<br>
-</li>
-<li>For which species is the correlation strongest?<br>
-</li>
-<li>Do the correlation coefficients make sense, given the plots?</li>
-</ul>
-<p>Moving on to the penguin data….</p>
-<ol start="8" type="1">
-<li>Use the <code>filter()</code> function from the <code>dplyr</code> package in <code>tidyverse</code> to filter the penguin data down to Gentoo males. Save the data in a data frame called <code>gentoo_m</code>. You can do this by including the following code chunk in your notebook:</li>
-</ol>
-<div class="sourceCode" id="cb20"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="in">gentoo_m &lt;- penguins |&gt;</span></span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="in">filter(sex == "male") |&gt;</span></span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="in">filter(species == "Gentoo")</span></span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ol start="9" type="1">
-<li>Plot the bill depth vs bill length using code similar to this:</li>
-</ol>
-<div class="sourceCode" id="cb21"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="in">gentoo_m |&gt;</span></span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="in">  ggplot(aes(x = bill_depth_mm, y = bill_length_mm)) +</span></span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="in">  geom_point() +</span></span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="in">  labs(x = "Bill depth (mm)",</span></span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="in">       y = "Bill length (mm)") +</span></span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="in">  theme_classic()</span></span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ol start="10" type="1">
-<li><p>Look at the plot and decide if it is plausible that the association between bill depth and bill length is plausibly monotonic and if so, if it is plausibly linear. On this basis, before even considerinrg the issue of normality, decide if it is appropriate to use Pearson or Spearman’s rank measures of correlation with this data.</p></li>
-<li><p>If your answer to 10. was Yes, use the <code>shapiro.test()</code> function to determine if it is OK to use the Pearson measure of correlation. To do this you must separately test both the <code>bill_length_mm</code> and <code>bill_depth_mm</code> columns of the <code>gentoo_m</code> for normality. Remember that you can pick a particular column of a data frame by using the dollar notation. For example, <code>df$X</code> would pick out the column <code>X</code> from the data frame <code>df</code>.</p></li>
-<li><p>Use the <code>cor.test()</code> function with the appropriate method argument (<code>method = "pearson"</code> or <code>method = "spearman"</code>), as appropriate, to determine if the bill length and bill depth variables are correlated. This means using an expression of the form <code>cor.test(df$X, df$Y, method = "pearson")</code> if you wanted to determine the Pearson correlation coefficient between the <code>X</code> and <code>Y</code> columns of the data frame <code>df</code>.</p></li>
-</ol>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
