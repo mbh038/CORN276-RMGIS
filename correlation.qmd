@@ -6,8 +6,6 @@ options(tinytex.verbose = TRUE)
 
 Part of this guide to correlation draws heavily on the very helpful chapter in Statistics, by Freedman, Pisani and Purves [-@freedman1991].
 
-For this chapter you will find it useful to have [this RStudio project folder](https://github.com/mbh038/correlation/archive/refs/heads/main.zip) if you wish to follow along and try out the exercises at the end.
-
 ```{r global-options, include=FALSE,echo=FALSE}
 knitr::opts_chunk$set(fig.width=9,
                       fig.height=5,
@@ -698,7 +696,7 @@ Be careful though, as spurious correlations can easily arise. See [Spurious Corr
 cor_plot <-function(plot_data){
 plot_data |>
 ggplot(aes(x=x,y=y)) +
-  geom_point(alpha=0.5) +
+  geom_point(alpha=0.5, colour = point_colour) +
   xlim(0,max(max(x,y))) +
   # ylim(0,NA) +
   # coord_fixed() +
