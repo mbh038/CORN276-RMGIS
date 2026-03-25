@@ -85,7 +85,7 @@ theme_bare_axes <- function () {
 }
 ```
 
-The notable statistician Karl Pearson and Alice Lee carried out a study to investigate the resemblance between children and their parents. As part of the study, they measured the heights of 1078 parents and of their children at maturity. Here, the heights of the children are plotted against the heights of the parents in the plots below, where we distinguish between father-son and mother-daughter pairs.
+The notable statisticians Karl Pearson and Alice Lee carried out a study to investigate the resemblance between children and their parents. As part of the study, they measured the heights of 1078 parents and of their children at maturity. Here, the heights of the children are plotted against the heights of the parents in the plots below, where we distinguish between father-son and mother-daughter pairs.
 
 ```{r,out.width="100%"}
 
@@ -525,7 +525,7 @@ We will look to see if the data allow us to reject the idea that sepal width and
 
 First, let's plot the data
 
-```{r,echo=TRUE}
+```{r,echo=FALSE}
 iris |>
   ggplot(aes(x = Sepal.Width, y = Sepal.Length, colour = Species)) +
   geom_point() +
@@ -547,20 +547,17 @@ It does look as though there is a plausibly linear relationship between sepal wi
 
 In principle, however, this method requires that each group of the data be approximately normally distributed around its repective mean (that is what the word parametric is getting at), so we ought to test for this. We can do this either graphically or using a normality test such as the Shapiro wilk test. Let us do the latter here:
 
-First we do it for one species, for example the `setosa`. We can use the `filter` function from the `dplyr` packages within `tidyverse` to separate the data for this species from that for the others. We will save it as a new data frame called `setosa`:
+First we do it for one species, for example the `setosa`. 
 
-```{r, echo = TRUE}
+```{r, echo = FALSE}
 setosa <- iris |>
   filter(Species == "setosa")
 ```
-
-Now we use the `shapiro.test()` function to assess the normality of the `Sepal.Length` column data
+and here we use the `shapiro.test()` function to assess the normality of the `Sepal.Length` column in the data
 
 ```{r, echo = TRUE}
-shapiro.test(setosa$Sepal.Length)  # <1>
+shapiro.test(setosa$Sepal.Length)
 ```
-
-1.  Note the use of the dollar notation to pick out a particular column of a data frame. Here we pick out the `Sepal.Length` column of the `setosa` data frame.
 
 and then of the `Sepal.Width` column of data:
 
@@ -568,7 +565,7 @@ and then of the `Sepal.Width` column of data:
 shapiro.test(setosa$Sepal.Width)
 ```
 
-WHen we do it for all species, for both sepal width and sepal length, we find
+When we do it for all species, for both sepal width and sepal length, we find
 
 ```{r}
 iris |>
@@ -576,11 +573,11 @@ iris |>
   summarise(Sepal.Length_p.val = shapiro.test(Sepal.Length)$p.value,Sepal.Width_p.val = shapiro.test(Sepal.Width)$p.value)
 ```
 
-All the p-values for this test are comfortably greater than 0.05 so we can reasonably presume that our data are drawn from normally distributed populations. This, plus the plausibly linear realtionships we have seen in the graphs means that can go ahead and use the Pearson method to calculate the correlation coefficient between sepal length and width for each species!
+All the p-values for this test are comfortably greater than 0.05 so we can reasonably presume that our data are drawn from normally distributed populations. This, plus the plausibly linear relationships we have seen in the graphs means that can go ahead and use the Pearson method to calculate the correlation coefficient between sepal length and width for each species!
 
 ### Calculate the correlation coefficients
 
-Looking at each graph, it appears that there is a positive correlation for each species, but that this is weaker for *versicolar* and *virginica* than it is for *setosa*. Knowing the sepal width for that species gives you a much better idea of the sepal length, and vice-versa, than is true for the other two species.
+Looking at each graph, it appears that there is a positive correlation for each species, but that this is weaker for *versicolar* and *virginica* than it is for *setosa*. Knowing the sepal width for that species gives you a much better idea of the sepal length, and vice-versa, than is the case for the other two species.
 
 Let us find out:
 
@@ -595,7 +592,7 @@ iris |>
 
 The table gives the estimated value for the Pearson correlation coefficient in each case, the lower and upper bound of the 95% confidence interval for that coefficient and the *p*-value.
 
-Do these output provide evidence for a correlation between sepal length and sepal width in each case?
+Do these outputs provide evidence for a correlation between sepal length and sepal width in each case?
 
 ## The problem of missing confounding variables
 
@@ -604,7 +601,7 @@ Suppose in the above analysis we had not distinguished between the three species
 ```{r,echo=TRUE}
 iris |>
   ggplot(aes(x = Sepal.Width, y = Sepal.Length)) +
-  geom_point() +
+  geom_point(colour = point_colour) +
   labs(x = "Sepal Width (mm)",
        y = "Sepal Length (mm)") +
   theme_classic() +
@@ -754,7 +751,7 @@ bill_depths <- adelieF |> dplyr::select(bill_depth_mm) |> pull()
 ```{r, echo=FALSE}
 adelieF |>
   ggplot(aes(x=bill_length_mm, y = bill_depth_mm)) +
-  geom_point() +
+  geom_point(colour = point_colour) +
   labs(x = "Bill length (mm)",
        y = "Bill depth (mm") +
   theme_cowplot()
