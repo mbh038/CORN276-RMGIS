@@ -2,32 +2,42 @@
 
 This will develop into your course notes for Research Methods and GIS for Zoology.
 
+## Test syllabus
+
 The test will cover:
 
-* Data types
+* Data types. Know the difference between
   * Categorical
   * Ordinal
   * Numeric: Constant interval and ratio
 * Sampling strategies
   * Simple random
   * Stratified
-* The research method: questions, hypotheses and predictions
-  * Type of question: trend and difference
-* Study design
-  * Correlational
-  * Manipulative
-* Visualisation of data
-  * Pros and cons of bar charts, histograms, box plots, violin plots
-* Representing error
+* The research method: 
+  * questions
+    * trend
+    * difference
+  * hypotheses
+  * predictions
+* Study design: pros and cons of
+  * Correlational design
+  * Manipulative design
+* Visualisation of data: pros and cons of
+  * bar charts
+  * histograms
+  * box plots
+  * violin plots
+* Representing error. Meanings conveyed by: 
   * standard deviation
   * standard error of the mean
   * confidence interval
 * Choosing the right test in any situation
   * Difference between parametric and non-parametric tests
-  * How to choose between them:
+  * How to choose between them, using :
     * normality of residuals
     * constancy of variance
-    * normality test
+    as determined by:
+    * normality test or
     * graphical methods
 * Statistical tests: know when each is appropriate
   * t-test: 2 sample, 1-sample, paired
@@ -38,11 +48,12 @@ The test will cover:
     * Goodness of fit
     * Test of independence
 * Interpret output of tests:
+  * significance level
   * p-value
   * confidence interval
   * estimate
-* Reporting of tests in plain English
-* Type 1 and Type II error: what they are and how thier likelihood and be manipulated.
+  * Reporting of tests in plain English
+* Type 1 and Type II error: what they are and how their likelihood can be manipulated.
 
 
 
