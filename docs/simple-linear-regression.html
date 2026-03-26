@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>3&nbsp; Two samples, independent data - test for difference – CORN276-RMGIS</title>
+<title>6&nbsp; Simple linear regression – CORN276-RMGIS</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,40 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -64,8 +30,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./two_samples_paired.html" rel="next">
-<link href="./counts.html" rel="prev">
+<link href="./test_finder.html" rel="next">
+<link href="./correlation.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -102,11 +68,36 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
-<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
-<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
-<link href="site_libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet">
-<script src="site_libs/bsTable-3.3.7/bootstrapTable.js"></script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -119,7 +110,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./visualising_data.html">Main chapters</a></li><li class="breadcrumb-item"><a href="./two_samples.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Two samples, independent data - test for difference</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./visualising_data.html">Main chapters</a></li><li class="breadcrumb-item"><a href="./simple-linear-regression.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Simple linear regression</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -173,7 +164,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./two_samples.html" class="sidebar-item-text sidebar-link active">
+  <a href="./two_samples.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Two samples, independent data - test for difference</span></span></a>
   </div>
 </li>
@@ -191,7 +182,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./simple-linear-regression.html" class="sidebar-item-text sidebar-link">
+  <a href="./simple-linear-regression.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Simple linear regression</span></span></a>
   </div>
 </li>
@@ -247,15 +238,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#penguin-data" id="toc-penguin-data" class="nav-link active" data-scroll-target="#penguin-data"><span class="header-section-number">3.1</span> Penguin data</a></li>
-  <li><a href="#statistical-test-for-difference-one-factor-two-levels" id="toc-statistical-test-for-difference-one-factor-two-levels" class="nav-link" data-scroll-target="#statistical-test-for-difference-one-factor-two-levels"><span class="header-section-number">3.2</span> Statistical test for difference: one factor, two levels</a></li>
-  <li><a href="#testing-for-normality" id="toc-testing-for-normality" class="nav-link" data-scroll-target="#testing-for-normality"><span class="header-section-number">3.3</span> Testing for normality</a></li>
-  <li><a href="#the-two-sample-t-test" id="toc-the-two-sample-t-test" class="nav-link" data-scroll-target="#the-two-sample-t-test"><span class="header-section-number">3.4</span> The two sample t-test</a></li>
-  <li><a href="#mann-whitney-test-for-difference---for-data-that-are-not-normally-distributed" id="toc-mann-whitney-test-for-difference---for-data-that-are-not-normally-distributed" class="nav-link" data-scroll-target="#mann-whitney-test-for-difference---for-data-that-are-not-normally-distributed"><span class="header-section-number">3.5</span> Mann-Whitney test for difference - for data that are not normally distributed</a></li>
-  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">3.6</span> Exercises</a>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">6.1</span> Introduction</a></li>
+  <li><a href="#simple-linear-regression---plant-growth" id="toc-simple-linear-regression---plant-growth" class="nav-link" data-scroll-target="#simple-linear-regression---plant-growth"><span class="header-section-number">6.2</span> Simple Linear Regression - plant growth</a></li>
+  <li><a href="#the-data" id="toc-the-data" class="nav-link" data-scroll-target="#the-data"><span class="header-section-number">6.3</span> The data</a>
   <ul class="collapse">
-  <li><a href="#exercise-one-tests-for-normality" id="toc-exercise-one-tests-for-normality" class="nav-link" data-scroll-target="#exercise-one-tests-for-normality"><span class="header-section-number">3.6.1</span> Exercise One: tests for normality</a></li>
-  <li><a href="#exercise-two" id="toc-exercise-two" class="nav-link" data-scroll-target="#exercise-two"><span class="header-section-number">3.6.2</span> Exercise Two:</a></li>
+  <li><a href="#plot-the-data" id="toc-plot-the-data" class="nav-link" data-scroll-target="#plot-the-data"><span class="header-section-number">6.3.1</span> Plot the data</a></li>
+  <li><a href="#make-a-simple-model-using-linear-regression" id="toc-make-a-simple-model-using-linear-regression" class="nav-link" data-scroll-target="#make-a-simple-model-using-linear-regression"><span class="header-section-number">6.3.2</span> Make a simple model using linear regression</a></li>
+  <li><a href="#check-assumptions" id="toc-check-assumptions" class="nav-link" data-scroll-target="#check-assumptions"><span class="header-section-number">6.3.3</span> Check assumptions</a></li>
+  <li><a href="#interpretation-of-the-model" id="toc-interpretation-of-the-model" class="nav-link" data-scroll-target="#interpretation-of-the-model"><span class="header-section-number">6.3.4</span> Interpretation of the model</a></li>
+  <li><a href="#back-to-the-figure" id="toc-back-to-the-figure" class="nav-link" data-scroll-target="#back-to-the-figure"><span class="header-section-number">6.3.5</span> Back to the figure</a></li>
+  <li><a href="#report-the-result" id="toc-report-the-result" class="nav-link" data-scroll-target="#report-the-result"><span class="header-section-number">6.3.6</span> Report the result</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">6.3.7</span> Conclusion</a></li>
+  </ul></li>
+  <li><a href="#simple-linear-regression---ocean-ph" id="toc-simple-linear-regression---ocean-ph" class="nav-link" data-scroll-target="#simple-linear-regression---ocean-ph"><span class="header-section-number">6.4</span> Simple linear regression - ocean pH</a>
+  <ul class="collapse">
+  <li><a href="#load-data" id="toc-load-data" class="nav-link" data-scroll-target="#load-data"><span class="header-section-number">6.4.1</span> Load data</a></li>
+  <li><a href="#plot-data" id="toc-plot-data" class="nav-link" data-scroll-target="#plot-data"><span class="header-section-number">6.4.2</span> Plot data</a></li>
+  <li><a href="#fit-linear-model" id="toc-fit-linear-model" class="nav-link" data-scroll-target="#fit-linear-model"><span class="header-section-number">6.4.3</span> Fit linear model</a></li>
+  <li><a href="#check-model-validity" id="toc-check-model-validity" class="nav-link" data-scroll-target="#check-model-validity"><span class="header-section-number">6.4.4</span> Check model validity</a></li>
+  <li><a href="#inspect-model" id="toc-inspect-model" class="nav-link" data-scroll-target="#inspect-model"><span class="header-section-number">6.4.5</span> Inspect model</a></li>
+  <li><a href="#replot-the-data-model-included" id="toc-replot-the-data-model-included" class="nav-link" data-scroll-target="#replot-the-data-model-included"><span class="header-section-number">6.4.6</span> Replot the data, model included</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -263,9 +265,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./visualising_data.html">Main chapters</a></li><li class="breadcrumb-item"><a href="./two_samples.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Two samples, independent data - test for difference</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./visualising_data.html">Main chapters</a></li><li class="breadcrumb-item"><a href="./simple-linear-regression.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Simple linear regression</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Two samples, independent data - test for difference</span></h1>
+<h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Simple linear regression</span></h1>
 </div>
 
 
@@ -282,320 +284,246 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="penguin-data" class="level2" data-number="3.1">
-<h2 data-number="3.1" class="anchored" data-anchor-id="penguin-data"><span class="header-section-number">3.1</span> Penguin data</h2>
-<p>Suppose we have sampled males from a population of two species of penguin, the Gentoo and the Adelie. All the individuals were found on islands in the Palmer archipelago of Antarctica. For each penguin, measurements were made of their bill length, bill depth, flipper length and body weight. We want to know if there are morphological (shape) differences between the bills of these species, so let’s focus on those two bill measurements, as shown in <a href="#fig-bill-measurements" class="quarto-xref">Figure&nbsp;<span>3.1</span></a>. If there is a difference, then that might give us some insight as to differences between the ecological niches that the two species occupy.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div id="fig-bill-measurements" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-bill-measurements-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="figures/culmen_depth.jpg" class="img-fluid figure-img" style="width:90.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bill-measurements-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.1: Dimensions of the penguin bills as measured in the Palmerpenguins data set avaialble as a package in R. Artwork adapted from <a href="https://allisonhorst.github.io/palmerpenguins/articles/art.html">Allison Horst</a>
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<p>Here are the first few rows of the data</p>
+<section id="introduction" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">6.1</span> Introduction</h2>
+<p>A class of analytical models that are often used go under the name <strong>General Linear Models</strong>. They include linear regression, multiple regression, ANOVA, ANCOVA, Pearson correlation and t-tests.</p>
+<p>Despite appearances, these models are all fundamentally linear models. They share a common framework for estimation (least squares) and a common set of criteria that the data must satisfy before they can be used. These criteria centre around the idea of normally distributed residuals. THus, an important stage of any analysis that uses linear models is that compliance with these assumptions is checked, as part of the <em>Plot</em> -&gt; <em>Model</em> -&gt; <em>Check Assumptions</em> -&gt; <em>Interpret</em> -&gt; <em>Plot again</em> workflow.</p>
+<p>Here, we will go through an example of simple linear regression - suitable for trend data where we wish to predict a continuously varying response, given a value of a single continuous explanatory variable.</p>
+</section>
+<section id="simple-linear-regression---plant-growth" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="simple-linear-regression---plant-growth"><span class="header-section-number">6.2</span> Simple Linear Regression - plant growth</h2>
+<p>As a first example, we ask the question: does plant growth rate depend on soil moisture content?</p>
+<p>We predict that more moisture will probably allow higher growth rates. We note that this means there should be a clear relationship between the variables, one that should be apparent if we plot the response (dependent) variable - plant growth rate - against the explanatory (independent) variable - soil moisture content. We also note that both the explanatory variable and the dependent variables are <em>continuous</em> - they do not have categories.</p>
+<p>What we might want to do in linear regression is be able to predict the value of the dependent variable, knowing the value of the independent variable, using a linear model. Just as ofen, we simply want to determine the sensitivity of the dependent variable to changes in the independent variable. In practice, this means drawing a ‘best fit’ straight line through the data and determining the intercept and gradient of this line. It is the gradient that tells us the sensitivity of the dependent variable to chnges in the independent variable, and that is what we most often look out for in the analysis.</p>
+</section>
+<section id="the-data" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="the-data"><span class="header-section-number">6.3</span> The data</h2>
+<p>Suppose that we have a data set to explore our question:</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 8
-  species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
-  &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;
-1 Adelie  Torgersen           39.1          18.7               181        3750
-2 Adelie  Torgersen           39.3          20.6               190        3650
-3 Adelie  Torgersen           39.2          19.6               195        4675
-4 Adelie  Torgersen           38.6          21.2               191        3800
-5 Adelie  Torgersen           34.6          21.1               198        4400
-6 Adelie  Torgersen           42.5          20.7               197        4500
-# ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;</code></pre>
+<pre><code>Rows: 50
+Columns: 2
+$ soil.moisture.content &lt;dbl&gt; 0.4696876, 0.5413106, 1.6979915, 0.8255799, 0.85…
+$ plant.growth.rate     &lt;dbl&gt; 21.31695, 27.03072, 38.98937, 30.19529, 37.06547…</code></pre>
 </div>
 </div>
-<p>Let’s create a new variable <code>bill_stocky</code> which is the ratio of the bill depth to the bill lenth. The higher this value is, the shorter and thicker the bill.A stocky bill would likely be more powerful and able to crunch thicker bones in fish.</p>
-<p>If we summarise the data by calculating the mean and standard deviation and standard error of the mean stockiness for each species we find:</p>
-<div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 2 × 5
-  species       n mean.bill_stocky sd.bill_stocky se.bill_stocky
-  &lt;fct&gt;     &lt;int&gt;            &lt;dbl&gt;          &lt;dbl&gt;          &lt;dbl&gt;
-1 Chinstrap    34            0.377         0.0142        0.00244
-2 Gentoo       59            0.316         0.0164        0.00213</code></pre>
-</div>
-</div>
-<p>See how big the difference is between the mean values, compared to the standard errors of those means?</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><strong>standard deviations</strong>: These tell us about the spread of values in a sample or a population. They do not systematically get bigger or smaller as the sample size increases. The standard deviation of a sample can be used as an estimate of the standard deviation of the population. We use standard deviations for <em>descriptive purposes</em></p>
-<p><strong>standard errors of the mean</strong> These are used to indicate how precisely a sample mean estimates the true population mean. They are used for <em>inferential purposes</em>, whereby we try to infer from the sample mean the range of values in which the true population mean might be. Assuming normally distributed values, it would be very surprising if the true population means were more than two standard errors away from the sample means.</p>
-</div>
-</div>
-<p>Let’s plot the data, using a box plot:</p>
+<p>We see that the data set contains two continuous variables, as expected.</p>
+<section id="plot-the-data" class="level3" data-number="6.3.1">
+<h3 data-number="6.3.1" class="anchored" data-anchor-id="plot-the-data"><span class="header-section-number">6.3.1</span> Plot the data</h3>
 <div class="cell">
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="two_samples_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" style="width:90.0%"></p>
+<p><img src="simple-linear-regression_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
+<p>From the plot, we note that:</p>
 <ul>
-<li>On this box plot, identify the 25th, 50th and 75th percentile values for each species.</li>
-<li>Which of these is the median value?</li>
-<li>What do the whiskers represent?</li>
-<li>Are there any outliers?</li>
-<li>Do you think the distributions of the data are roughly symmetrical?</li>
+<li>there is an upward trend that is plausibly linear within this range of soil misture content. The more moisture there is in the soil, the greater the growth rate of the plants appears to be.</li>
+<li>the variance of the data, that is the range of vertical spread is approximately constant for the whole range of soil moisture content. This is one of the key criteria that data must satisfy if we are to analyse them using a linear model such as simple linear regression.</li>
+<li>we can estimate the intercept and gradient of a best fit line just by looking at the plot. Roughly speaking, the moisture content varies from 0 to 2, while the growth rate rises from 20 to 50, a rise of about 30. Hence the gradient is about 30/2 = 15 mm/week, while the intercept is somewhere between 15 mm and 20 mm / week.</li>
 </ul>
+<p>It is always good practice to examine the data before you go on to do any statistical analysis. For all but the smallest data sets, that means plotting them.</p>
 </section>
-<section id="statistical-test-for-difference-one-factor-two-levels" class="level2" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="statistical-test-for-difference-one-factor-two-levels"><span class="header-section-number">3.2</span> Statistical test for difference: one factor, two levels</h2>
-<p>Use the test finder to decide which statistical test for difference might be appropriate.</p>
-<p>Note that we have:</p>
-<ul>
-<li>A difference question</li>
-<li>Replicates - there are 34 Chinstrap and 61 Gentoo males</li>
-<li>Independent data - each penguin is either an Adelie or a Chinstrap</li>
-<li>One <strong>factor</strong>: Species. This has two <strong>levels</strong>: Adelie and Chinstrap. We thus have two samples: the 34 Chinstrap and the 61 Gentoos.</li>
-<li>a continuous and numeric response variable - bill stockiness.</li>
-</ul>
-<p>You should find that the test-finder tells you to use either a <strong>2-sample t-test</strong> or a <strong>Mann-Whitney U-test</strong>. These are both tests for difference where you have two independent samples, each with replicates</p>
-<p>You use the t-test if you can because it is more powerful than the Mann Whitney test. This is not surprising because the t-test is an example of a <code>parametric test</code> while the Mann Whitney test is a <code>non-parametric</code> test. In making comparisons between the two sets of data it only looks at their ranks, not their actual values. That means it does not care what the actual distribution of the data is, but also that it has thrown away some information and so must be less powerful.</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>The terms <strong>parametric</strong> and <strong>non-parametric</strong> refer to whether the tests assume that the data used follow some known distribution, usually a normal distribution. These distributions are described by a small number of <em>parameters</em>, hence the names. For a normal distribution, the key parameters that enable it to be drawn are its mean, which tells us where it is centred, and its standard deviation, which tells us how widely spread it is.</p>
-<p>In general, parametric tests are preferred to non-parametric tests, but we can only use them if the data <em>do</em> meet the criteria they require, prominent among these being that the data are plausibly drawn from a population with some known distribution, which often means a normal distribution.</p>
-</div>
-</div>
-<p>Why would it do that? Because to use the t-test the data need to satisfy various criteria. Here we will focus on one: that the data need to be drawn from populations that are normally distributed about their mean values. If this is not at least approximately the case, then we should not use the t-test and should instead use an alternative, which typically is the non-parametric equivalent test, here the Mann Whitney U test. The Mann Whitney test, like other non-parametric tests, uses the ranks of the data instead of their actual values and in this way is not affected by whatever distribution the data may have.</p>
+<section id="make-a-simple-model-using-linear-regression" class="level3" data-number="6.3.2">
+<h3 data-number="6.3.2" class="anchored" data-anchor-id="make-a-simple-model-using-linear-regression"><span class="header-section-number">6.3.2</span> Make a simple model using linear regression</h3>
+<p>We use the function <code>lm()</code> to do this, and we save the results in an object to which we give the name <code>model_pgr</code>. This function needs a formula and some data as its arguments:</p>
+<p>This reads: ‘Fit a linear model, where we hypothesize that plant growth rate is a function of soil moisture content, using the variables from the <code>plants</code> data frame.’</p>
 </section>
-<section id="testing-for-normality" class="level2" data-number="3.3">
-<h2 data-number="3.3" class="anchored" data-anchor-id="testing-for-normality"><span class="header-section-number">3.3</span> Testing for normality</h2>
-<p>You can either:</p>
-<p><strong>Plot the data using a box plot or similar</strong> If you plot the data using a box plot as we have above, you are looking to see whether the boxes look roughly symmetrical, with the median line roughly in the middle of the box, and no string of outliers heading off to one side or the other. This is because a normal distribution is symmetric, so we should see that reflected at least approximately in the box plot.</p>
-<p>Other plot types that show the distribution of the data can work too, such as a histogram or a violin plot, but a box plot is easy to make and is effective.</p>
-<p><strong>Plot the data using a quantile-quantile plot</strong></p>
-<p>The best plot to use to determine if a data set is plausibly drawn from a normal distributed population is a quantile-quantile (QQ) plot, particularly when the data set is small.</p>
-<p>In these, the percentiles of a data set are plotted against the equivalent percentiles of a normal distribution. If the data are roughly normally distributed then the line will be roughly straight.</p>
+<section id="check-assumptions" class="level3" data-number="6.3.3">
+<h3 data-number="6.3.3" class="anchored" data-anchor-id="check-assumptions"><span class="header-section-number">6.3.3</span> Check assumptions</h3>
+<p>Before we rush into interpreting the output of the model, we need to check whether it was valid to use a linear model in the first place. Whatever the test within which we are using a linear model, we should do the necessary diagnostic checks at this stage.</p>
+<p>You can do this using tests designed for the purpose, but I prefer to do it graphically, using a function <code>autoplot()</code> from the package <code>ggfortify</code>. You give this the model we have just created using <code>lm()</code> and it produces four very useful graphs. I suggest that, after once installing <code>ggfortify</code> you include the line <code>library(ggfortify)</code> at the start of every script.</p>
+<p>Here is how you use it:</p>
 <div class="cell">
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="two_samples_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" style="width:90.0%"></p>
+<p><img src="simple-linear-regression_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
-<p>The line for the Gentoos is not quite straight, but it is not too bad. We don’t mind a bit of raggedness at the ends since we are only looking for the data to be close enough to being normally distributed for a parametric test to be reliable. We don’t need the data to be perfectly normally distributed.</p>
-<p><strong>Use a normality test</strong> I don’t favour these, especially for large data sets, but if you must use them…</p>
-<p>The most commonly used one is the Shapiro-Wilk test. It tests a data set against its null hypothesis that the data were drawn from a normally distributed population. If the returned p-value is higher than 0.05 then we fail to reject this null and can confidently go on to use a parametric test such as a t-test that required normality.</p>
+<p>The <code>theme_cowplot()</code> part is not necessary, but it gives the plots a nice look, so why not?</p>
+<p>These plots are all based around the `residuals’, which is the vertical distance between observed values and fitted values ie between each point and the best fit line through the points - the line which the linear model is finding for us, by telling us its intercept and gradient.</p>
+<p>In simple linear regression, the best fit line is the one that minimises that sum of the squared residuals.</p>
+<p>So what do these plots mean?</p>
+<ul>
+<li><em>Top-left</em>: This tells you about the structure of the model. Was it a good idea to try to fit a straight line to the data? If not, for example because the data did follow a linear trend, then there will be humps or troughs in this plot.</li>
+<li><em>Top-right</em>: This evaluates the assumption of normality of the residuals. The dots are the residuals and the dashed line is the expectation under the normality assumption. This is a <em>much</em> better way to check normality than making a histogram of the residuals, especially with small samples.</li>
+<li><em>Bottom-left</em>: This examines the assumption of equal variance of the residuals. A linear model assumes that the variance is constant over all predicted values of the response variables. There should be no pattern. Often, however, there is. With count data, for example, the variance typically increases with the mean.</li>
+<li><em>Bottom-right</em>: This detects leverage - which means points that have undue influence on the gradient of the fitted line, and outliers. If you have outliers in your data, you need to decide what to do with them.</li>
+</ul>
+<p>In the case of these data, we are good to go! There is no discernible pattern in either of the left-hand plots, the qq-plot is about as straight as you ever see with real data, and there are no points exerting undue high influence.</p>
+</section>
+<section id="interpretation-of-the-model" class="level3" data-number="6.3.4">
+<h3 data-number="6.3.4" class="anchored" data-anchor-id="interpretation-of-the-model"><span class="header-section-number">6.3.4</span> Interpretation of the model</h3>
+<p>Now that we have established that the data meet the criteria required for the model to be valid, we can go ahead and inspect its output. We will do this using two tools that we also use for every other general linear model we implement (t-test, ANOVA etc). These are <code>anova()</code> and <code>summary()</code></p>
+<p>Let us first use <code>anova()</code>:</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 2 × 4
-  species   variable    statistic     p
-  &lt;fct&gt;     &lt;chr&gt;           &lt;dbl&gt; &lt;dbl&gt;
-1 Chinstrap bill_stocky     0.977 0.671
-2 Gentoo    bill_stocky     0.982 0.545</code></pre>
+<pre><code>Analysis of Variance Table
+
+Response: plant.growth.rate
+                      Df  Sum Sq Mean Sq F value    Pr(&gt;F)    
+soil.moisture.content  1 2521.15 2521.15  156.08 &lt; 2.2e-16 ***
+Residuals             48  775.35   16.15                      
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
 </div>
-<p>For these data, both p-values are greater than 0.05 so we do not reject the null: it is plausible that both data sets are drawn from normally distributed populations</p>
-<p><strong>So all in all, the graphs looks OK and it looks like the data have passed our normality tests. Hence it is OK to use a t-test for difference and we do not need to use a Mann-Whitneyy test instead.</strong></p>
-</section>
-<section id="the-two-sample-t-test" class="level2" data-number="3.4">
-<h2 data-number="3.4" class="anchored" data-anchor-id="the-two-sample-t-test"><span class="header-section-number">3.4</span> The two sample t-test</h2>
-<p>Th t-test is going to test our data against the null that the two sets are drawn from the same population - that there is no difference in the mean bill stockiness between the species.</p>
-<p>On the basis of the summary we made and the box plot, do you think we are going to reject or fail to reject this null?</p>
-<p>We can carry out the t-test in R like this</p>
+<p>The F value here is an example of a ‘test statistic’, a number that a test calculates from the data, from which it is possible to further calulate how likely it is that you would have got the data you got if the null hypothesis were true. This particular test statistic is the ratio of the variation in the data that is explained by the explanatory variable to the leftover variance. The bigger it is, the better the job that the explanatory variable is doing at explaining the variation in the dependent variable. The p value, which here is effectively zero, is the chance you would have got an F value this big or bigger from the data in the sample if in fact there were no relationship between plant growth rate and soil moisture content. If the p value is small (and by that we usually mean less than 0.05) then we can reject the null hypothesis that there is no relationship between plant growth rate and soil moisture content.</p>
+<p>Hence, in this case, we emphatically reject the null: there is clear evidence that plant growth rate is at least in part explained by soil moisture content.</p>
+<p>Now we use the <code>summary()</code> function:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(bill_stocky <span class="sc">~</span> species, <span class="at">data =</span> penguins2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
-    Welch Two Sample t-test
+Call:
+lm(formula = plant.growth.rate ~ soil.moisture.content, data = plants)
 
-data:  bill_stocky by species
-t = 19, df = 77, p-value &lt;2e-16
-alternative hypothesis: true difference in means between group Chinstrap and group Gentoo is not equal to 0
-95 percent confidence interval:
- 0.0541 0.0670
-sample estimates:
-mean in group Chinstrap    mean in group Gentoo 
-                  0.377                   0.316 </code></pre>
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-8.9089 -3.0747  0.2261  2.6567  8.9406 
+
+Coefficients:
+                      Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)             19.348      1.283   15.08   &lt;2e-16 ***
+soil.moisture.content   12.750      1.021   12.49   &lt;2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 4.019 on 48 degrees of freedom
+Multiple R-squared:  0.7648,    Adjusted R-squared:  0.7599 
+F-statistic: 156.1 on 1 and 48 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 </div>
-<ul>
-<li>Is the p value less than 0.05?</li>
-<li>Do we reject the null hypothesis?</li>
-<li>What does the t-value mean?</li>
-<li>What is the 95% confidence interval for the difference between the mean values for each species?</li>
-<li>Is zero within this confidence interval?</li>
-</ul>
-<p><strong>Reporting the test</strong> We find that the bills of the Chinstrap males are significantly stockier than those of the Gentoo males, as measured by our stockiness index, defined as the ratio of the bill depth to the bill length. (t-test, t = 17, df = 86, p &lt;0.001). The 95% confidence interval for the difference is from 0.054 to 0.067</p>
+<p>This gives us estimates of the intercept (19.348) and gradient (12.750) of the best fit line through the data. The null hypothesis is that both these values are zero, and the p-value is our clue as to whether we can reject this null. Here, in both cases, we clearly can.</p>
+<p>We also see the <em>Adjusted R-squared</em> value of 0.7599. This is the proportion of the variance in the dependent variable that is explained by the explanatory variable. Thus it can vary between 0 and 1. A large value like this indicates that soil moisture content is a good predictor of plant growth rate.</p>
 </section>
-<section id="mann-whitney-test-for-difference---for-data-that-are-not-normally-distributed" class="level2" data-number="3.5">
-<h2 data-number="3.5" class="anchored" data-anchor-id="mann-whitney-test-for-difference---for-data-that-are-not-normally-distributed"><span class="header-section-number">3.5</span> Mann-Whitney test for difference - for data that are not normally distributed</h2>
-<p>What if the data had failed the normality test? That is, what if one or both of the QQ plots had looked distinctly curved, or at least one of the box plots was not at all symmetrical, or the p-values from at least one of the Shapiro-Wilk tests wass less than 0.05? What then?</p>
-<p>Well, we shouldn’t use a parametric test like a t-test.</p>
-<p>Instead, we could:</p>
-<ol type="1">
-<li>transform the data and make it more normal, often by taking the log of the variable then doing a t-test on that. maybe then we could use the t-test. This is a really useful technique that can sometimes get you over the problem of lack of normality</li>
-<li>Use an equivalent non-parametric test such a Mann Whitney test.</li>
-<li>Use a fancy generalised linear model.</li>
-</ol>
-<p>Here, we will try option 2, to illustrate its use.</p>
-<p>As an example, let’s do the same test for difference as above, but now comparing Adelie males to Chinstrap males.</p>
-<p>First the box plots:</p>
+<section id="back-to-the-figure" class="level3" data-number="6.3.5">
+<h3 data-number="6.3.5" class="anchored" data-anchor-id="back-to-the-figure"><span class="header-section-number">6.3.5</span> Back to the figure</h3>
+<p>Typically, a final step in our analysis involves including the model we have fitted into the original figure, if that is possible in a straightforward way. In the case of simple linear regression, it is. It means adding a straight line with the intercept and gradient displayed by the <code>summary()</code> function. We do this by adding a line <code>geom_smooth(method = "lm")</code> to our plot code:</p>
 <div class="cell">
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="two_samples_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" style="width:90.0%"></p>
+<p><img src="simple-linear-regression_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
-<p>Note the outlier in the Adelie data set</p>
-<p>Now the QQ plots:</p>
+<p>This gives both a straight line and the ‘standard error’ of that line - meaning, roughly speaking, the wiggle room within which the ‘true’ line , for the population as opposed to this sample drawn from it, probably lies.</p>
+</section>
+<section id="report-the-result" class="level3" data-number="6.3.6">
+<h3 data-number="6.3.6" class="anchored" data-anchor-id="report-the-result"><span class="header-section-number">6.3.6</span> Report the result</h3>
+<p>We would likely want to include this plot in our report, along with a statement like:</p>
+<p>We find evidence for a linear increase in plant growth rate with soil moisture content (p&lt;0.001), with an additional 12.75 mm of growth per unit increase in soil moisture content.</p>
+</section>
+<section id="conclusion" class="level3" data-number="6.3.7">
+<h3 data-number="6.3.7" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">6.3.7</span> Conclusion</h3>
+<p>We have carried out a simple linear regression on continuous data. This is an example of a general linear model. We first plotted the data, then we used <code>lm()</code> to fit the model. Next we inspected the validity of the model using <code>autoplot</code>. We then inspected the model itself using first <code>anova()</code> then <code>summary()</code>. Finally we included the output of the model on the plot, in this case by adding to it a straight line with the intercept and gradient determined by the regression model, and reported the result in plain English.</p>
+</section>
+</section>
+<section id="simple-linear-regression---ocean-ph" class="level2" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="simple-linear-regression---ocean-ph"><span class="header-section-number">6.4</span> Simple linear regression - ocean pH</h2>
+<p>In this second example we provide the script but leave you to interpret the outcome of each step. Use the code snippets below to help you complete the notebook <code>ocean-pH.qmd</code> that is provided for you in the notebooks subfolder of the project lined to this chapter (if you haven’t aleady, you can download this using the link at the hed of this chapter.) If you do this then your notebook should follow exactly the same steps as for the plant growth example, but using different names.</p>
+<p>Here we use data from Figure 5.20 of AR6, WG1 from the IPCC. It shows ocean pH measurements from a location (137<span class="math inline">\(^{\circ}\)</span>E, 5<span class="math inline">\(^{\circ}\)</span>N) in the western Pacific between 1980 and 2020.</p>
+<p>Your task is to assess whether there is a significant linear trend in pH with time and if so to determiine the change in pH per year or per decade during the forty year period from 1980 to 2020.</p>
+<section id="load-data" class="level3" data-number="6.4.1">
+<h3 data-number="6.4.1" class="anchored" data-anchor-id="load-data"><span class="header-section-number">6.4.1</span> Load data</h3>
 <div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="two_samples_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" style="width:90.0%"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>Note the curvature for the Adelie QQ plot</p>
-<p>Now the Shapiro-Wilk test</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(species <span class="sc">!=</span> <span class="st">"Gentoo"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(species) <span class="sc">|&gt;</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">shapiro_test</span>(bill_stocky)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 2 × 4
-  species   variable    statistic       p
-  &lt;fct&gt;     &lt;chr&gt;           &lt;dbl&gt;   &lt;dbl&gt;
-1 Adelie    bill_stocky     0.954 0.00962
-2 Chinstrap bill_stocky     0.977 0.671  </code></pre>
+<pre><code>Rows: 81
+Columns: 2
+$ year &lt;dbl&gt; 1984.121, 1985.171, 1986.066, 1987.060, 1987.488, 1988.058, 1989.…
+$ pH   &lt;dbl&gt; 8.100000, 8.097917, 8.086458, 8.102604, 8.071875, 8.098437, 8.095…</code></pre>
 </div>
 </div>
-<p>The p-value is a lot less than 0.05 for the Adelies.</p>
-<p>So, even though the Chinstraps seem OK, the Adelie bills really don’t seem to be normally distributed in terms of their stockiness. This means that we can’t use a parametric test such as a t-test to see if their bills are differently stocky to the bill of any other species. What we can do is use a non-parametric test, if one exists. In this case, where we have replicates, and one factor with two levels, there is such a test. It is called the <strong>Mann Whitney U test</strong>. Let’s use it:</p>
+</section>
+<section id="plot-data" class="level3" data-number="6.4.2">
+<h3 data-number="6.4.2" class="anchored" data-anchor-id="plot-data"><span class="header-section-number">6.4.2</span> Plot data</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wilcox.test</span>(bill_stocky <span class="sc">~</span> species, <span class="at">data =</span> penguins <span class="sc">|&gt;</span> <span class="fu">filter</span>(species <span class="sc">!=</span> <span class="st">"Gentoo"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="simple-linear-regression_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Is there a linear trend?</p>
+</section>
+<section id="fit-linear-model" class="level3" data-number="6.4.3">
+<h3 data-number="6.4.3" class="anchored" data-anchor-id="fit-linear-model"><span class="header-section-number">6.4.3</span> Fit linear model</h3>
+</section>
+<section id="check-model-validity" class="level3" data-number="6.4.4">
+<h3 data-number="6.4.4" class="anchored" data-anchor-id="check-model-validity"><span class="header-section-number">6.4.4</span> Check model validity</h3>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="simple-linear-regression_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Is it reasonable to apply a linear model to these data? Remember that each of these plots tell you something about whether this is the case.</p>
+</section>
+<section id="inspect-model" class="level3" data-number="6.4.5">
+<h3 data-number="6.4.5" class="anchored" data-anchor-id="inspect-model"><span class="header-section-number">6.4.5</span> Inspect model</h3>
+<p><strong>ANOVA</strong></p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>Analysis of Variance Table
+
+Response: pH
+          Df    Sum Sq   Mean Sq F value    Pr(&gt;F)    
+year       1 0.0169414 0.0169414  199.87 &lt; 2.2e-16 ***
+Residuals 79 0.0066962 0.0000848                      
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+</div>
+<p>Are we OK to reject the null hypothesis that pH does not change over this time period?</p>
+<p><strong>Summary</strong></p>
+<div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>
-    Wilcoxon rank sum test with continuity correction
+Call:
+lm(formula = pH ~ year, data = pH)
 
-data:  bill_stocky by species
-W = 2482, p-value &lt;2e-16
-alternative hypothesis: true location shift is not equal to 0</code></pre>
+Residuals:
+       Min         1Q     Median         3Q        Max 
+-0.0247092 -0.0049642  0.0002185  0.0060392  0.0168809 
+
+Coefficients:
+             Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) 11.234405   0.224330   50.08   &lt;2e-16 ***
+year        -0.001583   0.000112  -14.14   &lt;2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.009207 on 79 degrees of freedom
+Multiple R-squared:  0.7167,    Adjusted R-squared:  0.7131 
+F-statistic: 199.9 on 1 and 79 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 </div>
-<p>This tells us that there is evidence of a significant difference between the stockiness of the bills of Adelie males and those of Chinstrap males. (Mann Whitney, W = 2482, p&lt;-.001).</p>
-<p>…but we already knew that, from the box plot.</p>
+<p>What is the change in ocean pH per decade over the last four decades? Is this change statistically significant? Does the linear model account for much of the variance in the data?</p>
 </section>
-<section id="exercises" class="level2" data-number="3.6">
-<h2 data-number="3.6" class="anchored" data-anchor-id="exercises"><span class="header-section-number">3.6</span> Exercises</h2>
-<section id="exercise-one-tests-for-normality" class="level3" data-number="3.6.1">
-<h3 data-number="3.6.1" class="anchored" data-anchor-id="exercise-one-tests-for-normality"><span class="header-section-number">3.6.1</span> Exercise One: tests for normality</h3>
-<p>In each of the examples below we show the results of plotting or testing each of two data sets, each of size N = 100 replicates.</p>
-<p>For each case, decide which of the two samples might plausibly be drawn from a normally distributed population:</p>
-<p><strong>Histograms: A or B</strong></p>
+<section id="replot-the-data-model-included" class="level3" data-number="6.4.6">
+<h3 data-number="6.4.6" class="anchored" data-anchor-id="replot-the-data-model-included"><span class="header-section-number">6.4.6</span> Replot the data, model included</h3>
 <div class="cell">
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="two_samples_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" style="width:90.0%"></p>
+<p><img src="simple-linear-regression_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
-<p><strong>Box plots: C or D</strong></p>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="two_samples_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" style="width:90.0%"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>**Violin plots: E or F</p>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="two_samples_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" style="width:90.0%"></p>
-</figure>
-</div>
-</div>
-</div>
-<p><strong>Quantile-Quantile plots</strong>: G or H?</p>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="two_samples_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" style="width:90.0%"></p>
-</figure>
-</div>
-</div>
-</div>
-<p><strong>Shapiro-Wilk tests</strong>: I or J?</p>
-<div class="cell">
-<div class="cell-output-display">
-<table class="table caption-top table-sm table-striped small" data-quarto-postprocess="true">
-<thead>
-<tr class="header">
-<th style="text-align: left;" data-quarto-table-cell-role="th">category</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">variable</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">statistic</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">p</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">I</td>
-<td style="text-align: left;">response</td>
-<td style="text-align: right;">0.627</td>
-<td style="text-align: right;">0.00</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">J</td>
-<td style="text-align: left;">response</td>
-<td style="text-align: right;">0.995</td>
-<td style="text-align: right;">0.98</td>
-</tr>
-</tbody>
-</table>
-
-
-</div>
-</div>
-</section>
-<section id="exercise-two" class="level3" data-number="3.6.2">
-<h3 data-number="3.6.2" class="anchored" data-anchor-id="exercise-two"><span class="header-section-number">3.6.2</span> Exercise Two:</h3>
-<p>Match each of the following scenarios with the appropriate test</p>
-<p>A: Among Chinese goose breeds the KIT gene affects plumage colour. In a population of 91 of these geese the frequencies of the two alleles <em>A</em> and <em>a</em> of this gene are such that <em>if</em> the population were in Hardy-Weinberg equilibrium <em>then</em> one would expect 54 individuals to have genotype <em>AA</em>, 23 to have geneotype <em>Aa</em> and 14 to have genotype <em>aa</em>. The actual numbers are 48, 30 and 13. We want to test whether these numbers are consistent with Hardy-Weinnberg equilibrium.</p>
-<p>B:</p>
+<p>How would you report this result?</p>
 
 
 </section>
@@ -1021,13 +949,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./counts.html" class="pagination-link" aria-label="Chi-squared analysis of count data">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Chi-squared analysis of count data</span></span>
+      <a href="./correlation.html" class="pagination-link" aria-label="Correlation">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Correlation</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./two_samples_paired.html" class="pagination-link" aria-label="Other tests for difference: paired and one sample">
-        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Other tests for difference: paired and one sample</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./test_finder.html" class="pagination-link" aria-label="Test finder">
+        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Test finder</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

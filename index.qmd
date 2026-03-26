@@ -1,3 +1,52 @@
 # Preface {.unnumbered}
 
 This will develop into your course notes for Research Methods and GIS for Zoology.
+
+The test will cover:
+
+* Data types
+  * Categorical
+  * Ordinal
+  * Numeric: Constant interval and ratio
+* Sampling strategies
+  * Simple random
+  * Stratified
+* The research method: questions, hypotheses and predictions
+  * Type of question: trend and difference
+* Study design
+  * Correlational
+  * Manipulative
+* Visualisation of data
+  * Pros and cons of bar charts, histograms, box plots, violin plots
+* Representing error
+  * standard deviation
+  * standard error of the mean
+  * confidence interval
+* Choosing the right test in any situation
+  * Difference between parametric and non-parametric tests
+  * How to choose between them:
+    * normality of residuals
+    * constancy of variance
+    * normality test
+    * graphical methods
+* Statistical tests: know when each is appropriate
+  * t-test: 2 sample, 1-sample, paired
+  * Mann-Whitney U test: 2 sample, 1-sample, paired
+  * Correlation: Pearson and Spearman's Rank
+  * Linear regression
+  * Chi-squared tests
+    * Goodness of fit
+    * Test of independence
+* Interpret output of tests:
+  * p-value
+  * confidence interval
+  * estimate
+* Reporting of tests in plain English
+* Type 1 and Type II error: what they are and how thier likelihood and be manipulated.
+
+
+
+
+
+
+
