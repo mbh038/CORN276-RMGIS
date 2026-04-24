@@ -1,5 +1,6 @@
 # Simple linear regression
 
+
 ## Introduction
 
 A class of analytical models that are often used go under the name **General Linear Models**. They include linear regression, multiple regression, ANOVA, ANCOVA, Pearson correlation and t-tests.
