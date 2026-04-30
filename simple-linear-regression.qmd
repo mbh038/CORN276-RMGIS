@@ -1,5 +1,13 @@
 # Simple linear regression
 
+```{r}
+#| include: false
+source(here::here("_common.R"))
+```
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
 
 ## Introduction
 
@@ -230,4 +238,27 @@ pH |>
 ```
 
 How would you report this result?
+
+## Example
+
+```{r}
+pop <- read_csv(here("data","male_dolphins.csv"), skip = 2)
+glimpse(pop)
+```
+```{r}
+pop |>
+  ggplot(aes(x=distance_km, y = POP_concentration)) +
+  geom_point() +
+  geom_smooth(method = "lm") +
+  labs(x = "Distance from chemicals plant (km)",
+       y = "POP concentration in blubber") +
+  theme_cowplot()
+```
+
+```{r}
+pop.model <-lm(POP_concentration ~ distance_km, data = pop)
+summary(pop.model)
+```
+
+
 

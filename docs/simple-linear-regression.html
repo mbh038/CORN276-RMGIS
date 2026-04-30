@@ -259,6 +259,7 @@ window.Quarto = {
   <li><a href="#inspect-model" id="toc-inspect-model" class="nav-link" data-scroll-target="#inspect-model"><span class="header-section-number">6.4.5</span> Inspect model</a></li>
   <li><a href="#replot-the-data-model-included" id="toc-replot-the-data-model-included" class="nav-link" data-scroll-target="#replot-the-data-model-included"><span class="header-section-number">6.4.6</span> Replot the data, model included</a></li>
   </ul></li>
+  <li><a href="#example" id="toc-example" class="nav-link" data-scroll-target="#example"><span class="header-section-number">6.5</span> Example</a></li>
   </ul>
 </nav>
     </div>
@@ -303,8 +304,8 @@ window.Quarto = {
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 50
 Columns: 2
-$ soil.moisture.content &lt;dbl&gt; 0.4696876, 0.5413106, 1.6979915, 0.8255799, 0.85…
-$ plant.growth.rate     &lt;dbl&gt; 21.31695, 27.03072, 38.98937, 30.19529, 37.06547…</code></pre>
+$ soil.moisture.content &lt;dbl&gt; 0.470, 0.541, 1.698, 0.826, 0.857, 1.608, 0.250,…
+$ plant.growth.rate     &lt;dbl&gt; 21.3, 27.0, 39.0, 30.2, 37.1, 43.2, 22.7, 40.2, …</code></pre>
 </div>
 </div>
 <p>We see that the data set contains two continuous variables, as expected.</p>
@@ -314,7 +315,7 @@ $ plant.growth.rate     &lt;dbl&gt; 21.31695, 27.03072, 38.98937, 30.19529, 37.0
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="simple-linear-regression_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="simple-linear-regression_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" style="width:90.0%"></p>
 </figure>
 </div>
 </div>
@@ -341,7 +342,7 @@ $ plant.growth.rate     &lt;dbl&gt; 21.31695, 27.03072, 38.98937, 30.19529, 37.0
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="simple-linear-regression_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="simple-linear-regression_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" style="width:90.0%"></p>
 </figure>
 </div>
 </div>
@@ -367,9 +368,9 @@ $ plant.growth.rate     &lt;dbl&gt; 21.31695, 27.03072, 38.98937, 30.19529, 37.0
 <pre><code>Analysis of Variance Table
 
 Response: plant.growth.rate
-                      Df  Sum Sq Mean Sq F value    Pr(&gt;F)    
-soil.moisture.content  1 2521.15 2521.15  156.08 &lt; 2.2e-16 ***
-Residuals             48  775.35   16.15                      
+                      Df Sum Sq Mean Sq F value Pr(&gt;F)    
+soil.moisture.content  1   2521    2521     156 &lt;2e-16 ***
+Residuals             48    775      16                   
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
@@ -384,19 +385,19 @@ Call:
 lm(formula = plant.growth.rate ~ soil.moisture.content, data = plants)
 
 Residuals:
-    Min      1Q  Median      3Q     Max 
--8.9089 -3.0747  0.2261  2.6567  8.9406 
+   Min     1Q Median     3Q    Max 
+-8.909 -3.075  0.226  2.657  8.941 
 
 Coefficients:
                       Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)             19.348      1.283   15.08   &lt;2e-16 ***
-soil.moisture.content   12.750      1.021   12.49   &lt;2e-16 ***
+(Intercept)              19.35       1.28    15.1   &lt;2e-16 ***
+soil.moisture.content    12.75       1.02    12.5   &lt;2e-16 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 4.019 on 48 degrees of freedom
-Multiple R-squared:  0.7648,    Adjusted R-squared:  0.7599 
-F-statistic: 156.1 on 1 and 48 DF,  p-value: &lt; 2.2e-16</code></pre>
+Residual standard error: 4.02 on 48 degrees of freedom
+Multiple R-squared:  0.765, Adjusted R-squared:  0.76 
+F-statistic:  156 on 1 and 48 DF,  p-value: &lt;2e-16</code></pre>
 </div>
 </div>
 <p>This gives us estimates of the intercept (19.348) and gradient (12.750) of the best fit line through the data. The null hypothesis is that both these values are zero, and the p-value is our clue as to whether we can reject this null. Here, in both cases, we clearly can.</p>
@@ -409,7 +410,7 @@ F-statistic: 156.1 on 1 and 48 DF,  p-value: &lt; 2.2e-16</code></pre>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="simple-linear-regression_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="simple-linear-regression_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" style="width:90.0%"></p>
 </figure>
 </div>
 </div>
@@ -437,8 +438,8 @@ F-statistic: 156.1 on 1 and 48 DF,  p-value: &lt; 2.2e-16</code></pre>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 81
 Columns: 2
-$ year &lt;dbl&gt; 1984.121, 1985.171, 1986.066, 1987.060, 1987.488, 1988.058, 1989.…
-$ pH   &lt;dbl&gt; 8.100000, 8.097917, 8.086458, 8.102604, 8.071875, 8.098437, 8.095…</code></pre>
+$ year &lt;dbl&gt; 1984, 1985, 1986, 1987, 1987, 1988, 1989, 1990, 1991, 1991, 1991,…
+$ pH   &lt;dbl&gt; 8.10, 8.10, 8.09, 8.10, 8.07, 8.10, 8.10, 8.09, 8.08, 8.09, 8.07,…</code></pre>
 </div>
 </div>
 </section>
@@ -448,7 +449,7 @@ $ pH   &lt;dbl&gt; 8.100000, 8.097917, 8.086458, 8.102604, 8.071875, 8.098437, 8
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="simple-linear-regression_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="simple-linear-regression_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" style="width:90.0%"></p>
 </figure>
 </div>
 </div>
@@ -464,7 +465,7 @@ $ pH   &lt;dbl&gt; 8.100000, 8.097917, 8.086458, 8.102604, 8.071875, 8.098437, 8
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="simple-linear-regression_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="simple-linear-regression_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" style="width:90.0%"></p>
 </figure>
 </div>
 </div>
@@ -479,9 +480,9 @@ $ pH   &lt;dbl&gt; 8.100000, 8.097917, 8.086458, 8.102604, 8.071875, 8.098437, 8
 <pre><code>Analysis of Variance Table
 
 Response: pH
-          Df    Sum Sq   Mean Sq F value    Pr(&gt;F)    
-year       1 0.0169414 0.0169414  199.87 &lt; 2.2e-16 ***
-Residuals 79 0.0066962 0.0000848                      
+          Df Sum Sq Mean Sq F value Pr(&gt;F)    
+year       1 0.0169 0.01694     200 &lt;2e-16 ***
+Residuals 79 0.0067 0.00008                   
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
@@ -495,19 +496,19 @@ Call:
 lm(formula = pH ~ year, data = pH)
 
 Residuals:
-       Min         1Q     Median         3Q        Max 
--0.0247092 -0.0049642  0.0002185  0.0060392  0.0168809 
+      Min        1Q    Median        3Q       Max 
+-0.024709 -0.004964  0.000219  0.006039  0.016881 
 
 Coefficients:
              Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept) 11.234405   0.224330   50.08   &lt;2e-16 ***
-year        -0.001583   0.000112  -14.14   &lt;2e-16 ***
+(Intercept) 11.234405   0.224330    50.1   &lt;2e-16 ***
+year        -0.001583   0.000112   -14.1   &lt;2e-16 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 0.009207 on 79 degrees of freedom
-Multiple R-squared:  0.7167,    Adjusted R-squared:  0.7131 
-F-statistic: 199.9 on 1 and 79 DF,  p-value: &lt; 2.2e-16</code></pre>
+Residual standard error: 0.00921 on 79 degrees of freedom
+Multiple R-squared:  0.717, Adjusted R-squared:  0.713 
+F-statistic:  200 on 1 and 79 DF,  p-value: &lt;2e-16</code></pre>
 </div>
 </div>
 <p>What is the change in ocean pH per decade over the last four decades? Is this change statistically significant? Does the linear model account for much of the variance in the data?</p>
@@ -518,15 +519,57 @@ F-statistic: 199.9 on 1 and 79 DF,  p-value: &lt; 2.2e-16</code></pre>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="simple-linear-regression_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="simple-linear-regression_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" style="width:90.0%"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>How would you report this result?</p>
-
-
 </section>
+</section>
+<section id="example" class="level2" data-number="6.5">
+<h2 data-number="6.5" class="anchored" data-anchor-id="example"><span class="header-section-number">6.5</span> Example</h2>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 71
+Columns: 2
+$ distance_km       &lt;dbl&gt; 6.37, 6.49, 7.56, 7.83, 8.89, 10.35, 10.89, 12.47, 1…
+$ POP_concentration &lt;dbl&gt; 0.843, 0.817, 0.830, 0.838, 0.820, 0.834, 0.871, 0.7…</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="simple-linear-regression_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid figure-img" style="width:90.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = POP_concentration ~ distance_km, data = pop)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.13042 -0.03016  0.00224  0.03195  0.15392 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  0.82499    0.01397      59   &lt;2e-16 ***
+distance_km -0.00313    0.00026     -12   &lt;2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.0543 on 69 degrees of freedom
+Multiple R-squared:  0.677, Adjusted R-squared:  0.673 
+F-statistic:  145 on 1 and 69 DF,  p-value: &lt;2e-16</code></pre>
+</div>
+</div>
+
+
 </section>
 
 </main> <!-- /main -->

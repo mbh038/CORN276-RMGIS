@@ -285,7 +285,7 @@ ds |>
 **Box plots: C or D**
 ```{r}
 ds |>
-  mutate(category = rep(sample(c("C","D"),2),each = N)) |>
+  mutate(category = rep(sample(c("A","B"),2),each = N)) |>
   ggplot(aes(x = category, y = response)) +
   geom_boxplot() +
   labs(x = "Data Set",
@@ -296,7 +296,7 @@ ds |>
 **Violin plots: E or F
 ```{r}
 ds |>
-  mutate(category = rep(sample(c("E","F"),2),each = N)) |>
+  mutate(category = rep(sample(c("A","B"),2),each = N)) |>
   ggplot(aes(x = category, y = response)) +
   geom_violin() +
   labs(x = "Data Set",
@@ -308,7 +308,7 @@ ds |>
 **Quantile-Quantile plots**: G or H?
 ```{r}
 ds |>
-  mutate(category = rep(sample(c("G","H"),2),each = N)) |>
+  mutate(category = rep(sample(c("A","B"),2),each = N)) |>
   ggplot(aes(sample=response)) +
   stat_qq() +
   stat_qq_line() +
@@ -318,7 +318,7 @@ ds |>
 **Shapiro-Wilk tests**: I or J?
 ```{r}
 ds |>
-  mutate(category = rep(sample(c("I","J"),2),each = N)) |>
+  mutate(category = rep(sample(c("A","B"),2),each = N)) |>
   group_by(category) |>
   shapiro_test(response)  |>
   kbl(digits = c(0,0,3,3), width='60%') |>
