@@ -20,7 +20,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -259,7 +279,7 @@ window.Quarto = {
   <li><a href="#inspect-model" id="toc-inspect-model" class="nav-link" data-scroll-target="#inspect-model"><span class="header-section-number">6.4.5</span> Inspect model</a></li>
   <li><a href="#replot-the-data-model-included" id="toc-replot-the-data-model-included" class="nav-link" data-scroll-target="#replot-the-data-model-included"><span class="header-section-number">6.4.6</span> Replot the data, model included</a></li>
   </ul></li>
-  <li><a href="#example" id="toc-example" class="nav-link" data-scroll-target="#example"><span class="header-section-number">6.5</span> Example</a></li>
+  <li><a href="#example-persistent-organic-pollutants-in-dolphin-blubber" id="toc-example-persistent-organic-pollutants-in-dolphin-blubber" class="nav-link" data-scroll-target="#example-persistent-organic-pollutants-in-dolphin-blubber"><span class="header-section-number">6.5</span> Example: Persistent Organic Pollutants in Dolphin Blubber</a></li>
   </ul>
 </nav>
     </div>
@@ -527,8 +547,9 @@ F-statistic:  200 on 1 and 79 DF,  p-value: &lt;2e-16</code></pre>
 <p>How would you report this result?</p>
 </section>
 </section>
-<section id="example" class="level2" data-number="6.5">
-<h2 data-number="6.5" class="anchored" data-anchor-id="example"><span class="header-section-number">6.5</span> Example</h2>
+<section id="example-persistent-organic-pollutants-in-dolphin-blubber" class="level2" data-number="6.5">
+<h2 data-number="6.5" class="anchored" data-anchor-id="example-persistent-organic-pollutants-in-dolphin-blubber"><span class="header-section-number">6.5</span> Example: Persistent Organic Pollutants in Dolphin Blubber</h2>
+<p>Data taken from <span class="citation" data-cites="balmer2011">(<a href="references.html#ref-balmer2011" role="doc-biblioref">Balmer et al. 2011</a>)</span></p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 71
@@ -568,8 +589,18 @@ Multiple R-squared:  0.677, Adjusted R-squared:  0.673
 F-statistic:  145 on 1 and 69 DF,  p-value: &lt;2e-16</code></pre>
 </div>
 </div>
+<ul>
+<li>What is the change in POP concentration with each 1 km change in mean distance?</li>
+<li>What is the predicted POP concentration next to the plant (distance = 0 km)?</li>
+<li>what is the predicted POP concentration at a distance of 50 km?</li>
+</ul>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-balmer2011" class="csl-entry" role="listitem">
+Balmer, Brian C., Lori H. Schwacke, Randall S. Wells, R. Clay George, Jennifer Hoguet, John R. Kucklick, Suzanne M. Lane, et al. 2011. <span>“Relationship Between Persistent Organic Pollutants (POPs) and Ranging Patterns in Common Bottlenose Dolphins (Tursiops Truncatus) from Coastal Georgia, USA.”</span> <em>Science of The Total Environment</em> 409 (11): 2094–2101. <a href="https://doi.org/10.1016/j.scitotenv.2011.01.052">https://doi.org/10.1016/j.scitotenv.2011.01.052</a>.
+</div>
+</div>
 </section>
 
 </main> <!-- /main -->

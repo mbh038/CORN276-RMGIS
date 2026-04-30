@@ -15,7 +15,7 @@ A class of analytical models that are often used go under the name **General Lin
 
 Despite appearances, these models are all fundamentally linear models. They share a common framework for estimation (least squares) and a common set of criteria that the data must satisfy before they can be used. These criteria centre around the idea of normally distributed residuals. THus, an important stage of any analysis that uses linear models is that compliance with these assumptions is checked, as part of the *Plot* -\> *Model* -\> *Check Assumptions* -\> *Interpret* -\> *Plot again* workflow.
 
-Here, we will go through an example of simple linear regression - suitable for trend data where we wish to predict a continuously varying response, given a value of a single continuous explanatory variable. 
+Here, we will go through an example of simple linear regression - suitable for trend data where we wish to predict a continuously varying response, given a value of a single continuous explanatory variable.
 
 ## Simple Linear Regression - plant growth
 
@@ -33,6 +33,7 @@ library(cowplot)
 ```
 
 ## The data
+
 Suppose that we have a data set to explore our question:
 
 ```{r, echo = FALSE}
@@ -44,7 +45,6 @@ glimpse(plants)
 We see that the data set contains two continuous variables, as expected.
 
 ### Plot the data
-
 
 ```{r, echo = FALSE}
 plants |>
@@ -239,12 +239,15 @@ pH |>
 
 How would you report this result?
 
-## Example
+## Example: Persistent Organic Pollutants in Dolphin Blubber
+
+Data taken from [@balmer2011]
 
 ```{r}
 pop <- read_csv(here("data","male_dolphins.csv"), skip = 2)
 glimpse(pop)
 ```
+
 ```{r}
 pop |>
   ggplot(aes(x=distance_km, y = POP_concentration)) +
@@ -259,6 +262,6 @@ pop |>
 pop.model <-lm(POP_concentration ~ distance_km, data = pop)
 summary(pop.model)
 ```
-
-
-
+* What is the change in POP concentration with each 1 km change in mean distance?
+* What is the predicted POP concentration next to the plant (distance = 0 km)?
+* what is the predicted POP concentration at a distance of 50 km?
