@@ -255,6 +255,7 @@ pop |>
   geom_smooth(method = "lm") +
   labs(x = "Distance from chemicals plant (km)",
        y = "POP concentration in blubber") +
+  scale_x_continuous(limits=c(0,90)) +
   theme_cowplot()
 ```
 
