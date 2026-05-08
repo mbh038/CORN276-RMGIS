@@ -11,19 +11,40 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ## Introduction
 
-A class of analytical models that are often used go under the name **General Linear Models**. They include linear regression, multiple regression, ANOVA, ANCOVA, Pearson correlation and t-tests.
+A class of analytical models that is often used goes under the name **General Linear Models**. It includes linear regression, multiple regression, ANOVA, ANCOVA, Pearson correlation and t-tests. We will meet all these next year.
 
-Despite appearances, these models are all fundamentally linear models. They share a common framework for estimation (least squares) and a common set of criteria that the data must satisfy before they can be used. These criteria centre around the idea of normally distributed residuals. THus, an important stage of any analysis that uses linear models is that compliance with these assumptions is checked, as part of the *Plot* -\> *Model* -\> *Check Assumptions* -\> *Interpret* -\> *Plot again* workflow.
+Despite appearances, these models all share the same method. They share a common framework for estimation (least squares) and a common set of criteria that the data must satisfy before they can be used. These criteria centre around the idea of normally distributed residuals. Thus, an important stage of any analysis that uses linear models is that compliance with these assumptions is checked, as part of the *Plot* -\> *Model* -\> *Check Assumptions* -\> *Interpret* -\> *Plot again* workflow.
 
-Here, we will go through an example of simple linear regression - suitable for trend data where we wish to predict a continuously varying response, given a value of a single continuous explanatory variable.
+Here, we will go through examples of simple linear regression - suitable for trend data where we wish to predict a continuously varying response, given a value of a single continuous explanatory variable.
 
-## Simple Linear Regression - plant growth
+We will us R to do this and don't hide the details, but note that you are not required this year to memorise any of this. If the R piques your interest - great! - if not, ignore it, and concentrate on what we learn from the plots and the outputs of the analysis.
+
+## Example - plant growth
 
 As a first example, we ask the question: does plant growth rate depend on soil moisture content?
 
 We predict that more moisture will probably allow higher growth rates. We note that this means there should be a clear relationship between the variables, one that should be apparent if we plot the response (dependent) variable - plant growth rate - against the explanatory (independent) variable - soil moisture content. We also note that both the explanatory variable and the dependent variables are *continuous* - they do not have categories.
 
-What we might want to do in linear regression is be able to predict the value of the dependent variable, knowing the value of the independent variable, using a linear model. Just as ofen, we simply want to determine the sensitivity of the dependent variable to changes in the independent variable. In practice, this means drawing a 'best fit' straight line through the data and determining the intercept and gradient of this line. It is the gradient that tells us the sensitivity of the dependent variable to chnges in the independent variable, and that is what we most often look out for in the analysis.
+What we might want to do in linear regression is be able to predict the value of the dependent variable, knowing the value of the independent variable, using a linear model. Just as often, we simply want to determine the sensitivity of the dependent variable to changes in the independent variable. In practice, doing either of these things means drawing a 'best fit' straight line through the data and determining the intercept and gradient of this line. It is the gradient that tells us the sensitivity of the dependent variable to chnges in the independent variable, and that is what we most often look out for in the analysis.
+
+::: callout-note
+## Equation of a straight line
+
+```{r}
+xs<- seq(0,10,1)
+ys <-seq(0,50,5)
+ggplot(data.frame(x=xs,y=ys), aes(x = x, y = y)) +
+  geom_point(colour="white") +
+  geom_abline(intercept = 12, slope = 4, colour = "blue") +
+  scale_x_continuous(breaks=seq(0,11), expand = c(0,0)) +
+  scale_y_continuous(breaks=seq(0,51,5), expand = c(0,0)) +
+  labs(x = "x", y = "y") +
+  annotate(geom = "text", x = 0, y = 8, hjust = -.05, label = "This is the intercept:\n the value of y when x = 0", size = 3) +
+  # coord_equal() +
+  theme_half_open()
+```
+
+:::
 
 ```{r, include = FALSE}
 library(tidyverse)
@@ -32,19 +53,21 @@ library(ggfortify)
 library(cowplot)
 ```
 
-## The data
+### The data
 
-Suppose that we have a data set to explore our question:
+Suppose that we have a data set to explore our question. If we read this data into R from a `.csv` file or an Excel `.xlsx` spreadsheet, this is what it might tell us:
 
 ```{r, echo = FALSE}
 filepath <- here("data","plant.growth.rate.csv")
 plants <- read_csv(filepath)
-glimpse(plants)
+gt_preview(plants)
 ```
 
-We see that the data set contains two continuous variables, as expected.
+We see that the data set contains two columns of continuous variables, as expected. One, called `soil.moisure.content` has 50 rows of values for the soil moisture content while the other, called `plant.growth.rate` contains the corresponding 50 values for growth rate, in mm/week.
 
 ### Plot the data
+
+Let's do a scatter plot of plant growth rate on the vertical (y) axis against soil moisture content on the horizontal (x) axis:
 
 ```{r, echo = FALSE}
 plants |>
@@ -79,7 +102,7 @@ This reads: 'Fit a linear model, where we hypothesize that plant growth rate is 
 
 Before we rush into interpreting the output of the model, we need to check whether it was valid to use a linear model in the first place. Whatever the test within which we are using a linear model, we should do the necessary diagnostic checks at this stage.
 
-You can do this using tests designed for the purpose, but I prefer to do it graphically, using a function `autoplot()` from the package `ggfortify`. You give this the model we have just created using `lm()` and it produces four very useful graphs. I suggest that, after once installing `ggfortify` you include the line `library(ggfortify)` at the start of every script.
+You can do this using tests designed for the purpose, but I prefer to do it graphically, using a function `autoplot()` from the package `ggfortify`. You give this the model we have just created using `lm()` and it produces four very useful graphs. I suggest that, after once installing `ggfortify` you include the line `library(ggfortify)` at the start of every notebook.
 
 Here is how you use it:
 
@@ -95,10 +118,8 @@ In simple linear regression, the best fit line is the one that minimises that su
 
 So what do these plots mean?
 
--   *Top-left*: This tells you about the structure of the model. Was it a good idea to try to fit a straight line to the data? If not, for example because the data did follow a linear trend, then there will be humps or troughs in this plot.
--   *Top-right*: This evaluates the assumption of normality of the residuals. The dots are the residuals and the dashed line is the expectation under the normality assumption. This is a *much* better way to check normality than making a histogram of the residuals, especially with small samples.
--   *Bottom-left*: This examines the assumption of equal variance of the residuals. A linear model assumes that the variance is constant over all predicted values of the response variables. There should be no pattern. Often, however, there is. With count data, for example, the variance typically increases with the mean.
--   *Bottom-right*: This detects leverage - which means points that have undue influence on the gradient of the fitted line, and outliers. If you have outliers in your data, you need to decide what to do with them.
+-   *left*: This tells you about the structure of the model. Was it a good idea to try to fit a straight line to the data? If not, for example because the data did follow a linear trend, then there will be humps or troughs in this plot.
+-   *right*: This evaluates the assumption of normality of the residuals. The dots are the residuals and the dashed line is the expectation under the normality assumption. This is a *much* better way to check normality than making a histogram of the residuals, especially with small samples.
 
 In the case of these data, we are good to go! There is no discernible pattern in either of the left-hand plots, the qq-plot is about as straight as you ever see with real data, and there are no points exerting undue high influence.
 
@@ -154,9 +175,7 @@ We find evidence for a linear increase in plant growth rate with soil moisture c
 
 We have carried out a simple linear regression on continuous data. This is an example of a general linear model. We first plotted the data, then we used `lm()` to fit the model. Next we inspected the validity of the model using `autoplot`. We then inspected the model itself using first `anova()` then `summary()`. Finally we included the output of the model on the plot, in this case by adding to it a straight line with the intercept and gradient determined by the regression model, and reported the result in plain English.
 
-## Simple linear regression - ocean pH
-
-In this second example we provide the script but leave you to interpret the outcome of each step. Use the code snippets below to help you complete the notebook `ocean-pH.qmd` that is provided for you in the notebooks subfolder of the project lined to this chapter (if you haven't aleady, you can download this using the link at the hed of this chapter.) If you do this then your notebook should follow exactly the same steps as for the plant growth example, but using different names.
+## Example - ocean pH
 
 Here we use data from Figure 5.20 of AR6, WG1 from the IPCC. It shows ocean pH measurements from a location (137$^{\circ}$E, 5$^{\circ}$N) in the western Pacific between 1980 and 2020.
 
@@ -169,15 +188,17 @@ library(ggfortify)
 library(cowplot)
 ```
 
-### Load data
+Here is a glimpse of the data we have:
 
 ```{r}
 pH_filepath <- here("data","ipcc_AR6_WGI_Figure_5_20-pH.csv")
 pH<-read_csv(pH_filepath,skip=6) # we have to skip the first 6 lines because of meta-data included in the file - check it out!
-glimpse(pH)
+gt_preview(pH)
 ```
 
 ### Plot data
+
+If we plot pH gainst year we get:
 
 ```{r}
 pH |>
@@ -189,21 +210,30 @@ pH |>
   theme_cowplot()
 ```
 
-Is there a linear trend?
+* Is there a linear trend?
+* Is the scatter in the vertical direction about the same across the whole range of year?
 
 ### Fit linear model
+
+Supposing we do think there is a linear trend,  we will want to determine the change in pH per year or per decade during the forty year period from 1980 to 2020.
+
+If we decide to use R to do this we would fit a linear model.
 
 ```{r}
 pH_model <- lm(pH ~ year, data= pH)
 ```
 
-### Check model validity
+This will tell us what we want to know and do so reliably providing the criteria for its use are satisfied. These criteria are, principally:
 
-```{r}
-autoplot(pH_model) + theme_cowplot()
-```
+* that there is a plausibly linear relationship. 
+* that the variance of the response is approximately constant across the range of the explanatory variable
+* That the residuals are plausibly drawn from a normal distribution.
 
-Is it reasonable to apply a linear model to these data? Remember that each of these plots tell you something about whether this is the case.
+We can see from the plot above that the first and the second criteria are satisfied. What about the third? This is best checked using a quantile-quantile plot, which should be roughly linear. We will skip that here and move on to the output of the linear model created by R:
+
+
+
+
 
 ### Inspect model
 
@@ -221,7 +251,9 @@ Are we OK to reject the null hypothesis that pH does not change over this time p
 summary(pH_model)
 ```
 
-What is the change in ocean pH per decade over the last four decades? Is this change statistically significant? Does the linear model account for much of the variance in the data?
+-   What is the change in ocean pH per decade over the last four decades?
+-   Is this change statistically significant?
+-   Does the linear model account for much of the variance in the data?
 
 ### Replot the data, model included
 
@@ -237,32 +269,43 @@ pH |>
   theme_cowplot()
 ```
 
-How would you report this result?
+* How would you report this result?
+* Would it be wise to assume that this linear relationship persists beyond the date range of the data, in either direction (past and/or future)?
 
 ## Example: Persistent Organic Pollutants in Dolphin Blubber
 
-Data taken from [@balmer2011]
+A chemicals plant on the east coast of the USA is suspected of leaking POPs into coastal waters. These might be expected to dilute with distance from the coast but where they are present they would be likely to concentrate in apex predators such as dolphins.  A study by Balmer and co-workers [-@balmer2011] measured the concentration of POPs in the blubber of bottlenose dophins as a function of the mean distance from the coast of their range of movement.
 
 ```{r}
-pop <- read_csv(here("data","male_dolphins.csv"), skip = 2)
-glimpse(pop)
+pop <- read_csv(here("data","pops_dolphins.csv"), skip = 3) 
+pop |> gt_preview()
 ```
+When they plotted this data for each sex, they found that the POP concentration appeared to decline linearly with distance from the coast:
 
 ```{r}
 pop |>
-  ggplot(aes(x=distance_km, y = POP_concentration)) +
-  geom_point() +
-  geom_smooth(method = "lm") +
+  ggplot(aes(x=distance_km, y = pop_conc)) +
+  geom_point(alpha=0.5) +
+  geom_smooth(method = "lm", se = FALSE, linewidth=0.4) +
   labs(x = "Distance from chemicals plant (km)",
-       y = "POP concentration in blubber") +
+       y = "POP concentration",
+       colour = "Sex") +
   scale_x_continuous(limits=c(0,90)) +
+  scale_color_brewer(palette = "Set1") +
+  facet_wrap(~sex) +
   theme_cowplot()
 ```
 
+A regression analysis enables us to see more precisely what the decline in POP concentration is per extra km distance from the coast, and to predict what the POP concentration would be for any chosen distance within the distance range covered by the data. Here is the output of a regression anlysis for the females within the data collected by Balmer *et al.*
+
 ```{r}
-pop.model <-lm(POP_concentration ~ distance_km, data = pop)
+pop_females <- pop |> filter(sex == "female")
+  
+pop.model <-lm(pop_conc ~ distance_km, data = pop_females)
 summary(pop.model)
 ```
-* What is the change in POP concentration with each 1 km change in mean distance?
-* What is the predicted POP concentration next to the plant (distance = 0 km)?
-* what is the predicted POP concentration at a distance of 50 km?
+
+-   What is the change in POP concentration with each 1 km increase in mean distance?
+-   What is the predicted POP concentration next to the plant (distance = 0 km)?
+-   What is the predicted POP concentration at a distance of 50 km?
+- What proportion of the variability in POP concentrtion with distance is explained by this linear model?
