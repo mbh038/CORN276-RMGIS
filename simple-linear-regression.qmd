@@ -92,27 +92,24 @@ It is always good practice to examine the data before you go on to do any statis
 
 We use the function `lm()` to do this, and we save the results in an object to which we give the name `model_pgr`. This function needs a formula and some data as its arguments:
 
-```{r}
+```{r, echo = TRUE}
 model_pgr<-lm(plant.growth.rate ~ soil.moisture.content, data = plants)
 ```
 
 This reads: 'Fit a linear model, where we hypothesize that plant growth rate is a function of soil moisture content, using the variables from the `plants` data frame.'
 
-### Check assumptions
+### Check assumptions {#sec-check-assumptions}
 
 Before we rush into interpreting the output of the model, we need to check whether it was valid to use a linear model in the first place. Whatever the test within which we are using a linear model, we should do the necessary diagnostic checks at this stage.
 
-You can do this using tests designed for the purpose, but I prefer to do it graphically, using a function `autoplot()` from the package `ggfortify`. You give this the model we have just created using `lm()` and it produces four very useful graphs. I suggest that, after once installing `ggfortify` you include the line `library(ggfortify)` at the start of every notebook.
-
-Here is how you use it:
+You can do this using tests designed for the purpose, but I prefer to do it graphically. A number of plots help us here and we will find out how to produce them using R next year. Here are the most useful two:
 
 ```{r}
-autoplot(model_pgr, smooth.colour=NA) + theme_cowplot()
+autoplot(model_pgr, smooth.colour=NA)[c(1,2)] + theme_cowplot()
 ```
 
-The `theme_cowplot()` part is not necessary, but it gives the plots a nice look, so why not?
 
-These plots are all based around the \`residuals', which is the vertical distance between observed values and fitted values ie between each point and the best fit line through the points - the line which the linear model is finding for us, by telling us its intercept and gradient.
+These plots are both based around the \`residuals', which is the vertical distance between observed values and fitted values ie between each point and the best fit line through the points - the line which the linear model is finding for us, by telling us its intercept and gradient.
 
 In simple linear regression, the best fit line is the one that minimises that sum of the squared residuals.
 
@@ -121,7 +118,7 @@ So what do these plots mean?
 -   *left*: This tells you about the structure of the model. Was it a good idea to try to fit a straight line to the data? If not, for example because the data did follow a linear trend, then there will be humps or troughs in this plot.
 -   *right*: This evaluates the assumption of normality of the residuals. The dots are the residuals and the dashed line is the expectation under the normality assumption. This is a *much* better way to check normality than making a histogram of the residuals, especially with small samples.
 
-In the case of these data, we are good to go! There is no discernible pattern in either of the left-hand plots, the qq-plot is about as straight as you ever see with real data, and there are no points exerting undue high influence.
+In the case of these data, we are good to go! There is no discernible pattern in the left-hand plot and the qq-plot on the rightis about as straight as you ever see with real data.
 
 ### Interpretation of the model
 
@@ -219,7 +216,7 @@ Supposing we do think there is a linear trend,  we will want to determine the ch
 
 If we decide to use R to do this we would fit a linear model.
 
-```{r}
+```{r, echo = TRUE}
 pH_model <- lm(pH ~ year, data= pH)
 ```
 
@@ -229,17 +226,13 @@ This will tell us what we want to know and do so reliably providing the criteria
 * that the variance of the response is approximately constant across the range of the explanatory variable
 * That the residuals are plausibly drawn from a normal distribution.
 
-We can see from the plot above that the first and the second criteria are satisfied. What about the third? This is best checked using a quantile-quantile plot, which should be roughly linear. We will skip that here and move on to the output of the linear model created by R:
+We can see from the plot above that the first and the second criteria are satisfied. What about the third? This is best checked using a quantile-quantile plot as we did in @sec-check-assumptions, and this should be roughly linear. Let us suppose that this data also passed this test. This means we can now trust the output of the linear model created by R, to which we now turn:
 
-
-
-
-
-### Inspect model
+### Inspect model {#sec-inspect}
 
 **ANOVA**
 
-```{r}
+```{r, echo = TRUE}
 anova(pH_model)
 ```
 
@@ -248,7 +241,7 @@ Are we OK to reject the null hypothesis that pH does not change over this time p
 **Summary**
 
 ```{r}
-summary(pH_model)
+summary(pH_model, echo = TRUE)
 ```
 
 -   What is the change in ocean pH per decade over the last four decades?
