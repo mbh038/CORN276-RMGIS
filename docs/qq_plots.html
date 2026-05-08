@@ -246,7 +246,7 @@ ul.task-list li input[type="checkbox"] {
 <p>Adapted from an exercise by Jon Yearsley (School of Biology and Environmental Science, UCD)</p>
 <section id="introduction" class="level3" data-number="8.0.1">
 <h3 data-number="8.0.1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">8.0.1</span> Introduction</h3>
-<p>Q-Q plots can play a useful role when trying to decide whether a dataset is normally distributed, and if it is not, then how it differs from normality.</p>
+<p>Quantile-Quantile plots, often known as Q-Q plots, can play a useful role when trying to decide whether a dataset is normally distributed, and if it is not, then how it differs from normality.</p>
 <p>We will investigate the types of quantile-quantile plots you get from different types of distributions.</p>
 <p>We will look at data distributed according to</p>
 <ul>
@@ -261,12 +261,12 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="what-is-a-q-q-plot" class="level2" data-number="8.1">
 <h2 data-number="8.1" class="anchored" data-anchor-id="what-is-a-q-q-plot"><span class="header-section-number">8.1</span> What is a Q-Q plot?</h2>
-<p>Quantiles partition a dataset into equal subsets. For example, if we wished to partition a standard normal (mean = 0, standard deviation = 1) population into 4 equal subsets, the 3 quantiles (ie the three values of x) that would do this are -0.675, 0 and 0.675. In this way, 25% of the population would have a value greater than 0.675, 25% between 0 and 0.675, 25% between -0.675 and 0 and the final 25% would have a value less than -0.675. When we draw the distribution, the areas under the curve between neighbouring quantiles will be equal:</p>
+<p>Quantiles partition a data set into equally sized subsets. For example, if we wished to partition a standard normal (mean = 0, standard deviation = 1) population into 4 equal subsets, the 3 quantiles (ie the three values of x) that would do this are -0.675, 0 and 0.675. In this way, 25% of the population would have a value greater than 0.675, 25% between 0 and 0.675, 25% between -0.675 and 0 and the final 25% would have a value less than -0.675. When we draw the distribution, the areas under the curve between neighbouring quantiles will be equal:</p>
 <div class="cell">
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="qq_plots_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="qq_plots_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" style="width:90.0%"></p>
 </figure>
 </div>
 </div>
@@ -274,13 +274,13 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="normally-distributed-data." class="level2" data-number="8.2">
 <h2 data-number="8.2" class="anchored" data-anchor-id="normally-distributed-data."><span class="header-section-number">8.2</span> Normally distributed data.</h2>
-<p>Below we show an example of 150 observations that are drawn from a normal distribution. The normal distribution is symmetric, so has no skew. Its mean is equal to its median.</p>
-<p>On a Q-Q plot data that are approximtely normally distributed data lie roughly on a straight line, perhaps looking a bit ragged at each end. The box plot is symmetric with few or no outliers.</p>
+<p>Below we show an example of 150 observations that are randomly drawn from a normal distribution. The normal distribution is symmetric, so it has no skew in either direction and its mean is equal to its median.</p>
+<p>On a Q-Q plot, data that are approximately normally distributed data lie roughly on a straight line, perhaps looking a bit ragged at each end. The box plot is symmetric with few or no outliers.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="qq_plots_files/figure-html/normal-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+<p><img src="qq_plots_files/figure-html/normal-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%"></p>
 </figure>
 </div>
 </div>
@@ -295,7 +295,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="qq_plots_files/figure-html/right-skew-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+<p><img src="qq_plots_files/figure-html/right-skew-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%"></p>
 </figure>
 </div>
 </div>
@@ -310,7 +310,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="qq_plots_files/figure-html/left-skew-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+<p><img src="qq_plots_files/figure-html/left-skew-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%"></p>
 </figure>
 </div>
 </div>
@@ -324,7 +324,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="qq_plots_files/figure-html/under dispersed-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+<p><img src="qq_plots_files/figure-html/under dispersed-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%"></p>
 </figure>
 </div>
 </div>
@@ -338,7 +338,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="qq_plots_files/figure-html/over-dispersed-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+<p><img src="qq_plots_files/figure-html/over-dispersed-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%"></p>
 </figure>
 </div>
 </div>
